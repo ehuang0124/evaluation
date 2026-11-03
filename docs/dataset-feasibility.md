@@ -76,7 +76,20 @@ Practical consequence: design around **pooled contrasts** (does topic X favor lo
 5. **Inference:** cluster bootstrap by `evaluation_session_id`, 1,000+ resamples; report CIs, not just point estimates.
 6. **Report the negative controls:** the same pipeline on a non-political capability tag (e.g. `math`) should reproduce known leaderboard ordering — if it does not, the pipeline is broken.
 
-`scripts/topic_prevalence.py` in this repo implements step 1–2's triage half: it prints the schema, extracts first-turn prompts, counts keyword hits for a starter domain lexicon, and reports tie / `both_bad` / win-rate descriptives per domain. It is deliberately a triage tool — it has no causal claims and no confidence intervals. Run it, look at the per-domain counts, and only then decide whether the slice is big enough to be worth labeling properly.
+Implemented in this repo:
+
+- `scripts/topic_prevalence.py` — steps 1–2 triage: schema, first-turn prompts, a `v0.1`
+  domain lexicon, per-domain coverage and tie / `both_bad` / position descriptives. No
+  controls, no CIs.
+- `scripts/build_topics.py` — writes the label file and a stratified hand-check sample
+  (`handcheck_sample.csv`) for measuring lexicon precision.
+- `scripts/fit_topic_bt.py` — steps 3–6: one joint logistic model with shared Bradley–Terry
+  strengths, topic×model deviations, a slot-A term, and style covariates; cluster bootstrap
+  over sessions; `--simulate` validates parameter recovery on synthetic data.
+
+Specification and validation details: [`topic-bt-model.md`](topic-bt-model.md). Its
+simulation implies that at ~9,000 battles per topic with 10 models, per-cell topic deltas
+carry roughly ±0.12 log-odds (≈ ±20 Elo) of error — plan for large effects only.
 
 ---
 

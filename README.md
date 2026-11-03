@@ -5,33 +5,46 @@ Working notes and tooling for studying LMArena's `lmarena-ai/arena-human-prefere
 
 ## Read this first
 
-[`docs/dataset-feasibility.md`](docs/dataset-feasibility.md) — what this dataset can and
-cannot support for a study of **human preference votes on public-interest topics**.
+- [`docs/dataset-feasibility.md`](docs/dataset-feasibility.md) — what this dataset can and
+  cannot support for a study of **human preference votes on public-interest topics**.
+- [`docs/topic-bt-model.md`](docs/topic-bt-model.md) — the model specification, validation,
+  and what the simulation implies about statistical power.
 
 Short version: it supports *"which model answers do users prefer on public-interest
-prompts"*; it does **not** support *"what does the public think about these issues"*
-(no voter attributes, no stance labels, self-selected prompts, quality-only judgments).
+prompts, relative to ordinary prompts"*; it does **not** support *"what does the public
+think about these issues"* (no voter attributes, no stance labels, self-selected prompts,
+quality-only judgments).
 
-## Tooling
-
-`scripts/topic_prevalence.py` — triage only. Reports the corpus summary, keyword-based
-topic prevalence over a starter 10-domain lexicon, tie / `both_bad` / position-bias
-rates per domain, and naive per-model win rates per domain. No controls, no CIs, no
-causal claims.
+## Pipeline
 
 ```bash
-pip install datasets pandas pyarrow
-python scripts/topic_prevalence.py --limit 20000     # quick look (streams a subset)
-python scripts/topic_prevalence.py                  # full 1.6 GB release
-python scripts/topic_prevalence.py --first-order-only
-python scripts/topic_prevalence.py --local data/*.parquet --outdir outputs
+pip install -r requirements.txt
+
+# 0. validate the estimator, no data needed (~10 s)
+python scripts/fit_topic_bt.py --simulate
+
+# 1. triage: how many votes are plausibly about each domain?
+python scripts/topic_prevalence.py --limit 20000
+
+# 2. build topic labels + a sample to hand-check precision
+python scripts/build_topics.py --first-order-only --sample-per-topic 150
+
+# 3. adjusted, topic-conditional ratings with clustered CIs
+python scripts/fit_topic_bt.py --labelled outputs/labelled.parquet --max-models 10 --bootstrap 200
 ```
 
-Writes `corpus_summary.csv`, `topic_prevalence.csv`, `topic_outcomes.csv`,
-`model_wins_by_topic.csv` to `--outdir` (default `outputs/`).
+| Script | Role |
+|---|---|
+| `scripts/arena_features.py` | shared prompt parsing, `v0.1` topic lexicon, `conv_metadata` style features |
+| `scripts/topic_prevalence.py` | triage: coverage, tie / `both_bad` / position rates per domain, naive win rates |
+| `scripts/build_topics.py` | writes `labelled.parquet` and `handcheck_sample.csv` (precision audit) |
+| `scripts/fit_topic_bt.py` | ridge logistic BT with topic×model interactions, side + style controls, session-clustered bootstrap |
 
-## Status
+Outputs land in `outputs/` (gitignored).
 
-Scoping stage. Before any result leaves this repo: hand-label ~150 prompts per
-candidate domain to measure lexicon precision, then fix the pre-registered taxonomy
-and model comparison set (see memo §4 on power and §5 on design).
+## Status and guardrails
+
+Scoping + pipeline stage; no substantive results yet. Before anything leaves this repo
+these must exist: hand-checked lexicon precision per domain, the pre-registered model
+comparison set, the tie / `both_bad` counts per domain, and cluster-bootstrap CIs. The
+`--simulate` check is a regression guard for structural bugs, not evidence of precision.
