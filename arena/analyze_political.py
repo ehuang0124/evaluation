@@ -47,7 +47,7 @@ from datetime import datetime, timezone
 
 DATASET = "lmarena-ai/arena-human-preference-140k"
 SPLIT = "train"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 # ---------------------------------------------------------------------------
 # Lexicon.  Terms are plain phrases (regex-escaped internally).
@@ -167,7 +167,7 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             "mayor", "dictator", "politician", "politicians", "congressman",
             "congresswoman", "chancellor", "secretary of state", "attorney general",
             "supreme leader", "member of parliament", "house speaker",
-            "head of state", "white house", "oval office", "west wing",
+            "head of state", "white house", "oval office",
             "CS:MAGA", "make america great again", "qanon", "political figure",
         ],
         "weak": [
@@ -231,7 +231,7 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             # Polish
             "wybory", "wyborca", "wyborcy", "głosowanie", "polityka", "polityczny",
             "rząd", "parlament", "sejm", "prezydent", "imigracja", "uchodźca",
-            "uchodźcy", "ustawa", "konstytucja", "premier", "pis", "platforma obywatelska",
+            "uchodźcy", "ustawa", "konstytucja", "CS:PiS", "platforma obywatelska",
             # Russian / Ukrainian
             "выборы", "голосование", "политика", "политический", "правительство",
             "президент", "парламент", "дума", "иммиграция", "мигрант", "беженец",
@@ -241,7 +241,7 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             "议员", "特朗普", "拜登", "普京", "习近平", "台湾", "民主党", "共和党",
             "法律", "法案", "难民", "总理", "主席", "人大", "共产党", "国民党",
             # German
-            "wahlen", "wahl", "politik", "politisch", "regierung", "bundesregierung",
+            "wahlen", "politik", "politisch", "regierung", "bundesregierung",
             "bundestag", "kanzler", "präsident", "einwanderung", "zuwanderung",
             "flüchtlinge", "gesetz", "afd", "wähler", "parlament",
             # French / Italian / Spanish / Portuguese
@@ -291,6 +291,20 @@ GENERIC_WEAK = {
     "conflict", "leader", "leaders", "king", "queen", "citizen", "citizens",
     "turnout", "alien", "aliens", "military", "summit", "diplomacy",
     "administration", "king", "equality", "expat", "residency",
+}
+
+# Political but *generic* governance vocabulary.  A single one of these in a
+# 5,000-character assistant answer is usually an incidental mention ("...or
+# contact your local government..."), so on the response side it is not enough
+# for `strict` unless corroborated.  On the (short) user-prompt side it still is.
+GENERIC_STRONG = {
+    "government", "governments", "president", "presidency", "politics",
+    "political", "politically", "policymaker", "policymakers", "governor",
+    "mayor", "administration", "citizenship", "woke", "premier", "rząd",
+    "governo", "política", "gobierno", "regierung", "правительство",
+    "政府", "政策", "法律", "法案", "国会", "議員", "정책", "정부",
+    "政治", "政治", "siyaset", "hükümet", "politique", "gouvernement",
+    "politica", "polityka",
 }
 
 TIERS = ("none", "broad", "probable", "strict")
@@ -343,11 +357,11 @@ def _build_matcher():
 PATTERNS, TERM_MAP = _build_matcher()
 
 
-def find_hits(text: str) -> list[tuple[str, str, str]]:
-    """Return distinct (category, strength, matched term) tuples."""
+def find_hits(text: str) -> dict[str, tuple[str, str, int]]:
+    """Return distinct matched terms -> (category, strength, occurrence count)."""
     if not text:
-        return []
-    found: dict[str, tuple[str, str, str]] = {}
+        return {}
+    found: dict[str, tuple[str, str, int]] = {}
     for pattern, _kind in PATTERNS:
         for m in pattern.finditer(text):
             key = re.sub(r"\s+", " ", m.group(0).strip().lower())
@@ -355,42 +369,60 @@ def find_hits(text: str) -> list[tuple[str, str, str]]:
             if info is None:
                 continue
             category, strength, label = info
-            found.setdefault(label, (category, strength, label))
-    return list(found.values())
+            old = found.get(label)
+            found[label] = (category, strength, (old[2] + 1) if old else 1)
+    return found
 
 
-def classify(text: str) -> dict:
-    """Classify one piece of text; returns tier, categories and matched terms."""
+def classify(text: str, corroborate: bool = False) -> dict:
+    """Classify one piece of text.
+
+    ``corroborate=True`` is used for assistant responses, which are long and
+    often mention a government, a law or a president in passing.  There, a
+    `strict` call needs a topic-specific strong term *and* a second strong
+    signal (another term, a repetition, or a short answer).
+    """
     hits = find_hits(text)
     if not hits:
-        return {"tier": "none", "categories": [], "strong_terms": [], "weak_terms": []}
-    strong = [h for h in hits if h[1] == "strong"]
-    weak = [h for h in hits if h[1] == "weak"]
+        return {"tier": "none", "categories": [], "strong_terms": [],
+                "weak_terms": [], "strong_hits": 0, "specific_strong": []}
+    strong = [(t, v[0], v[2]) for t, v in hits.items() if v[1] == "strong"]
+    weak = [(t, v[0], v[2]) for t, v in hits.items() if v[1] == "weak"]
 
     low = text.lower()
     # Downgrade "leader election" / "majority vote" style technical false positives.
-    if (strong and all(h[2] in AMBIGUOUS_STRONG for h in strong)
+    if (strong and all(t in AMBIGUOUS_STRONG for t, _c, _n in strong)
             and any(ctx in low for ctx in TECH_CONTEXT)):
-        weak = weak + [(c, "weak", t) for c, _s, t in strong]
+        weak = weak + [(t, c, n) for t, c, n in strong]
         strong = []
 
     tech = any(ctx in low for ctx in TECH_CONTEXT)
-    anchoring_weak = [h for h in weak if h[2] not in GENERIC_WEAK]
-    if strong:
+    anchoring_weak = [h for h in weak if h[0] not in GENERIC_WEAK]
+    strong_hits = sum(n for _t, _c, n in strong)
+    specific_strong = sorted(t for t, _c, _n in strong if t not in GENERIC_STRONG)
+
+    if strong and not corroborate:
         tier = "strict"
+    elif strong and corroborate and specific_strong and (strong_hits >= 2 or len(text) < 1000):
+        tier = "strict"
+    elif strong:
+        # Single, uncorroborated political mention in a long answer.
+        tier = "probable"
     elif tech:
         tier = "broad"
-    elif len(weak) >= 2 and len({c for c, _s, _t in weak}) >= 2 and anchoring_weak:
+    elif len(weak) >= 2 and len({c for _t, c, _n in weak}) >= 2 and anchoring_weak:
         tier = "probable"
     else:
         tier = "broad"
 
-    categories = sorted({c for c, _s, _t in hits})
+    categories = sorted({v[0] for v in hits.values()})
     return {
         "tier": tier,
         "categories": categories,
-        "strong_terms": sorted({t for _c, _s, t in strong}),
-        "weak_terms": sorted({t for _c, _s, t in weak}),
+        "strong_terms": sorted(t for t, _c, _n in strong),
+        "weak_terms": sorted(t for t, _c, _n in weak),
+        "strong_hits": strong_hits,
+        "specific_strong": specific_strong,
     }
 
 
@@ -508,9 +540,14 @@ def scan(args) -> dict:
 
         p_last = classify(last_prompt)
         p_any = classify(all_prompt_text)
-        ra = classify(resp_a)
-        rb = classify(resp_b)
-        r_any_tier = max_tier(ra["tier"], rb["tier"])
+        # Direct evidence in the answer itself (corroboration required), and the
+        # topic label inherited from the prompt.  Either can label a response.
+        ra = classify(resp_a, corroborate=True)
+        rb = classify(resp_b, corroborate=True)
+        ra_direct, rb_direct = ra["tier"], rb["tier"]
+        ra_tier = max_tier(ra_direct, p_any["tier"])
+        rb_tier = max_tier(rb_direct, p_any["tier"])
+        r_any_tier = max_tier(ra_tier, rb_tier)
         any_tier = max_tier(p_any["tier"], r_any_tier)
 
         c["rows"] += 1
@@ -527,16 +564,14 @@ def scan(args) -> dict:
                 c[f"rows_response_{tier}"] += 1
             if at_least(any_tier, tier):
                 c[f"rows_any_{tier}"] += 1
-            c[f"responses_direct_{tier}"] += int(at_least(ra["tier"], tier)) + int(at_least(rb["tier"], tier))
+            c[f"responses_direct_{tier}"] += int(at_least(ra_direct, tier)) + int(at_least(rb_direct, tier))
+            c[f"responses_union_{tier}"] += int(at_least(ra_tier, tier)) + int(at_least(rb_tier, tier))
 
         # topic-level: a response to a political prompt is about politics even if
         # the model's wording contains none of the lexicon terms.
         for tier in ("strict", "probable", "broad"):
             if at_least(p_any["tier"], tier):
                 c[f"responses_contextual_{tier}"] += int(bool(resp_a)) + int(bool(resp_b))
-        c["responses_union_strict"] += sum(
-            int(at_least(t, "strict") or at_least(p_any["tier"], "strict")) for t in (ra["tier"], rb["tier"])
-        )
 
         if at_least(p_any["tier"], "strict"):
             c["rows_both_prompt_and_response_strict"] += int(at_least(r_any_tier, "strict"))
@@ -652,12 +687,13 @@ def scan(args) -> dict:
         "by_is_code": {k: dict(v) for k, v in by_code.items()},
         "methodology": {
             "tiers": {
-                "strict": "at least one unambiguous (strong) political term",
-                "probable": "no strong term, but >=2 weak terms from >=2 different topic groups",
-                "broad": "exactly one weak term (or several weak terms from one group); high-recall upper bound",
+                "strict": "prompt: >=1 unambiguous (strong) political term; response: a topic-specific strong term plus corroboration (a second strong term/hit, or a short answer), OR the prompt itself is strict",
+                "probable": "prompt: >=2 weak terms from >=2 topic groups; response: one uncorroborated strong term, or >=2 weak terms from >=2 groups, OR the prompt itself is probable",
+                "broad": "a single weak/ambiguous term; high-recall upper bound, many false positives",
             },
             "prompt_unit": "all user turns of conversation_a (current turn counted separately)",
             "response_unit": "the two judged assistant turns (last of conversation_a, last of conversation_b)",
+            "response_direct_vs_union": "responses_direct_* = evidence in the answer text; responses_contextual_* = answers to political prompts; responses_union_* = either",
             "language_coverage": "English lexicon + partial strong-term lexicons for 15+ other languages",
             "known_false_positives": [
                 "leader election / majority vote in code or ML contexts is downgraded",
@@ -738,6 +774,19 @@ def self_test() -> None:
         flag = "OK " if got == expected else "BAD"
         ok &= got == expected
         print(f"  {flag} expected={expected:<8} got={got:<8} {text[:70]}")
+    # Response side: an incidental single mention in a long answer is downgraded.
+    long_answer = ("Here is a short story about a family trip to Disneyland. " * 40) + \
+        "They visited the park and, on the way home, read a notice from the local government."
+    resp_cases = [
+        (long_answer, "probable"),
+        ("Trump and Biden disagreed on immigration and tariffs in the 2024 election.", "strict"),
+        ("Compose a birthday party invitation for my sister.", "broad"),
+    ]
+    for text, expected in resp_cases:
+        got = classify(text, corroborate=True)["tier"]
+        flag = "OK " if got == expected else "BAD"
+        ok &= got == expected
+        print(f"  {flag} expected={expected:<8} got={got:<8} [response] {text[:60]}")
     print(f"[self-test] {len(PATTERNS)} regex patterns, {len(TERM_MAP)} terms, "
           f"{'PASS' if ok else 'SOME MISMATCHES'}")
     sys.exit(0 if ok else 1)
@@ -753,6 +802,13 @@ def main() -> None:
     if args.self_test:
         self_test()
     scan(args)
+    # huggingface_hub / fsspec leave background download threads alive when a
+    # streaming IterableDataset is only partially consumed; CPython's finalizer
+    # then aborts with "PyGILState_Release: no thread-state for this thread".
+    # All outputs are written and closed by now, so bypass that finalization.
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(0)
 
 
 if __name__ == "__main__":
