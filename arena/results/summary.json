@@ -1,228 +1,360 @@
 {
   "by_is_code": {
     "code": {
-      "any_broad": 30,
-      "any_probable": 10,
-      "any_strict": 5,
-      "prompt_broad": 4,
-      "rows": 53
+      "any_broad": 331,
+      "any_probable": 112,
+      "any_strict": 21,
+      "prompt_broad": 61,
+      "prompt_probable": 17,
+      "prompt_strict": 8,
+      "rows": 600
     },
     "non_code": {
-      "any_broad": 59,
-      "any_probable": 30,
-      "any_strict": 22,
-      "prompt_broad": 8,
-      "prompt_probable": 3,
-      "prompt_strict": 2,
-      "rows": 147
+      "any_broad": 611,
+      "any_probable": 297,
+      "any_strict": 101,
+      "prompt_broad": 99,
+      "prompt_probable": 35,
+      "prompt_strict": 31,
+      "rows": 1400
     }
   },
   "by_language": {
-    "da": {
+    "<err>": {
+      "any_broad": 1,
       "rows": 1
     },
+    "ar": {
+      "any_broad": 1,
+      "rows": 8
+    },
+    "bn": {
+      "rows": 4
+    },
+    "cs": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 6
+    },
+    "da": {
+      "rows": 3
+    },
     "de": {
-      "any_broad": 5,
-      "any_probable": 2,
-      "any_strict": 2,
-      "rows": 12
+      "any_broad": 28,
+      "any_probable": 4,
+      "rows": 79
     },
     "el": {
       "rows": 1
     },
     "en": {
-      "any_broad": 66,
-      "any_probable": 30,
-      "any_strict": 17,
-      "prompt_broad": 11,
-      "prompt_probable": 3,
-      "prompt_strict": 2,
-      "rows": 100
+      "any_broad": 720,
+      "any_probable": 305,
+      "any_strict": 83,
+      "prompt_broad": 133,
+      "prompt_probable": 40,
+      "prompt_strict": 28,
+      "rows": 1054
     },
     "es": {
-      "any_broad": 1,
+      "any_broad": 4,
       "any_probable": 1,
-      "any_strict": 1,
-      "rows": 5
+      "rows": 23
     },
     "eu": {
       "rows": 1
     },
     "fa": {
-      "rows": 1
+      "any_broad": 8,
+      "any_probable": 8,
+      "any_strict": 4,
+      "rows": 22
     },
     "fi": {
-      "rows": 2
+      "rows": 5
     },
     "fr": {
-      "rows": 3
-    },
-    "ja": {
-      "rows": 2
-    },
-    "ko": {
-      "any_broad": 2,
-      "any_probable": 1,
-      "any_strict": 1,
-      "rows": 3
-    },
-    "nl": {
-      "rows": 1
-    },
-    "pl": {
-      "any_broad": 3,
-      "any_probable": 1,
+      "any_broad": 7,
+      "any_probable": 2,
       "any_strict": 1,
       "prompt_broad": 1,
-      "rows": 20
+      "rows": 28
     },
-    "pt": {
-      "any_broad": 2,
-      "any_probable": 2,
+    "gl": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 1
+    },
+    "hu": {
+      "rows": 1
+    },
+    "id": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 5
+    },
+    "it": {
+      "any_broad": 6,
+      "any_probable": 3,
+      "rows": 19
+    },
+    "ja": {
+      "any_broad": 5,
+      "any_probable": 4,
       "any_strict": 2,
+      "rows": 33
+    },
+    "ko": {
+      "any_broad": 7,
+      "any_probable": 4,
+      "any_strict": 1,
+      "rows": 26
+    },
+    "lt": {
+      "rows": 1
+    },
+    "lv": {
       "rows": 2
     },
+    "ms": {
+      "rows": 1
+    },
+    "my": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 1
+    },
+    "nl": {
+      "any_broad": 1,
+      "rows": 4
+    },
+    "nn": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 5
+    },
+    "pl": {
+      "any_broad": 35,
+      "any_probable": 17,
+      "any_strict": 7,
+      "prompt_broad": 4,
+      "rows": 186
+    },
+    "pt": {
+      "any_broad": 9,
+      "any_probable": 8,
+      "any_strict": 4,
+      "prompt_broad": 2,
+      "prompt_probable": 2,
+      "prompt_strict": 2,
+      "rows": 23
+    },
+    "ro": {
+      "any_broad": 1,
+      "rows": 1
+    },
     "ru": {
-      "any_broad": 3,
-      "rows": 13
+      "any_broad": 17,
+      "any_probable": 1,
+      "any_strict": 1,
+      "prompt_broad": 3,
+      "rows": 135
     },
     "sk": {
+      "any_broad": 1,
+      "rows": 5
+    },
+    "sv": {
+      "rows": 2
+    },
+    "th": {
+      "rows": 2
+    },
+    "tl": {
+      "any_broad": 1,
       "rows": 1
     },
     "tr": {
-      "rows": 2
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 8
+    },
+    "uk": {
+      "any_broad": 1,
+      "prompt_broad": 1,
+      "rows": 4
     },
     "und": {
-      "any_broad": 6,
-      "any_probable": 2,
-      "any_strict": 2,
-      "rows": 18
+      "any_broad": 44,
+      "any_probable": 19,
+      "any_strict": 4,
+      "prompt_broad": 8,
+      "prompt_probable": 3,
+      "prompt_strict": 2,
+      "rows": 177
     },
     "ur": {
       "rows": 1
     },
     "vi": {
+      "any_broad": 2,
+      "prompt_broad": 1,
+      "rows": 8
+    },
+    "wo": {
+      "rows": 1
+    },
+    "xh": {
+      "any_broad": 1,
       "rows": 1
     },
     "zh": {
-      "any_broad": 1,
-      "any_probable": 1,
-      "any_strict": 1,
-      "rows": 9
+      "any_broad": 32,
+      "any_probable": 24,
+      "any_strict": 11,
+      "prompt_broad": 6,
+      "prompt_probable": 6,
+      "prompt_strict": 6,
+      "rows": 98
     },
     "zh-Hant": {
-      "rows": 1
+      "any_broad": 3,
+      "any_probable": 3,
+      "any_strict": 1,
+      "prompt_broad": 1,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 13
     }
   },
   "by_month": {
     "2025-04": {
-      "any_broad": 10,
-      "any_probable": 3,
-      "any_strict": 3,
-      "rows": 18
+      "any_broad": 70,
+      "any_probable": 26,
+      "any_strict": 8,
+      "prompt_broad": 15,
+      "prompt_probable": 6,
+      "prompt_strict": 6,
+      "rows": 126
     },
     "2025-05": {
-      "any_broad": 15,
-      "any_probable": 6,
-      "any_strict": 3,
-      "prompt_broad": 2,
-      "prompt_probable": 2,
-      "prompt_strict": 1,
-      "rows": 38
+      "any_broad": 201,
+      "any_probable": 79,
+      "any_strict": 30,
+      "prompt_broad": 29,
+      "prompt_probable": 15,
+      "prompt_strict": 12,
+      "rows": 409
     },
     "2025-06": {
-      "any_broad": 37,
-      "any_probable": 17,
-      "any_strict": 11,
-      "prompt_broad": 3,
-      "rows": 78
+      "any_broad": 359,
+      "any_probable": 153,
+      "any_strict": 40,
+      "prompt_broad": 65,
+      "prompt_probable": 17,
+      "prompt_strict": 12,
+      "rows": 783
     },
     "2025-07": {
-      "any_broad": 27,
-      "any_probable": 14,
-      "any_strict": 10,
-      "prompt_broad": 7,
-      "prompt_probable": 1,
-      "prompt_strict": 1,
-      "rows": 66
+      "any_broad": 312,
+      "any_probable": 151,
+      "any_strict": 44,
+      "prompt_broad": 51,
+      "prompt_probable": 14,
+      "prompt_strict": 9,
+      "rows": 682
     }
   },
   "by_winner": {
     "both_bad": {
-      "any_broad": 8,
-      "any_probable": 5,
-      "any_strict": 1,
-      "prompt_broad": 2,
-      "rows": 23
+      "any_broad": 90,
+      "any_probable": 32,
+      "any_strict": 9,
+      "prompt_broad": 24,
+      "prompt_probable": 6,
+      "prompt_strict": 4,
+      "rows": 208
     },
     "model_a": {
-      "any_broad": 34,
-      "any_probable": 16,
-      "any_strict": 13,
-      "prompt_broad": 6,
-      "prompt_probable": 2,
-      "prompt_strict": 2,
-      "rows": 77
+      "any_broad": 367,
+      "any_probable": 164,
+      "any_strict": 54,
+      "prompt_broad": 66,
+      "prompt_probable": 20,
+      "prompt_strict": 17,
+      "rows": 734
     },
     "model_b": {
-      "any_broad": 30,
-      "any_probable": 13,
-      "any_strict": 7,
-      "prompt_broad": 2,
-      "prompt_probable": 1,
-      "rows": 65
+      "any_broad": 342,
+      "any_probable": 151,
+      "any_strict": 46,
+      "prompt_broad": 51,
+      "prompt_probable": 22,
+      "prompt_strict": 15,
+      "rows": 757
     },
     "tie": {
-      "any_broad": 17,
-      "any_probable": 6,
-      "any_strict": 6,
-      "prompt_broad": 2,
-      "rows": 35
+      "any_broad": 143,
+      "any_probable": 62,
+      "any_strict": 13,
+      "prompt_broad": 19,
+      "prompt_probable": 4,
+      "prompt_strict": 3,
+      "rows": 301
     }
   },
   "categories_prompt_strict_or_probable": {
-    "elections": 1,
-    "parties_ideology": 1,
-    "political_figures": 1,
-    "public_policy": 2
+    "elections": 14,
+    "geopolitics": 10,
+    "immigration": 8,
+    "non_english_politics": 10,
+    "parties_ideology": 17,
+    "political_figures": 4,
+    "public_policy": 21,
+    "voting": 5
   },
   "categories_response_strict_or_probable": {
-    "elections": 22,
-    "geopolitics": 13,
-    "immigration": 11,
-    "non_english_politics": 11,
-    "parties_ideology": 29,
-    "political_figures": 13,
-    "public_policy": 36,
-    "voting": 1
+    "elections": 207,
+    "geopolitics": 158,
+    "immigration": 90,
+    "non_english_politics": 103,
+    "parties_ideology": 254,
+    "political_figures": 97,
+    "public_policy": 326,
+    "voting": 20
   },
   "counts": {
-    "responses_contextual_broad": 24,
-    "responses_contextual_probable": 6,
-    "responses_contextual_strict": 4,
-    "responses_direct_broad": 139,
-    "responses_direct_probable": 56,
-    "responses_direct_strict": 38,
-    "responses_judged": 400,
-    "responses_union_strict": 38,
-    "rows": 200,
-    "rows_any_broad": 89,
-    "rows_any_probable": 40,
-    "rows_any_strict": 27,
-    "rows_both_prompt_and_response_strict": 2,
-    "rows_current_prompt_broad": 10,
-    "rows_current_prompt_probable": 3,
-    "rows_current_prompt_strict": 2,
-    "rows_prompt_broad": 12,
+    "responses_contextual_broad": 320,
+    "responses_contextual_probable": 104,
+    "responses_contextual_strict": 78,
+    "responses_direct_broad": 1391,
+    "responses_direct_probable": 550,
+    "responses_direct_strict": 148,
+    "responses_judged": 4000,
+    "responses_union_broad": 1460,
+    "responses_union_probable": 580,
+    "responses_union_strict": 187,
+    "rows": 2000,
+    "rows_any_broad": 942,
+    "rows_any_probable": 409,
+    "rows_any_strict": 122,
+    "rows_both_prompt_and_response_strict": 39,
+    "rows_current_prompt_broad": 136,
+    "rows_current_prompt_probable": 43,
+    "rows_current_prompt_strict": 31,
+    "rows_prompt_broad": 160,
     "rows_prompt_only_strict": 0,
-    "rows_prompt_probable": 3,
-    "rows_prompt_strict": 2,
-    "rows_response_broad": 87,
-    "rows_response_only_strict": 25,
-    "rows_response_probable": 40,
-    "rows_response_strict": 27,
-    "rows_with_two_responses": 200,
-    "user_turns": 246
+    "rows_prompt_probable": 52,
+    "rows_prompt_strict": 39,
+    "rows_response_broad": 942,
+    "rows_response_only_strict": 83,
+    "rows_response_probable": 409,
+    "rows_response_strict": 122,
+    "rows_with_two_responses": 2000,
+    "user_turns": 2579
   },
   "dataset": "lmarena-ai/arena-human-preference-140k",
   "methodology": {
@@ -233,62 +365,96 @@
     ],
     "language_coverage": "English lexicon + partial strong-term lexicons for 15+ other languages",
     "prompt_unit": "all user turns of conversation_a (current turn counted separately)",
+    "response_direct_vs_union": "responses_direct_* = evidence in the answer text; responses_contextual_* = answers to political prompts; responses_union_* = either",
     "response_unit": "the two judged assistant turns (last of conversation_a, last of conversation_b)",
     "tiers": {
-      "broad": "exactly one weak term (or several weak terms from one group); high-recall upper bound",
-      "probable": "no strong term, but >=2 weak terms from >=2 different topic groups",
-      "strict": "at least one unambiguous (strong) political term"
+      "broad": "a single weak/ambiguous term; high-recall upper bound, many false positives",
+      "probable": "prompt: >=2 weak terms from >=2 topic groups; response: one uncorroborated strong term, or >=2 weak terms from >=2 groups, OR the prompt itself is probable",
+      "strict": "prompt: >=1 unambiguous (strong) political term; response: a topic-specific strong term plus corroboration (a second strong term/hit, or a short answer), OR the prompt itself is strict"
     }
   },
-  "rows_scanned": 200,
+  "rows_scanned": 2000,
   "split": "train",
   "top_strong_terms_prompt": {
+    "annexation": 1,
+    "authoritarianism": 1,
+    "communist": 1,
+    "congress": 1,
+    "constitutional": 1,
+    "election": 2,
+    "fdr": 1,
+    "geopolitical": 1,
+    "government": 1,
+    "governo": 1,
+    "hitler": 1,
+    "political": 5,
+    "political parties": 1,
     "politics": 1,
-    "west wing": 1
+    "política": 2,
+    "president": 1,
+    "refugees": 2,
+    "tariff": 1,
+    "tariffs": 1,
+    "visa": 1,
+    "vote": 4,
+    "voters": 1,
+    "votes": 1,
+    "white house": 1,
+    "woke": 1,
+    "work permit": 1,
+    "انتخاب": 1,
+    "国会": 1,
+    "投票": 1,
+    "政府": 3,
+    "政策": 3,
+    "法律": 2,
+    "特朗普": 1
   },
   "top_strong_terms_response": {
-    "GOP": 1,
-    "abortion": 1,
-    "citizenship": 4,
-    "city council": 1,
-    "cold war": 1,
-    "democrats": 1,
-    "donald trump": 1,
-    "education policy": 2,
-    "geopolitics": 1,
-    "government": 6,
-    "governments": 2,
-    "governo": 2,
-    "governor": 1,
-    "immigrants": 1,
-    "mayor": 1,
-    "partisan": 1,
-    "pis": 2,
-    "policymakers": 2,
-    "political": 6,
-    "political ideology": 1,
-    "politically": 2,
-    "politics": 3,
-    "política": 1,
-    "premier": 1,
-    "president": 3,
-    "refugee": 1,
-    "republicans": 1,
-    "rząd": 1,
-    "trump": 2,
-    "vote": 1,
-    "wahl": 2,
-    "west wing": 2,
-    "woke": 2,
-    "zoning laws": 1,
-    "投票": 1,
-    "政策": 1,
-    "法律": 1,
-    "정책": 1
+    "NATO": 6,
+    "authoritarian": 5,
+    "citizenship": 8,
+    "cold war": 5,
+    "congress": 8,
+    "congressional": 7,
+    "constitution": 8,
+    "constitutional": 9,
+    "election": 5,
+    "elections": 7,
+    "geopolitical": 19,
+    "government": 67,
+    "governments": 18,
+    "immigration": 11,
+    "legislation": 5,
+    "legislative": 7,
+    "mayor": 7,
+    "policymakers": 6,
+    "political": 55,
+    "politically": 9,
+    "politics": 13,
+    "polityka": 6,
+    "política": 6,
+    "president": 14,
+    "sanctions": 9,
+    "social security": 5,
+    "supreme court": 5,
+    "tariffs": 7,
+    "trump": 8,
+    "visa": 8,
+    "vote": 13,
+    "voting": 8,
+    "white house": 5,
+    "woke": 9,
+    "انتخاب": 12,
+    "投票": 5,
+    "政府": 17,
+    "政治": 21,
+    "政策": 18,
+    "法律": 17
   },
   "unique_prompts_by_tier": {
-    "broad": 12,
-    "probable": 3,
-    "strict": 2
+    "broad": 160,
+    "probable": 52,
+    "strict": 39
   }
 }
