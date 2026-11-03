@@ -1,0 +1,16 @@
+name: _probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/fa121d08-evaluation]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check network
+        run: |
+          echo "runner $(uname -a)"
+          curl -sS -m 20 -o /dev/null -w "HF hub api: %{http_code}\n" https://huggingface.co/api/datasets/lmarena-ai/arena-human-preference-140k
+          curl -sS -m 20 -o /dev/null -w "HF parquet head: %{http_code}\n" -r 0-100 "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet"
+      - name: Check python
+        run: python -c "print('python ok')"
