@@ -1,0 +1,10 @@
+[scan] dataset=lmarena-ai/arena-human-preference-140k split=train max_rows=200
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[scan] load_dataset OK (0.6s)
+[scan] done 200 rows in 4.6s
+[scan] wrote 40 shortlist rows, 89 matched IDs, 149 audit rows
+'[Errno 9] Bad file descriptor' thrown while requesting GET https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00000-of-00007.parquet
+Retrying in 1s [Retry 1/5].
+Fatal Python error: PyGILState_Release: auto-releasing thread-state, but no thread-state for this thread
+Python runtime state: finalizing (tstate=0x00007f3c0e362918)
+

@@ -1,0 +1,294 @@
+{
+  "by_is_code": {
+    "code": {
+      "any_broad": 30,
+      "any_probable": 10,
+      "any_strict": 5,
+      "prompt_broad": 4,
+      "rows": 53
+    },
+    "non_code": {
+      "any_broad": 59,
+      "any_probable": 30,
+      "any_strict": 22,
+      "prompt_broad": 8,
+      "prompt_probable": 3,
+      "prompt_strict": 2,
+      "rows": 147
+    }
+  },
+  "by_language": {
+    "da": {
+      "rows": 1
+    },
+    "de": {
+      "any_broad": 5,
+      "any_probable": 2,
+      "any_strict": 2,
+      "rows": 12
+    },
+    "el": {
+      "rows": 1
+    },
+    "en": {
+      "any_broad": 66,
+      "any_probable": 30,
+      "any_strict": 17,
+      "prompt_broad": 11,
+      "prompt_probable": 3,
+      "prompt_strict": 2,
+      "rows": 100
+    },
+    "es": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 5
+    },
+    "eu": {
+      "rows": 1
+    },
+    "fa": {
+      "rows": 1
+    },
+    "fi": {
+      "rows": 2
+    },
+    "fr": {
+      "rows": 3
+    },
+    "ja": {
+      "rows": 2
+    },
+    "ko": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 3
+    },
+    "nl": {
+      "rows": 1
+    },
+    "pl": {
+      "any_broad": 3,
+      "any_probable": 1,
+      "any_strict": 1,
+      "prompt_broad": 1,
+      "rows": 20
+    },
+    "pt": {
+      "any_broad": 2,
+      "any_probable": 2,
+      "any_strict": 2,
+      "rows": 2
+    },
+    "ru": {
+      "any_broad": 3,
+      "rows": 13
+    },
+    "sk": {
+      "rows": 1
+    },
+    "tr": {
+      "rows": 2
+    },
+    "und": {
+      "any_broad": 6,
+      "any_probable": 2,
+      "any_strict": 2,
+      "rows": 18
+    },
+    "ur": {
+      "rows": 1
+    },
+    "vi": {
+      "rows": 1
+    },
+    "zh": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 9
+    },
+    "zh-Hant": {
+      "rows": 1
+    }
+  },
+  "by_month": {
+    "2025-04": {
+      "any_broad": 10,
+      "any_probable": 3,
+      "any_strict": 3,
+      "rows": 18
+    },
+    "2025-05": {
+      "any_broad": 15,
+      "any_probable": 6,
+      "any_strict": 3,
+      "prompt_broad": 2,
+      "prompt_probable": 2,
+      "prompt_strict": 1,
+      "rows": 38
+    },
+    "2025-06": {
+      "any_broad": 37,
+      "any_probable": 17,
+      "any_strict": 11,
+      "prompt_broad": 3,
+      "rows": 78
+    },
+    "2025-07": {
+      "any_broad": 27,
+      "any_probable": 14,
+      "any_strict": 10,
+      "prompt_broad": 7,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 66
+    }
+  },
+  "by_winner": {
+    "both_bad": {
+      "any_broad": 8,
+      "any_probable": 5,
+      "any_strict": 1,
+      "prompt_broad": 2,
+      "rows": 23
+    },
+    "model_a": {
+      "any_broad": 34,
+      "any_probable": 16,
+      "any_strict": 13,
+      "prompt_broad": 6,
+      "prompt_probable": 2,
+      "prompt_strict": 2,
+      "rows": 77
+    },
+    "model_b": {
+      "any_broad": 30,
+      "any_probable": 13,
+      "any_strict": 7,
+      "prompt_broad": 2,
+      "prompt_probable": 1,
+      "rows": 65
+    },
+    "tie": {
+      "any_broad": 17,
+      "any_probable": 6,
+      "any_strict": 6,
+      "prompt_broad": 2,
+      "rows": 35
+    }
+  },
+  "categories_prompt_strict_or_probable": {
+    "elections": 1,
+    "parties_ideology": 1,
+    "political_figures": 1,
+    "public_policy": 2
+  },
+  "categories_response_strict_or_probable": {
+    "elections": 22,
+    "geopolitics": 13,
+    "immigration": 11,
+    "non_english_politics": 11,
+    "parties_ideology": 29,
+    "political_figures": 13,
+    "public_policy": 36,
+    "voting": 1
+  },
+  "counts": {
+    "responses_contextual_broad": 24,
+    "responses_contextual_probable": 6,
+    "responses_contextual_strict": 4,
+    "responses_direct_broad": 139,
+    "responses_direct_probable": 56,
+    "responses_direct_strict": 38,
+    "responses_judged": 400,
+    "responses_union_strict": 38,
+    "rows": 200,
+    "rows_any_broad": 89,
+    "rows_any_probable": 40,
+    "rows_any_strict": 27,
+    "rows_both_prompt_and_response_strict": 2,
+    "rows_current_prompt_broad": 10,
+    "rows_current_prompt_probable": 3,
+    "rows_current_prompt_strict": 2,
+    "rows_prompt_broad": 12,
+    "rows_prompt_only_strict": 0,
+    "rows_prompt_probable": 3,
+    "rows_prompt_strict": 2,
+    "rows_response_broad": 87,
+    "rows_response_only_strict": 25,
+    "rows_response_probable": 40,
+    "rows_response_strict": 27,
+    "rows_with_two_responses": 200,
+    "user_turns": 246
+  },
+  "dataset": "lmarena-ai/arena-human-preference-140k",
+  "methodology": {
+    "known_false_positives": [
+      "leader election / majority vote in code or ML contexts is downgraded",
+      "company president, birthday party, CSS border, tax software, history homework",
+      "assistant boilerplate that mentions a government or law in passing"
+    ],
+    "language_coverage": "English lexicon + partial strong-term lexicons for 15+ other languages",
+    "prompt_unit": "all user turns of conversation_a (current turn counted separately)",
+    "response_unit": "the two judged assistant turns (last of conversation_a, last of conversation_b)",
+    "tiers": {
+      "broad": "exactly one weak term (or several weak terms from one group); high-recall upper bound",
+      "probable": "no strong term, but >=2 weak terms from >=2 different topic groups",
+      "strict": "at least one unambiguous (strong) political term"
+    }
+  },
+  "rows_scanned": 200,
+  "split": "train",
+  "top_strong_terms_prompt": {
+    "politics": 1,
+    "west wing": 1
+  },
+  "top_strong_terms_response": {
+    "GOP": 1,
+    "abortion": 1,
+    "citizenship": 4,
+    "city council": 1,
+    "cold war": 1,
+    "democrats": 1,
+    "donald trump": 1,
+    "education policy": 2,
+    "geopolitics": 1,
+    "government": 6,
+    "governments": 2,
+    "governo": 2,
+    "governor": 1,
+    "immigrants": 1,
+    "mayor": 1,
+    "partisan": 1,
+    "pis": 2,
+    "policymakers": 2,
+    "political": 6,
+    "political ideology": 1,
+    "politically": 2,
+    "politics": 3,
+    "política": 1,
+    "premier": 1,
+    "president": 3,
+    "refugee": 1,
+    "republicans": 1,
+    "rząd": 1,
+    "trump": 2,
+    "vote": 1,
+    "wahl": 2,
+    "west wing": 2,
+    "woke": 2,
+    "zoning laws": 1,
+    "投票": 1,
+    "政策": 1,
+    "法律": 1,
+    "정책": 1
+  },
+  "unique_prompts_by_tier": {
+    "broad": 12,
+    "probable": 3,
+    "strict": 2
+  }
+}
