@@ -47,7 +47,7 @@ from datetime import datetime, timezone
 
 DATASET = "lmarena-ai/arena-human-preference-140k"
 SPLIT = "train"
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 # ---------------------------------------------------------------------------
 # Lexicon.  Terms are plain phrases (regex-escaped internally).
@@ -403,7 +403,10 @@ def classify(text: str, corroborate: bool = False) -> dict:
 
     if strong and not corroborate:
         tier = "strict"
-    elif strong and corroborate and specific_strong and (strong_hits >= 2 or len(text) < 1000):
+    elif strong and corroborate and (
+        len(specific_strong) >= 2                      # several distinct, specific signals
+        or (strong_hits >= 4 and len(text) < 2500)    # dense discussion in a short answer
+    ):
         tier = "strict"
     elif strong:
         # Single, uncorroborated political mention in a long answer.
@@ -615,10 +618,15 @@ def scan(args) -> dict:
             cats = sorted(set(p_any["categories"] + ra["categories"] + rb["categories"]))
             strength = len(p_any["strong_terms"]) + len(ra["strong_terms"]) + len(rb["strong_terms"])
             score = 3 * strength + len(cats) + len(p_any["weak_terms"])
+            p_political = at_least(p_any["tier"], "probable")
+            r_direct_political = at_least(max_tier(ra_direct, rb_direct), "probable")
+            basis = "both" if p_political and r_direct_political else (
+                "prompt" if p_political else "response")
             rec = {
                 "id": row.get("id"),
                 "evaluation_session_id": row.get("evaluation_session_id"),
                 "tier": any_tier,
+                "basis": basis,
                 "prompt_tier": p_any["tier"],
                 "response_tier": r_any_tier,
                 "score": score,
@@ -687,13 +695,14 @@ def scan(args) -> dict:
         "by_is_code": {k: dict(v) for k, v in by_code.items()},
         "methodology": {
             "tiers": {
-                "strict": "prompt: >=1 unambiguous (strong) political term; response: a topic-specific strong term plus corroboration (a second strong term/hit, or a short answer), OR the prompt itself is strict",
+                "strict": "prompt: >=1 unambiguous (strong) political term; response: >=2 distinct topic-specific strong terms (or a dense cluster in a short answer), OR the prompt itself is strict",
                 "probable": "prompt: >=2 weak terms from >=2 topic groups; response: one uncorroborated strong term, or >=2 weak terms from >=2 groups, OR the prompt itself is probable",
                 "broad": "a single weak/ambiguous term; high-recall upper bound, many false positives",
             },
             "prompt_unit": "all user turns of conversation_a (current turn counted separately)",
             "response_unit": "the two judged assistant turns (last of conversation_a, last of conversation_b)",
             "response_direct_vs_union": "responses_direct_* = evidence in the answer text; responses_contextual_* = answers to political prompts; responses_union_* = either",
+            "basis": "prompt = user turns drove the label; response = answer text drove it; both = both did",
             "language_coverage": "English lexicon + partial strong-term lexicons for 15+ other languages",
             "known_false_positives": [
                 "leader election / majority vote in code or ML contexts is downgraded",
@@ -705,7 +714,7 @@ def scan(args) -> dict:
     with open(os.path.join(args.output_dir, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False, sort_keys=True)
 
-    fields = ["id", "evaluation_session_id", "tier", "prompt_tier", "response_tier", "score",
+    fields = ["id", "evaluation_session_id", "tier", "basis", "prompt_tier", "response_tier", "score",
               "categories", "prompt_strong_terms", "response_strong_terms", "language",
               "is_code", "winner", "model_a", "model_b", "timestamp", "prompt_excerpt",
               "response_a_excerpt", "response_b_excerpt"]
@@ -715,7 +724,7 @@ def scan(args) -> dict:
         for r in kept:
             w.writerow(r)
 
-    id_fields = ["id", "evaluation_session_id", "tier", "prompt_tier", "response_tier",
+    id_fields = ["id", "evaluation_session_id", "tier", "basis", "prompt_tier", "response_tier",
                  "score", "categories", "language", "is_code", "winner", "timestamp"]
     with gzip.open(os.path.join(args.output_dir, "matched_ids.csv.gz"), "wt", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=id_fields, extrasaction="ignore")
@@ -723,7 +732,7 @@ def scan(args) -> dict:
         for r in matched_rows:
             w.writerow(r)
 
-    audit_fields = ["audit_group", "id", "tier", "language", "is_code", "winner",
+    audit_fields = ["audit_group", "id", "tier", "basis", "language", "is_code", "winner",
                     "prompt_excerpt", "response_a_excerpt"]
     with open(os.path.join(args.output_dir, "audit_sample.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=audit_fields, extrasaction="ignore")
@@ -780,6 +789,7 @@ def self_test() -> None:
     resp_cases = [
         (long_answer, "probable"),
         ("Trump and Biden disagreed on immigration and tariffs in the 2024 election.", "strict"),
+        ("The US government and the Chinese government both subsidise their industries.", "probable"),
         ("Compose a birthday party invitation for my sister.", "broad"),
     ]
     for text, expected in resp_cases:
