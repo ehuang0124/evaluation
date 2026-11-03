@@ -1,0 +1,47 @@
+{
+  "analysis_date": "2026-11-03",
+  "status": "provisional_topic_label_only",
+  "full_source_read_succeeded": false,
+  "full_source_blocker": "Hugging Face connections fail in this sandbox; gated file access also requires accepted conditions.",
+  "source_dataset": "ministere-culture/comparia-fr-arena",
+  "source_revision": "8cd6488c5d0c3b8dfcb9339d11ae9624c84359be",
+  "derived_repository": "https://github.com/simonaszilinskas/style-control-analysis",
+  "derived_repository_revision": "25a17f883945c2229736bfe17702d966bc94aa0d",
+  "source_publication_date_reported_by_derivative": "2026-07-08",
+  "input_sha256": {
+    "fr_battles.parquet": "83071d14e4335c7e047677f2767205454ff3981be1999f9cf62c67f388bb6cd1",
+    "timestamps.parquet": "836e902b3005f0295d8ba9b1b5991f60d6eb9cc76665138391961a813b440a0c"
+  },
+  "derived_conversations": 137293,
+  "political_candidate_conversations": 8739,
+  "political_candidate_percent": 6.365218911379313,
+  "user_prompt_turns_through_vote": 10074,
+  "assistant_response_turns_through_vote": 20148,
+  "responses_at_decisive_vote": 17478,
+  "single_turn_conversations_through_vote": 7846,
+  "multi_turn_conversations_through_vote": 893,
+  "first_conversation_timestamp": "2024-10-01T04:18:43.548967+00:00",
+  "last_conversation_timestamp": "2026-06-12T13:14:44.613212+00:00",
+  "adjacent_topic_review_conversations": 10657,
+  "adjacent_topics": [
+    "Law & Justice",
+    "Society & Social Issues & Human Rights",
+    "Environment"
+  ],
+  "mode_counts": {
+    "random": 6147,
+    "custom": 1934,
+    "big-vs-small": 504,
+    "small-models": 154
+  },
+  "contains_prompt_or_response_text": false,
+  "human_validated_political_labels": false,
+  "caveats": [
+    "Only the last decisive French vote per conversation is represented; unrated and non-decisive conversations are excluded.",
+    "Only the first source-assigned topic is available. Political conversations assigned another primary topic can be missed.",
+    "Source topic labels are not human validation of political relevance.",
+    "Prompt/response counts are turn instances through the retained vote, not unique prompt strings or all responses in the full source.",
+    "Adjacent-topic records are a separate review queue, not political positives.",
+    "Do not extrapolate this sample percentage to the current full release or the French population."
+  ]
+}
