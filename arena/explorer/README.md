@@ -18,15 +18,20 @@ detail view.
   `arena/explorer/data/conversations.jsonl.gz` extraction. If an ID is missing
   from that extraction it remains visible with text unavailable. Arena's
   extraction preserves all user turns, but only the final response on each side.
-- Short answer wins: the subset of the Arena ranked shortlist above where the
-  human vote went to the **strictly shorter** final answer (character count).
-  Only decisive votes (`model_a` / `model_b`) qualify; `tie`, `both_bad`,
-  equal-length pairs, empty answers and rows without full text are excluded.
-  Currently **383 of 1,500** shortlist rows (34.3% of the 1,117 decisive
-  votes; the longer answer won the other 734). The list shows winner vs loser
-  length; the detail marks the winner and each answer's length. The same IDs
-  plus lengths are exported to `arena/results/short_answer_wins.csv` by
-  `python arena/build_short_answer_wins.py`.
+- Short answer wins or tie (±5%): the subset of the Arena ranked shortlist
+  above where any of these holds (`inclusion_reason`):
+  - `short_win` — the human picked the **strictly shorter** final answer (383);
+  - `tie` — the vote was a tie, whatever the lengths (230);
+  - `near_equal_win` — the longer answer won, but the two answers differ by
+    **less than 5%** of the longer one's length, `|a − b| / max(a, b) < 0.05` (34).
+
+  Total **647 of 1,500**. Excluded: `both_bad` votes (153) and wins by an
+  answer ≥5% longer (700). Length = characters in each final answer. Search
+  `reason:short_win`, `reason:tie` or `reason:near_equal_win` to narrow by
+  reason. The list shows the reason, lengths and % difference; the detail marks
+  the winner and each answer's length. The same rows plus length columns are
+  exported to `arena/results/short_answer_wins_or_tie.csv` by
+  `python arena/build_short_answer_wins_or_tie.py`.
 - French: exactly the IDs in
   `french-arena/data/political_shortlist_provisional.csv` (8,739). This CSV is
   metadata-only. Without the gated source, search covers metadata and text is

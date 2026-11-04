@@ -19,39 +19,59 @@ def answer_lengths(row):
     return len(row.get('assistant_a') or ''), len(row.get('assistant_b') or '')
 
 
-def short_answer_win(row):
-    """Return length details if the decisive vote went to the strictly shorter answer, else None.
+NEAR_EQUAL_MAX_DIFF = 0.05  # lengths "near-equal" when |a - b| / longer < 5%
 
-    Only decisive votes count (``model_a`` / ``model_b``); ``tie`` and ``both_bad``
-    have no winner. Rows without full text, with an empty answer, or with two
-    answers of identical length are excluded because "shorter" is undefined.
+
+def short_answer_win(row):
+    """Return length details if the vote belongs in "Short answer wins or tie", else None.
+
+    A row qualifies when any of these holds (``inclusion_reason``):
+
+    * ``short_win`` – decisive vote (``model_a``/``model_b``) for the strictly
+      shorter answer;
+    * ``tie`` – the vote was a ``tie`` (whatever the lengths);
+    * ``near_equal_win`` – the longer answer won, but the two answers differ by
+      less than 5% of the longer one's length.
+
+    ``both_bad`` votes, rows without full text and rows with an empty answer
+    are excluded.
     """
     winner = row.get('winner')
-    if winner not in ('model_a', 'model_b') or row.get('text_status') == 'missing_full_text':
+    if winner not in ('model_a', 'model_b', 'tie') or row.get('text_status') == 'missing_full_text':
         return None
-    len_a, len_b = answer_lengths(row)
     if not (row.get('assistant_a') or '').strip() or not (row.get('assistant_b') or '').strip():
         return None
-    win_len, lose_len = (len_a, len_b) if winner == 'model_a' else (len_b, len_a)
-    if win_len >= lose_len:
-        return None
-    return {
+    len_a, len_b = answer_lengths(row)
+    diff = abs(len_a - len_b) / max(len_a, len_b)
+    near_equal = diff < NEAR_EQUAL_MAX_DIFF
+    info = {
         'answer_a_chars': len_a,
         'answer_b_chars': len_b,
-        'winner_chars': win_len,
-        'loser_chars': lose_len,
-        'chars_saved': lose_len - win_len,
-        'length_ratio': round(win_len / lose_len, 4),
+        'length_diff_pct': round(diff * 100, 2),
+        'within_5pct': near_equal,
     }
+    if winner == 'tie':
+        return dict(info, inclusion_reason='tie', winner_chars=None, loser_chars=None, length_ratio=None)
+    win_len, lose_len = (len_a, len_b) if winner == 'model_a' else (len_b, len_a)
+    if win_len < lose_len:
+        reason = 'short_win'
+    elif near_equal:
+        reason = 'near_equal_win'
+    else:
+        return None
+    return dict(info, inclusion_reason=reason, winner_chars=win_len, loser_chars=lose_len,
+                length_ratio=round(win_len / lose_len, 4))
 
 
 def build_short_wins(arena):
-    """Subset of the Arena ranked shortlist where the shorter answer won (shortlist order kept)."""
+    """Subset of the Arena ranked shortlist matching ``short_answer_win`` (shortlist order kept)."""
     rows = []
     for row in arena:
         info = short_answer_win(row)
         if info is not None:
-            rows.append(dict(row, **info))
+            out = dict(row, **info)
+            out['_search'] = row['_search'] + '\nreason:' + info['inclusion_reason']
+            rows.append(out)
     return rows
 
 
@@ -113,7 +133,8 @@ def query(data, dataset, text, offset=0, limit=20):
     previews = []
     for r in rows[offset:offset + limit]:
         preview = {k: r.get(k) for k in ('id', 'prompt', 'model_a', 'model_b', 'winner', 'timestamp', 'source_primary_topic', 'text_status')}
-        preview.update({k: r[k] for k in ('winner_chars', 'loser_chars', 'length_ratio') if k in r})
+        preview.update({k: r[k] for k in ('inclusion_reason', 'winner_chars', 'loser_chars', 'length_ratio',
+                                         'answer_a_chars', 'answer_b_chars', 'length_diff_pct') if k in r})
         previews.append(preview)
         if previews[-1]['prompt']:
             previews[-1]['prompt'] = previews[-1]['prompt'][:400]

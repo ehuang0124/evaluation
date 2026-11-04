@@ -1,28 +1,34 @@
 #!/usr/bin/env python3
-"""Build the "short answer wins" subset of the Arena ranked shortlist.
+"""Build the "short answer wins or tie" subset of the Arena ranked shortlist.
 
 Starts from exactly the 1,500 IDs in ``arena/results/shortlist.csv``, joins the
 full final answers from ``arena/explorer/data/conversations.jsonl.gz`` and keeps
-only the votes where the human picked the strictly shorter answer:
+a vote when any of these holds (``inclusion_reason`` column):
 
-* decisive votes only (``winner`` is ``model_a`` or ``model_b``; ``tie`` and
-  ``both_bad`` have no winner);
-* length = character count of each side's final (judged) answer;
-* rows with identical lengths, an empty answer, or no full text are dropped.
+* ``short_win``      – the human picked the strictly shorter answer;
+* ``tie``            – the vote was a tie (any lengths);
+* ``near_equal_win`` – the longer answer won, but the lengths differ by less
+  than 5% of the longer answer (``|a - b| / max(a, b) < 0.05``).
+
+Length = character count of each side's final (judged) answer. ``both_bad``
+votes, decisive votes where the longer answer won by 5% or more, and rows with
+an empty answer or no full text are dropped.
 
 The selection rule lives in ``arena/explorer/server.py`` (``short_answer_win``)
-so the explorer's "Short answer wins" dataset and this CSV can never diverge.
+so the explorer's dataset and this CSV can never diverge.
 
-Output: ``arena/results/short_answer_wins.csv`` — the shortlist.csv columns
-(metadata + existing 420-char excerpts, no full text) plus length columns.
+Output: ``arena/results/short_answer_wins_or_tie.csv`` — the shortlist.csv
+columns (metadata + existing 420-char excerpts, no full text) plus length columns.
 """
+import collections
 import argparse
 import csv
 import importlib.util
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-LENGTH_FIELDS = ['answer_a_chars', 'answer_b_chars', 'winner_chars', 'loser_chars', 'chars_saved', 'length_ratio']
+LENGTH_FIELDS = ['inclusion_reason', 'answer_a_chars', 'answer_b_chars', 'length_diff_pct', 'within_5pct',
+                 'winner_chars', 'loser_chars', 'length_ratio']
 
 
 def load_explorer():
@@ -34,7 +40,7 @@ def load_explorer():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--output', type=Path, default=HERE / 'results/short_answer_wins.csv')
+    parser.add_argument('--output', type=Path, default=HERE / 'results/short_answer_wins_or_tie.csv')
     args = parser.parse_args()
 
     explorer = load_explorer()
@@ -51,7 +57,8 @@ def main():
     for item in shortlist:  # keep shortlist (score-ranked) order
         win = wins.get(item['id'])
         if win is not None:
-            out_rows.append(dict(item, **{k: win[k] for k in LENGTH_FIELDS}))
+            values = {k: ('' if win[k] is None else win[k]) for k in LENGTH_FIELDS}
+            out_rows.append(dict(item, **values))
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open('w', encoding='utf-8', newline='') as f:
@@ -59,9 +66,9 @@ def main():
         writer.writeheader()
         writer.writerows(out_rows)
 
-    decisive = sum(r['winner'] in ('model_a', 'model_b') for r in data['arena'])
-    print(f'shortlist rows: {len(shortlist):,}; decisive votes: {decisive:,}; '
-          f'short answer wins: {len(out_rows):,} ({len(out_rows) / decisive:.1%} of decisive)')
+    reasons = collections.Counter(r['inclusion_reason'] for r in out_rows)
+    print(f'shortlist rows: {len(shortlist):,}; kept: {len(out_rows):,} '
+          f'(short_win {reasons["short_win"]:,}, tie {reasons["tie"]:,}, near_equal_win {reasons["near_equal_win"]:,})')
     print(f'wrote {args.output}')
 
 
