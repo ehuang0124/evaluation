@@ -23,11 +23,17 @@ API calls are same-origin relative URLs, so it works behind the preview proxy.
 | `data/conversations.jsonl.gz` | 6,820 | the core political shortlist: full prompt + all user turns + **both full model answers**, verbatim |
 | `data/manifest.json` | — | dataset revision, extraction time, counts, sizes, provenance |
 | `data/extract.log` | — | runner log |
+| `../../results/shortlist_full_prompts.csv` | 6,820 | local-only, gitignored: the same full prompts in a directly viewable CSV (also produced by the export button) |
 
 Core shortlist = all `strict` rows ∪ all rows with a political prompt ∪ the
 ranked 1,500-row `shortlist.csv` (see `arena/extract_full_text.py`). 1,276 of
 the core prompts are longer than the 420-character excerpt in `shortlist.csv`;
 the longest is 110,289 characters. 1,049 core rows are multi-turn.
+
+**Sensitive content:** these are verbatim, unredacted user prompts, so they
+can contain pasted API keys or personal data (GitHub push protection flagged a
+Mapbox token). The plain CSV is therefore generated locally and gitignored; the
+compressed verbatim shortlist is committed as binary. Handle exports accordingly.
 
 **Fidelity:** text is copied verbatim from `content[].text` — no truncation,
 paraphrase, redaction or regeneration. Every `shortlist.csv` excerpt was

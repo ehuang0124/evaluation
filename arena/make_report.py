@@ -312,12 +312,15 @@ text in `arena/explorer/data/`:
 | `prompts_all.jsonl.gz` | 63,635 | full prompt + all user turns for **every** flagged vote ID |
 | `conversations.jsonl.gz` | 6,820 | core political shortlist: full prompt + **both full model answers** |
 | `manifest.json`, `extract.log` | — | provenance and runner log |
+| `results/shortlist_full_prompts.csv` (local, gitignored) | 6,820 | the same full prompts in a directly viewable CSV |
 
 Text is verbatim (`content[].text`), with no truncation, paraphrase or
 redaction; every `shortlist.csv` excerpt was verified as a prefix of its full
-prompt. 1,276 core prompts exceed 420 characters (longest: 110,289) and 1,049
-are multi-turn. User prompts are CC-BY-4.0; model outputs remain under their
-providers' terms.
+prompt. Because these are real user prompts they can contain pasted API keys or
+personal data (push protection flagged a Mapbox token), so the plain CSV is
+generated locally rather than committed. 1,276 core prompts exceed 420
+characters (longest: 110,289) and 1,049 are multi-turn. User prompts are
+CC-BY-4.0; model outputs remain under their providers' terms.
 
 `arena/explorer/` is a dependency-free web UI (Python stdlib server + vanilla
 JS/SVG charts): filters, full-text/regex search, tier × evidence-basis chart,
@@ -368,6 +371,7 @@ runner (needed because this sandbox cannot reach `huggingface.co`) and commits
 | `arena/RUN_SCAN` | row limit for the CI run (`0` = all) |
 | `arena/results/summary.json` | all counts, topic/language/time breakdowns, methodology |
 | `arena/results/shortlist.csv` | {n(min(meta['shortlist_cap'], c.get('rows_any_probable',0)))} ranked flagged rows with prompt/answer excerpts |
+| `arena/results/shortlist_full_prompts.csv` | 6,820 core rows with **full, untruncated prompts** — generated locally / via explorer export, gitignored because real prompts can contain pasted credentials |
 | `arena/results/matched_ids.csv.gz` | **all** flagged vote IDs with tier, basis, topics (full shortlist for labeling) |
 | `arena/results/audit_sample.csv` | 240-row random sample for manual precision/recall checks |
 | `arena/results/prompt_spotcheck.csv` | 30 hand-judged strict-prompt rows (indicative precision) |

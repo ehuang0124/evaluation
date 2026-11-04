@@ -11,6 +11,9 @@ complete text so the explorer can display it:
                                "core" political shortlist (strict tier, political
                                prompts, and the ranked shortlist; ~6,820 rows)
   * manifest.json            - provenance, counts, sizes, license note
+  * ../../results/shortlist_full_prompts.csv - the same full prompts in a
+                               local, directly viewable CSV (gitignored: verbatim
+                               user prompts can contain pasted credentials)
 
 Target IDs are derived reproducibly from the committed scan results, so no ID
 list has to be checked in separately.
@@ -56,6 +59,8 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--output-dir", default=str(HERE / "explorer" / "data"))
     p.add_argument("--max-rows", type=int, default=0, help="0 = stream the whole split")
+    p.add_argument("--csv-output", default=str(RESULTS / "shortlist_full_prompts.csv"),
+                   help="path for the directly viewable full-prompt CSV")
     args = p.parse_args()
 
     meta, core = load_targets()
@@ -72,6 +77,15 @@ def main() -> None:
     n = found_all = found_core = 0
     f_all = gzip.open(out / "prompts_all.jsonl.gz", "wt", encoding="utf-8")
     f_core = gzip.open(out / "conversations.jsonl.gz", "wt", encoding="utf-8")
+    csv_path = Path(args.csv_output)
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    f_csv = csv_path.open("w", encoding="utf-8", newline="")
+    csv_cols = ["id", "row_idx", "tier", "basis", "prompt_tier", "response_tier",
+                "score", "categories", "language", "is_code", "winner", "model_a",
+                "model_b", "timestamp", "n_user_turns", "prompt_chars",
+                "prompt_full_untruncated", "all_user_turns_full"]
+    w_csv = csv.DictWriter(f_csv, fieldnames=csv_cols, quoting=csv.QUOTE_ALL)
+    w_csv.writeheader()
     try:
         for row_idx, row in enumerate(ds):
             rid = row.get("id")
@@ -130,6 +144,17 @@ def main() -> None:
                     "n_turns_b": len(conv_b),
                 })
                 f_core.write(json.dumps(full, ensure_ascii=False) + "\n")
+                w_csv.writerow({
+                    "id": rid, "row_idx": row_idx, "tier": m["tier"], "basis": m["basis"],
+                    "prompt_tier": m["prompt_tier"], "response_tier": m["response_tier"],
+                    "score": int(m["score"]), "categories": "|".join(base["categories"]),
+                    "language": base["language"], "is_code": base["is_code"],
+                    "winner": base["winner"], "model_a": base["model_a"],
+                    "model_b": base["model_b"], "timestamp": base["timestamp"],
+                    "n_user_turns": len(user_turns), "prompt_chars": len(last_prompt),
+                    "prompt_full_untruncated": last_prompt,
+                    "all_user_turns_full": "\n\n--- NEXT USER TURN ---\n\n".join(user_turns),
+                })
                 found_core += 1
 
             n += 1
@@ -141,6 +166,7 @@ def main() -> None:
     finally:
         f_all.close()
         f_core.close()
+        f_csv.close()
 
     elapsed = time.time() - t0
     sizes = {p.name: p.stat().st_size for p in sorted(out.glob("*.gz"))}
@@ -157,6 +183,8 @@ def main() -> None:
         "written_conversations": found_core,
         "elapsed_seconds": round(elapsed, 2),
         "gz_sizes_bytes": sizes,
+        "csv_path": str(csv_path.relative_to(HERE.parent)),
+        "csv_rows": found_core,
         "fields_full_text": ["prompt", "user_turns", "assistant_a", "assistant_b"],
         "license_note": ("User prompts are CC-BY-4.0; model outputs are governed by the "
                          "terms of use of the respective model providers. Full text is "

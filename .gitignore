@@ -17,3 +17,8 @@ french-arena/data/raw/
 data/raw/
 arena/results/raw/
 *.hf_cache/
+
+# Verbatim full-prompt CSV is generated locally / via explorer export. Real user
+# prompts can contain pasted credentials (GitHub push protection flags them), so
+# it is intentionally NOT committed. Verbatim data lives in explorer/data/*.gz.
+arena/results/shortlist_full_prompts.csv
