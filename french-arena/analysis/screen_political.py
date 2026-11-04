@@ -8,8 +8,11 @@ pd.read_parquet(path, columns=...) for the exact pandas reader requested.
 Two passes:
   1. Screen visible user/assistant turn text and source topic metadata.
   2. Export every turn belonging to a shortlisted conversation, plus one
-     sanitized full-conversation row per comparison_id.
+     sanitized full-conversation row per comparison_id. The full transcript is
+     taken from the highest-turn source row, not an arbitrary first row.
 
+The main `political_conversations.parquet` includes both model transcripts in
+`full_conversation_a` and `full_conversation_b`, as well as the model names.
 Only user/assistant `content` is screened/exported. `reasoning_content`, system
 prompts, and tool payloads are excluded. Matches are review candidates, not
 validated political labels.
@@ -62,11 +65,15 @@ RESPONSE_COLUMNS = PROMPT_COLUMNS[:4] + [
 ]
 CONVERSATION_COLUMNS = [
     "comparison_id", "timestamp", "last_timestamp", "n_source_turns",
-    "max_turn", "shortlist_reason", "review_priority", "review_status",
-    "candidate_topics", "matched_turns", "prompt_political_turns",
-    "assistant_responses_political", "metadata_political", "adjacent_metadata_only",
-    "languages", "categories", "mode", "model_pairs", "evidence_json",
-    "full_conversation_a", "full_conversation_b", "conversation_export_complete",
+    "max_turn", "model_a", "model_b", "shortlist_reason", "review_priority",
+    "review_status", "candidate_topics", "matched_turns",
+    "prompt_political_turns", "assistant_responses_political",
+    "metadata_political", "adjacent_metadata_only", "languages", "categories",
+    "mode", "model_pairs", "evidence_json", "full_conversation_a",
+    "full_conversation_b", "full_conversation_a_user_messages",
+    "full_conversation_a_assistant_messages", "full_conversation_b_user_messages",
+    "full_conversation_b_assistant_messages", "conversation_export_status",
+    "conversation_export_complete",
 ]
 
 
@@ -201,6 +208,7 @@ def visible_text(value: Any, role: str) -> str:
 
 
 def sanitize_conversation(value: Any) -> list[dict]:
+    """Keep visible user/assistant text while dropping system/tool/reasoning data."""
     out = []
     for msg in messages(value):
         role = msg.get("role")
@@ -210,6 +218,30 @@ def sanitize_conversation(value: Any) -> list[dict]:
         if text:
             out.append({"role": role, "content": text})
     return out
+
+
+def transcript_counts(conversation: list[dict]) -> tuple[int, int]:
+    """Return visible user and assistant message counts in a sanitized transcript."""
+    users = sum(msg.get("role") == "user" for msg in conversation)
+    assistants = sum(msg.get("role") == "assistant" for msg in conversation)
+    return users, assistants
+
+
+def transcript_export_status(
+    full_a: list[dict], full_b: list[dict], expected_turns: int
+) -> tuple[str, tuple[int, int, int, int]]:
+    """Check both model transcripts contain visible messages for every source turn."""
+    a_users, a_assistants = transcript_counts(full_a)
+    b_users, b_assistants = transcript_counts(full_b)
+    counts = (a_users, a_assistants, b_users, b_assistants)
+    missing = []
+    if a_users < expected_turns or a_assistants < expected_turns:
+        missing.append("model_a")
+    if b_users < expected_turns or b_assistants < expected_turns:
+        missing.append("model_b")
+    if not missing:
+        return "complete", counts
+    return "incomplete_" + "_and_".join(missing), counts
 
 
 def metadata_dict(row: dict) -> dict:
@@ -311,6 +343,13 @@ def screen_turn(row: dict, rules: PoliticalRules) -> dict:
         "languages": languages,
         "mode": md.get("mode"),
     }
+
+
+def source_column_names(path: str) -> set[str]:
+    """Read the Parquet schema without loading the conversation data into RAM."""
+    import fsspec
+    with fsspec.open(path, "rb") as f:
+        return set(pq.ParquetFile(f).schema_arrow.names)
 
 
 def iter_batches(path: str, columns: list[str], batch_size: int, direct_pandas: bool) -> Iterator[pd.DataFrame]:
@@ -441,12 +480,19 @@ def aggregate_record(comparison_id: str, agg: dict) -> dict:
 
 def run(args: argparse.Namespace) -> dict:
     rules = PoliticalRules(Path(args.rules))
-    output = Path(args.output_dir)
-    output.mkdir(parents=True, exist_ok=True)
     input_path = args.input
     if args.revision and input_path.startswith("hf://") and "@" not in input_path:
         input_path = input_path.replace(f"/{HF_FILE}", f"@{args.revision}/{HF_FILE}")
+    available_columns = source_column_names(input_path)
+    missing = set(FULL_COLUMNS) - available_columns
+    if missing:
+        raise ValueError(
+            "Full-text export requires these source Parquet columns, which are missing: "
+            f"{sorted(missing)}. No annotation-only dataset was written."
+        )
 
+    output = Path(args.output_dir)
+    output.mkdir(parents=True, exist_ok=True)
     aggregates: dict[str, dict] = {}
     seen_response_ids: set[str] = set()
     seen_turns: set[tuple[str, int]] = set()
@@ -457,7 +503,7 @@ def run(args: argparse.Namespace) -> dict:
     counts = Counter()
     topic_prompt_counts = Counter()
     topic_response_counts = Counter()
-    topic_conversation_counts = Counter()
+    topic_conversation_ids: dict[str, set[str]] = defaultdict(set)
 
     with tempfile.TemporaryDirectory(prefix=".political_parts_", dir=output) as tmp:
         tmp_root = Path(tmp)
@@ -512,7 +558,8 @@ def run(args: argparse.Namespace) -> dict:
                 if screened["political"]:
                     agg = aggregates.setdefault(cid, new_aggregate())
                     update_aggregate(agg, row, screened)
-                    topic_conversation_counts.update(screened["conversation_topics"])
+                    for topic in screened["conversation_topics"]:
+                        topic_conversation_ids[topic].add(cid)
                 elif screened["adjacent_metadata"]:
                     counts["adjacent_metadata_only_turns"] += 1
             if args.limit_rows and counts["source_rows_read"] >= args.limit_rows:
@@ -531,9 +578,12 @@ def run(args: argparse.Namespace) -> dict:
         counts["response_only_conversations"] = sum(a["priority"] == "2_response_only" for a in aggregates.values())
         counts["french_shortlisted_conversations"] = sum("fr" in a["languages"] for a in aggregates.values())
 
-        # Pass 2: export all turns in shortlisted conversations and one full conversation each.
+        # Pass 2: export all turns in shortlisted conversations and the transcript
+        # snapshot from each conversation's highest source turn. The first row is
+        # not necessarily a complete multi-turn transcript.
         exported_full: set[str] = set()
         exported_turns: set[tuple[str, int]] = set()
+        transcript_status_counts = Counter()
         for df in iter_batches(input_path, FULL_COLUMNS, args.batch_size, args.direct_pandas):
             for row in df.to_dict("records"):
                 cid = str(row.get("comparison_id"))
@@ -577,17 +627,57 @@ def run(args: argparse.Namespace) -> dict:
                         "response_topics": screened[f"response_{side}_topics"],
                         "response_evidence_json": json.dumps(screened[f"response_{side}_evidence"], ensure_ascii=False),
                     })
-                if cid not in exported_full:
+
+                if turn == max_turn_by_conversation[cid] and cid not in exported_full:
                     full_a = sanitize_conversation(row.get("full_conversation_a"))
                     full_b = sanitize_conversation(row.get("full_conversation_b"))
+                    status, message_counts = transcript_export_status(
+                        full_a, full_b, total_turns_by_conversation[cid]
+                    )
                     record = aggregate_record(cid, agg)
                     record.update({
+                        "model_a": row.get("model_a"),
+                        "model_b": row.get("model_b"),
                         "full_conversation_a": full_a,
                         "full_conversation_b": full_b,
-                        "conversation_export_complete": bool(full_a and full_b),
+                        "full_conversation_a_user_messages": message_counts[0],
+                        "full_conversation_a_assistant_messages": message_counts[1],
+                        "full_conversation_b_user_messages": message_counts[2],
+                        "full_conversation_b_assistant_messages": message_counts[3],
+                        "conversation_export_status": status,
+                        "conversation_export_complete": status == "complete",
                     })
                     conversation_writer.write(record)
                     exported_full.add(cid)
+                    transcript_status_counts[status] += 1
+
+        # Retain one row for every shortlisted conversation even if the source
+        # did not expose a matching final-turn transcript row; flag it explicitly.
+        for cid in sorted(shortlisted - exported_full):
+            agg = aggregates[cid]
+            record = aggregate_record(cid, agg)
+            record.update({
+                "model_a": None,
+                "model_b": None,
+                "full_conversation_a": [],
+                "full_conversation_b": [],
+                "full_conversation_a_user_messages": 0,
+                "full_conversation_a_assistant_messages": 0,
+                "full_conversation_b_user_messages": 0,
+                "full_conversation_b_assistant_messages": 0,
+                "conversation_export_status": "missing_max_turn_source_row",
+                "conversation_export_complete": False,
+            })
+            conversation_writer.write(record)
+            transcript_status_counts["missing_max_turn_source_row"] += 1
+
+        counts["conversations_with_complete_transcripts"] = transcript_status_counts["complete"]
+        counts["conversations_with_incomplete_transcripts"] = sum(
+            n for status, n in transcript_status_counts.items() if status != "complete"
+        )
+        counts["conversations_with_missing_max_turn_source_row"] = transcript_status_counts[
+            "missing_max_turn_source_row"
+        ]
 
         prompt_rows = prompt_writer.compact(output / "political_prompts.parquet")
         response_rows = response_writer.compact(output / "political_responses.parquet")
@@ -598,10 +688,10 @@ def run(args: argparse.Namespace) -> dict:
         review = review.sort_values(["review_priority", "timestamp", "comparison_id"], na_position="last")
     review.to_csv(output / "review_queue.csv", index=False)
     topic_rows = []
-    for topic in sorted(set(topic_prompt_counts) | set(topic_response_counts) | set(topic_conversation_counts)):
+    for topic in sorted(set(topic_prompt_counts) | set(topic_response_counts) | set(topic_conversation_ids)):
         topic_rows.append({
             "topic": topic,
-            "conversations": topic_conversation_counts[topic],
+            "conversations": len(topic_conversation_ids[topic]),
             "prompt_turns": topic_prompt_counts[topic],
             "assistant_responses": topic_response_counts[topic],
         })
@@ -624,6 +714,15 @@ def run(args: argparse.Namespace) -> dict:
             "political_prompts": prompt_rows,
             "political_responses": response_rows,
         },
+        "full_conversation_dataset": {
+            "file": "political_conversations.parquet",
+            "full_transcripts_included": True,
+            "transcript_columns": ["full_conversation_a", "full_conversation_b"],
+            "model_columns": ["model_a", "model_b"],
+            "transcripts_are_visible_user_and_assistant_content_only": True,
+            "transcripts_selected_from_highest_source_turn": True,
+            "transcript_status_counts": dict(transcript_status_counts),
+        },
         "percentages": {
             "shortlisted_conversations_of_eligible": 100 * len(shortlisted) / len(eligible_conversations) if eligible_conversations else None,
             "prompt_turns_with_political_text": 100 * counts["prompt_turns_with_political_text"] / counts["prompt_turns"] if counts["prompt_turns"] else None,
@@ -636,7 +735,8 @@ def run(args: argparse.Namespace) -> dict:
             "Response counts are individual assistant responses with political text, not both responses to every political prompt.",
             "Conversation shortlist includes prompt-text, response-text, or source Politics & Government metadata signals.",
             "Adjacent Law/Society/Environment metadata alone does not shortlist a conversation.",
-            "Hidden reasoning_content and system/tool messages are excluded from screening and exports.",
+            "Full A/B transcripts come from each conversation's highest source turn; incomplete transcripts are retained but flagged.",
+            "Only visible user/assistant content is exported; hidden reasoning_content, system prompts, and tool payloads are excluded.",
             "Keyword and surname rules can produce false positives; manual validation is required before prevalence claims.",
         ],
         "packages": {"pandas": pd.__version__, "pyarrow": pa.__version__},

@@ -4,9 +4,9 @@ This directory contains a **provisional, ID-only political-review shortlist** de
 
 ## Current status
 
-- Full `ministere-culture/comparia-fr-arena` Parquet read: **not completed in this sandbox**.
-  - `git clone` and `pd.read_parquet("hf://...")` both failed at the Hugging Face TLS/network boundary.
-  - The dataset page also requires accepting gated access conditions.
+- Full `ministere-culture/comparia-fr-arena` Parquet read: **not completed in this sandbox** because the source is gated and unavailable here.
+- The checked-in provisional shortlist is **ID/metadata-only** and has no prompt or response text.
+- The full-text pipeline is ready to write both model transcripts to `french-arena/data/full/political_conversations.parquet` when run on an authorized source file; that transcript dataset is not generated in this checkout.
 - Provisional shortlist: **completed** from a public, pinned derivative of the same dataset.
   - Derivative: `simonaszilinskas/style-control-analysis`
   - Derivative revision: `25a17f883945c2229736bfe17702d966bc94aa0d`
@@ -96,13 +96,28 @@ For Hugging Face access, accept the dataset conditions and authenticate locally,
 
 The full pipeline writes to `french-arena/data/full/`, which is gitignored by default because it can contain raw user-generated text and be large:
 
-- `political_conversations.parquet`: one row per shortlisted `comparison_id`, with sanitized full conversations and aggregate evidence.
+- `political_conversations.parquet`: one row per shortlisted `comparison_id`. It includes `model_a`, `model_b`, and both full visible transcripts in `full_conversation_a` and `full_conversation_b`. Each transcript is an ordered list of `{role, content}` messages. The transcript snapshot comes from the conversation's highest source turn; message counts and `conversation_export_status` / `conversation_export_complete` flag any shortfall.
 - `political_prompts.parquet`: one row per unique `comparison_id + turn` in shortlisted conversations.
 - `political_responses.parquet`: one row per assistant response in shortlisted conversations.
 - `review_queue.csv`: conversation-level review queue.
-- `topic_counts.csv`: candidate counts by broad political topic.
+- `topic_counts.csv`: unique shortlisted conversations, prompt-turn instances, and assistant-response instances by candidate topic.
 - `summary.json`: counts, percentages, provenance, and caveats.
 - `manifest.json`: output hashes.
+
+Read the conversation-level text dataset with pandas:
+
+```python
+import pandas as pd
+
+conversations = pd.read_parquet(
+    "french-arena/data/full/political_conversations.parquet"
+)
+print(conversations[[
+    "comparison_id", "model_a", "model_b",
+    "full_conversation_a", "full_conversation_b",
+    "conversation_export_status",
+]].head())
+```
 
 ### Screening scope
 

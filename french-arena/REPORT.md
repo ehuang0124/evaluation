@@ -102,7 +102,23 @@ tests/
   test_screen_political.py
 ```
 
-The provisional shortlist is ID/metadata-only. It does not publish raw user prompts or model responses.
+The checked-in provisional shortlist is ID/metadata-only. It does not include raw user prompts or model responses.
+
+## Full transcripts requested
+
+The actual A/B conversation text cannot be populated from the provisional derivative: it has no prompt/response text, and the gated source Parquet was unavailable in this sandbox. No full-text political conversation dataset has been generated in this checkout; I have not fabricated transcripts from IDs or annotations.
+
+The full-source pipeline now produces `french-arena/data/full/political_conversations.parquet`, one row per shortlisted conversation, with `model_a`, `model_b`, `full_conversation_a`, and `full_conversation_b`. Each transcript is an ordered list of visible user/assistant `{role, content}` messages, selected from that conversation's highest source turn. It records message counts and flags transcript completeness. The companion prompt- and response-level files remain available for turn-level analysis. Raw text exports are gitignored by default because they contain user-generated content and may be large.
+
+To build the text-bearing dataset, accept the source dataset conditions and run the pipeline in an environment with authorized source access:
+
+```bash
+python french-arena/analysis/screen_political.py \
+  --input hf://datasets/ministere-culture/comparia-fr-arena/comparia-fr-arena.parquet \
+  --output-dir french-arena/data/full
+```
+
+Alternatively, pass a local Parquet file to `--input`. The pipeline requires the full-conversation source columns and stops rather than silently writing an annotation-only output if they are absent.
 
 ## Full-release pipeline
 

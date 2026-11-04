@@ -31,6 +31,8 @@ provisional ID-only shortlist was built from a pinned public derivative of
 `ministere-culture/comparia-fr-arena`: 8,739 conversations with primary topic
 `Politics & Government` out of 137,293 derived French conversations with a
 decisive vote (6.37%). These are review candidates, not validated labels.
+The full-source exporter writes `french-arena/data/full/political_conversations.parquet`
+with both visible transcripts; full exports are gitignored by default.
 
 ## Run tests
 
