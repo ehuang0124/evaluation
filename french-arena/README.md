@@ -2,8 +2,9 @@
 
 ## Findings summary
 
-- Full gated `ministere-culture/comparia-fr-arena` read was **not completed** in this sandbox: Hugging Face clone/pandas access failed at the network/TLS boundary, and the dataset requires gated-access acceptance.
-- A **provisional ID-only shortlist** was built from a pinned public derivative of the same dataset.
+- Full gated `ministere-culture/comparia-fr-arena` read was **not completed** in this sandbox: Hugging Face access is gated and unavailable from this environment.
+- The checked-in shortlist is a **provisional ID/metadata-only** artifact; it does not contain the full conversations.
+- The full-source pipeline now writes both model transcripts into `data/full/political_conversations.parquet` once run on an authorized source file. That text-bearing dataset has not been generated here because the full source is unavailable.
 - The derivative sample contains **137,293** French conversations with a decisive vote.
 - **8,739** conversations have source primary topic `Politics & Government` (**6.37%**).
 - Within those conversations: **10,074** user prompt turns and **20,148** assistant response turns through the retained vote; **17,478** assistant responses at the decisive vote only.
@@ -14,8 +15,9 @@
 
 | Path | Purpose |
 |---|---|
-| `data/political_shortlist_provisional.parquet` | Main provisional shortlist, one row per `comparison_id`. |
-| `data/political_shortlist_provisional.csv` | CSV copy of the shortlist. |
+| `data/political_shortlist_provisional.parquet` | Checked-in provisional ID/metadata shortlist, one row per `comparison_id` (no prompt/response text). |
+| `data/political_shortlist_provisional.csv` | CSV copy of the provisional shortlist. |
+| `data/full/political_conversations.parquet` | Generated full-text shortlist: one row per conversation with `model_a`, `model_b`, `full_conversation_a`, and `full_conversation_b`. This local raw-text export is gitignored and is not currently generated in this checkout. |
 | `data/adjacent_topic_review_provisional.parquet` | Lower-priority adjacent-topic review queue, not political positives. |
 | `data/summary_provisional.json` | Machine-readable counts and caveats. |
 | `data/manifest_provisional.json` | SHA-256 hashes for provisional artifacts. |

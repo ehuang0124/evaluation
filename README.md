@@ -12,7 +12,9 @@ French Compar:IA arena political-content analysis.
 
 ## Status
 
-The full gated Hugging Face source could not be read from this sandbox. A provisional ID-only shortlist was built from a pinned public derivative of `ministere-culture/comparia-fr-arena`.
+The full gated Hugging Face source could not be read from this sandbox. The checked-in provisional shortlist is therefore **ID/metadata only**; it does not contain any prompts or model responses.
+
+The full-source exporter writes `french-arena/data/full/political_conversations.parquet` with both visible transcripts (`full_conversation_a` and `full_conversation_b`) and model names, alongside prompt/response-level review outputs. It selects the highest-turn transcript snapshot and flags any incomplete A/B transcript. The source Parquet must be available to generate the text-bearing dataset; full exports are gitignored by default because they contain user-generated text and may be large.
 
 Provisional headline: **8,739 conversations** with source primary topic `Politics & Government`, out of **137,293** derived French conversations with a decisive vote (**6.37%**). These are review candidates, not manually validated political labels.
 

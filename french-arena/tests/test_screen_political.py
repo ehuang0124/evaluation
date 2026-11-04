@@ -87,9 +87,26 @@ class RulesTest(unittest.TestCase):
 class PipelineTest(unittest.TestCase):
     def _fixture(self, path):
         rows = [
-            turn("r1", "c-pol", 0, "Parle-moi de l'élection présidentielle.", "Voici un résumé.", "Un autre résumé.", categories=["Education"], choice="a_better"),
-            turn("r2", "c-pol", 1, "Et le programme ?", "Le programme A.", "Le programme B.", categories=["Education"]),
+            turn(
+                "r1", "c-pol", 0, "Parle-moi de l'élection présidentielle.",
+                "Voici un résumé.", "Un autre résumé.", categories=["Education"],
+                choice="a_better",
+                full_a=[msg("system", "system secret"), msg("user", "Parle-moi de l'élection présidentielle."), msg("assistant", "Voici un résumé.")],
+                full_b=[msg("user", "Parle-moi de l'élection présidentielle."), msg("assistant", "Un autre résumé.")],
+            ),
+            turn(
+                "r2", "c-pol", 1, "Et le programme ?", "Le programme A.",
+                "Le programme B.", categories=["Education"],
+                full_a=[msg("system", "system secret"), msg("user", "Parle-moi de l'élection présidentielle."), msg("assistant", "Voici un résumé."), msg("user", "Et le programme ?"), msg("assistant", "Le programme A.")],
+                full_b=[msg("user", "Parle-moi de l'élection présidentielle."), msg("assistant", "Un autre résumé."), msg("user", "Et le programme ?"), msg("assistant", "Le programme B.")],
+            ),
             turn("r3", "c-meta", 0, "Bonjour", "Bonjour !", "Salut !", categories=["Politics & Government"]),
+            turn(
+                "r7", "c-meta", 1, "Et ensuite ?", "Encore bonjour.", "Encore salut.",
+                categories=["Politics & Government"],
+                full_a=[msg("system", "system secret"), msg("user", "Bonjour"), msg("assistant", "Bonjour !"), msg("user", "Et ensuite ?"), msg("assistant", "Encore bonjour.")],
+                full_b=[msg("user", "Bonjour"), msg("assistant", "Salut !"), msg("user", "Et ensuite ?"), msg("assistant", "Encore salut.")],
+            ),
             turn("r4", "c-resp", 0, "Raconte une histoire.", "Cette histoire parle d'Emmanuel Macron.", "Une histoire neutre."),
             turn("r5", "c-adj", 0, "Comment recycler ?", "Recyclez le papier.", "Triez les déchets.", categories=["Environment"]),
             turn("r6", "c-neu", 0, "Quelle est la capitale du Japon ?", "Tokyo.", "Tokyo."),
@@ -112,25 +129,52 @@ class PipelineTest(unittest.TestCase):
             for name, direct in [("stream", False), ("direct", True)]:
                 out = root / name
                 summary = sp.run(self._args(src, out, direct=direct))
-                self.assertEqual(summary["counts"]["source_rows_read"], 7)
+                self.assertEqual(summary["counts"]["source_rows_read"], 8)
                 self.assertEqual(summary["counts"]["duplicate_response_id_rows"], 1)
                 self.assertEqual(summary["counts"]["shortlisted_conversations"], 3)
                 conv = pd.read_parquet(out / "political_conversations.parquet")
                 self.assertEqual(set(conv.comparison_id), {"c-pol", "c-meta", "c-resp"})
                 self.assertTrue(conv.comparison_id.is_unique)
                 prompts = pd.read_parquet(out / "political_prompts.parquet")
-                self.assertEqual(len(prompts), 4)  # all turns in shortlisted conversations
+                self.assertEqual(len(prompts), 5)  # all turns in shortlisted conversations
                 responses = pd.read_parquet(out / "political_responses.parquet")
-                self.assertEqual(len(responses), 8)
+                self.assertEqual(len(responses), 10)
                 self.assertEqual(summary["counts"]["prompt_turns_with_political_text"], 1)
                 self.assertEqual(summary["counts"]["assistant_responses_with_political_text"], 1)
                 pol = conv.set_index("comparison_id").loc["c-pol"]
                 self.assertEqual(pol["n_source_turns"], 2)
                 self.assertEqual(pol["max_turn"], 1)
-                self.assertNotIn("system secret", json.dumps(pol["full_conversation_a"].tolist(), ensure_ascii=False))
-                self.assertNotIn("hidden election reasoning", json.dumps(pol["full_conversation_a"].tolist(), ensure_ascii=False))
+                self.assertEqual(pol["model_a"], "model-a")
+                self.assertEqual(pol["model_b"], "model-b")
+                self.assertTrue(pol["conversation_export_complete"])
+                self.assertEqual(pol["conversation_export_status"], "complete")
+                transcript_a = json.dumps(pol["full_conversation_a"].tolist(), ensure_ascii=False)
+                transcript_b = json.dumps(pol["full_conversation_b"].tolist(), ensure_ascii=False)
+                self.assertIn("Et le programme ?", transcript_a)
+                self.assertIn("Le programme A.", transcript_a)
+                self.assertIn("Et le programme ?", transcript_b)
+                self.assertIn("Le programme B.", transcript_b)
+                self.assertNotIn("system secret", transcript_a)
+                self.assertNotIn("hidden election reasoning", transcript_a)
+                self.assertEqual(summary["counts"]["conversations_with_complete_transcripts"], 3)
+                self.assertEqual(
+                    summary["full_conversation_dataset"]["transcript_status_counts"]["complete"], 3
+                )
+                topic_counts = pd.read_csv(out / "topic_counts.csv").set_index("topic")
+                self.assertEqual(topic_counts.loc["politics_government_metadata", "conversations"], 1)
                 self.assertTrue((out / "summary.json").exists())
                 self.assertTrue((out / "manifest.json").exists())
+
+    def test_requires_full_conversation_columns(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            src = root / "annotation_only.parquet"
+            rows = [turn("r1", "c1", 0, "élection présidentielle", "Réponse A", "Réponse B")]
+            pd.DataFrame(rows).drop(columns=["full_conversation_a", "full_conversation_b"]).to_parquet(src, index=False)
+            out = root / "out"
+            with self.assertRaisesRegex(ValueError, "Full-text export requires"):
+                sp.run(self._args(src, out))
+            self.assertFalse(out.exists())
 
     def test_french_only(self):
         with tempfile.TemporaryDirectory() as td:
