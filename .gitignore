@@ -1,3 +1,19 @@
+# Python
 __pycache__/
-*.pyc
-.venv/
+*.py[cod]
+.venv*/
+.pytest_cache/
+
+# Local secrets / credentials
+.env
+.env.*
+*.token
+hf_token*
+
+# Raw/full political screening exports can contain user-generated text and are large.
+# The ID-only shortlists under french-arena/data/ and arena/results/ are intentionally tracked.
+french-arena/data/full/
+french-arena/data/raw/
+data/raw/
+arena/results/raw/
+*.hf_cache/
