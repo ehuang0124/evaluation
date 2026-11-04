@@ -205,6 +205,36 @@ Suggested next step: human-label `results/shortlist.csv` (or the full
 `results/matched_ids.csv.gz`), measure inter-rater agreement, then either
 tune the lexicon or use those labels to train/validate a classifier.
 
+## Full text & interactive explorer
+
+The scan itself only kept 420-character excerpts. `arena/extract_full_text.py`
+streams the corpus once more and materializes the **complete, untruncated**
+text in `arena/explorer/data/`:
+
+| File | Rows | Contents |
+| --- | ---: | --- |
+| `prompts_all.jsonl.gz` | 63,635 | full prompt + all user turns for **every** flagged vote ID |
+| `conversations.jsonl.gz` | 6,820 | core political shortlist: full prompt + **both full model answers** |
+| `manifest.json`, `extract.log` | — | provenance and runner log |
+
+Text is verbatim (`content[].text`), with no truncation, paraphrase or
+redaction; every `shortlist.csv` excerpt was verified as a prefix of its full
+prompt. 1,276 core prompts exceed 420 characters (longest: 110,289) and 1,049
+are multi-turn. User prompts are CC-BY-4.0; model outputs remain under their
+providers' terms.
+
+`arena/explorer/` is a dependency-free web UI (Python stdlib server + vanilla
+JS/SVG charts): filters, full-text/regex search, tier × evidence-basis chart,
+topic / language / monthly / vote / model / match-strength visualizations, a
+detail drawer with the full prompt and both complete answers, and CSV export
+containing the `prompt_full_untruncated` column.
+
+```bash
+python arena/explorer/server.py --host 0.0.0.0 --port 8000   # live preview on :8000
+```
+
+See `arena/explorer/README.md` for the API and regeneration instructions.
+
 ## Reproduce
 
 ```bash
@@ -233,6 +263,9 @@ runner (needed because this sandbox cannot reach `huggingface.co`) and commits
 | File | Contents |
 | --- | --- |
 | `arena/analyze_political.py` | the screening script (lexicon + aggregation) |
+| `arena/extract_full_text.py` | materializes full, untruncated prompts + answers |
+| `arena/explorer/` | interactive explorer: `server.py`, `index.html`, `app.js`, `styles.css`, `README.md` |
+| `arena/explorer/data/*.jsonl.gz` | full-text shortlist data (63,635 prompts + 6,820 conversations) |
 | `arena/make_report.py` | regenerates this README from `summary.json` |
 | `arena/audit_precision.py` | manual precision/recall audit helper |
 | `arena/requirements.txt` | runtime dependencies |

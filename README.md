@@ -10,7 +10,13 @@ politically active figures, parties/ideology, geopolitics). Full findings,
 method, caveats and reproduction steps: [`arena/README.md`](arena/README.md).
 Headline: 2,235 votes (1.65%) have a strictly political user prompt;
 8,912 of 271,129 judged answers (3.29%) are on political topics at that tier.
-The `/arena` folder also holds the script and the full shortlisted vote IDs.
+The `/arena` folder also holds the script, the full shortlisted vote IDs, and
+**full untruncated prompts** (63,635 flagged IDs; 6,820 with both complete model
+answers). Explore them interactively with filters, full-text search and charts:
+
+```bash
+python arena/explorer/server.py --host 0.0.0.0 --port 8000
+```
 
 ## `french-arena/` — Compar:IA (French) political-content analysis
 
