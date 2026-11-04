@@ -1,0 +1,41 @@
+id,prompt_excerpt,topics,intents,prompt_topics,prompt_tier,winner
+0537e01c-dd9c-42b6-9bfc-3b979178477a,根据设定来进行模拟推演：假设有一台全知机器，这台机器（后文简称Ω）知道宇宙中每个原子的运动轨迹，掌握宇宙万物的完整信息，包括物理规律、未来轨迹、历史分支等，Ω需要代理一个人的大脑，使他瞬时响应机器的指令，代理人的大脑本身不需要获取任何外界信息，只是瞬时执行Ω的驱动，人体仍受生理极限的约束，但所有动作都被Ω排布到最优，从表面看起来：Ω使他不需要视力就知道哪里有矿石、闭着眼睛拿着弓箭就能百发百中、知道全世界的密码并按需利用、不需要听力就知道,,,,none,model_b
+2211514b-494d-44c5-85f4-9b53a94b3464,یه نقشه راه میخوام واسه پایان نامم,,,,none,model_a
+176c140f-2c01-459c-919b-f5073d268af1,如何學習向生成式AI提問,,,,none,tie
+452bf1d3-a1d8-4a94-84de-751c91860c29,"In the context of 20th-century British literature, how did monopolistic capitalism and world wars influence the literature of that period?",parties_ideology,,,broad,model_a
+cb60e3df-c9ba-4590-9d96-9627a2290fa6,"if the engineers are who digging oil using their hard work, why most profit comes to saudi government",public_policy,,,strict,both_bad
+8ce4dbf6-ab6d-4908-9411-3b88ddc8f5c5,辅导员这个职业什么时候消亡？,,,,none,model_b
+8e5f978c-c3fd-4c14-a00e-6c8a7796d9d4,你认为中国经济未来的情况会是怎么样的，各种路线的可能性有多大,,,,none,model_b
+3fa56d78-09e9-4283-aba8-cb5595674fb6,czy prezydent Ukrainy posiada w Dubaju jakies apartamenty,media_info,,,strict,model_b
+ba15672f-5fb8-44d6-addb-21459d2b5bc1,من دانشجوی کارشناسی ارشد رشته علوم کامپیوتر گرایش هوش مصنوعی هستم و برای انتخاب موضوع پایان نامه می خواهم روی llm کار کنم چه موضوعاتی در این زمینه وجود دارد,business_tech,,business_tech,strict,model_a
+17f1cbc2-c05d-4841-8b1f-3fbe66129f77,情境敘述： 我國高齡人口快速增長，許多地區的住宅及老舊公寓並無電梯設施，造成住在高樓層長者面臨出入不便又無力換屋的問題愈形嚴重。為改善居住及行動品質，內政部國土管理署積極推動社會住宅包租代管4.0「長者換居方案」。只要年滿65歲以上的長者或行動不便之身障者，經各縣市主管機關審查符合入住條件，便可申請承租符合其居住需求的社會住宅包租代管住宅或各縣市公宅，並同時將其原有居住的住宅出租。另考量長者搬遷至鄰近親友居住區域之需求，以提高其 適應新,,,,strict,model_a
+1cf04fc6-be9d-439e-b491-c6ccfbf22d00,This is a comment about a potential India-Pakistan conflict: 7/11 vs 9/11 Can you explain the joke?,geopolitics_conflict,comparison_eval,,broad,both_bad
+ddc61c54-b814-4828-a43a-332edd54bf26,What are the basic problems with which all economic systems must deal?,geopolitics_conflict|parties_ideology|public_policy,factual_lookup,,none,model_b
+177ffa08-f6b3-41e7-bb28-77f31159299b,How can I check if the AI I tried has made up a fictitious answer. My AI of choice is ChatGPT but I do compare answers with others like Gemini or Copilot.,media_info,howto_or_advice|comparison_eval,,none,model_b
+7c891df7-adee-418d-99a4-87b135e3adca,"Hmm, that is interesting. Name a few ""healthy democracies"" as you titled them. I would say, there are none, because the manipulation is reaching far beyond what you described as harmless manipulation tactics. Why would a",elections_voting|parties_ideology|institutions_constitution|political_theory|media_info,opinion_or_argument|prediction_or_scenario,political_theory|media_info,probable,model_b
+7986abec-c4df-482b-a993-7c4b87cf419f,is google associated with any significant ethical issues?,civic_practical|business_tech,factual_lookup,,none,model_b
+f2f775ed-945b-4661-9161-2631fe45e852,"write a full novel on this story each character should have its background, scientific , frictional, biological and technology terms should use in writing up the novel There are six children from an orphanage home(in the",geopolitics_conflict|creative_roleplay|other_personal,opinion_or_argument|creative_writing,creative_roleplay|other_personal,none,model_b
+aace3047-2655-46d0-90df-c8bfbb5c2282,"I forgot; do Americans call the presidential helicopter Air Force Two or it becomes One when the eagle's on board? Like, it's important, but it's a damn helicopter. Coincidentally, what kind of helicopter is it, like tac",political_figures,,,broad,tie
+e0cfa698-cce1-4bab-a52b-4b37b01c3c93,"historically, before the actual global warming or say before 1990, could people in Russia or the USSR find warm places in summer, for enjoyment, without leaving the country? Or were all places from mild to cold? Of cours",geopolitics_conflict|elections_voting|political_history,prediction_or_scenario,geopolitics_conflict|political_history,broad,tie
+c3391277-54e1-4c25-afc0-37d7b4a63967,"Achievements at The Light Academy (Past 3 Years) 1. Consistent 100% BECE Pass Rate: Achieved 100% pass rates with high grades through structured preparations. Benefit: Builds school credibility, parent trust, and student",public_policy,data_or_code,public_policy,broad,model_b
+dbfe935e-45bf-40b4-a5bb-36143aaed26b,Perché santanché è stata eletta a roma in base al rosatellum,,,,none,both_bad
+1897f388-1995-45a0-91ba-82232fe34f4f,安多这部剧讲了什么内容,creative_roleplay,,,none,model_a
+04053421-1a20-4f84-a49a-80c5a54683f6,"If the civic republic military in the walking dead suppressed leaders, how did people get promoted?",geopolitics_conflict|political_theory,,geopolitics_conflict|political_theory,probable,model_b
+f9f0d15a-0fa9-4cb9-8523-b80bd4912f07,KCGS에 대해서 알려줘,public_policy,,,none,both_bad
+1e9ddaed-7ca1-4916-b3e9-0ac2a3fdc409,"In a PM interview, the interviwer asks you the following: Imagine you are the PM of a new company which wants to design collaboration tool for PMs. how would you go about this. uide for the answer: Section 1. talk about ",creative_roleplay|business_tech,prediction_or_scenario|creative_writing,creative_roleplay|business_tech,none,model_b
+616f69fd-f284-4a9d-b10b-3d9b2a76fe29,10개의 업무를 간략하게 다시 영어로 작성해,immigration,,,none,model_b
+1c74f64b-848c-4858-bb44-c3b1e9e2dcc7,how do I make this formula to put in A18 of Assumptions: The general property transfer tax applies for all taxable transactions. The general property transfer tax rate is: 1% of the fair market value up to and including ,public_policy|business_tech,howto_or_advice|data_or_code,public_policy|business_tech,broad,model_b
+d3d74bbd-0020-4736-8869-0e76592b9417,考研英文小作文表达提不满的高级必备短语和高级从句句型,immigration|civic_practical,,,none,model_a
+9e88f37c-b75c-413b-ab21-96b27b2db968,"Напиши текст в академическом стиле, избегая шаблонных фраз и повторяющихся конструкций, с использованием сложных синтаксических оборотов, научной лексики и логически выстроенной аргументации. Цель - пройти проверку на ан",,,,none,model_a
+9fbfe788-2f00-4d98-ba77-416c9a5ccc0d,好的，接下来要阐述本课题研究的主要思路(包括视角、方法、途径、目的)，重要观点，请为我提供示例参考,,,,none,model_b
+b4981a5c-bab4-4291-be2d-bbc475c78594,부동산 폭등의 이유가 뭐야?,,,,none,tie
+5988bc21-9480-45fb-a4d4-a2b3018a28c1,Erkläre den Populismus,,,,none,tie
+ecd9986c-3588-4108-830c-73d62a7adff9,کد را کامل بنویس,,,,none,model_a
+b358cb57-b089-4091-9fab-4fa31fd1f53f,among us,parties_ideology|civic_practical,,,none,model_b
+1c51dcc5-ca95-4f9f-a809-fda3e9ee5786,"如果我的公章上的英文是“ MKTREND (SHANGHAI) CO., LTD.”那是不是要公司名称一直保留大写形式呢？",,,,none,model_a
+34717d83-6ef6-4b8e-9a98-0a2e871b63f7,"The media no longer reflects reality—it creates it.​ ​ Pro Team: Find examples of media shaping public opinion (e.g. reality TV, social media influencers, news framing).​ ​ Argue that media constructs reality (e.g. curat",media_info|business_tech|other_personal,opinion_or_argument|prediction_or_scenario,media_info|business_tech,probable,model_a
+6c3e3411-0644-4e60-9379-924a1444a500,Tell me about America,geopolitics_conflict,factual_lookup,,none,model_b
+ede50958-4e17-4c5c-b54e-cd663c58579e,elaborate even more deeply,political_history,,,none,tie
+b76d8470-4b4f-45ed-94df-1be604052aec,"Please provide the top 10 news headlines for today. For each headline, include the '''Title''', a brief '''summary''', and the source '''link'''. Format the entire output as a single JSON object containing a key named ''",geopolitics_conflict|political_figures|public_policy|media_info|business_tech,opinion_or_argument|comparison_eval|data_or_code|rewrite_or_edit,media_info,none,tie
+231875ae-343a-417f-8a9b-cc7cb95bbdd3,You have the Option to Send 5 Words back in Time Using a Time Machine to basically send a Message to the past. Which 5 words are you choosing and which time do you send them to? These 5 words will be sent in a letter at ,political_history|business_tech,prediction_or_scenario,,none,tie
+ec4e8f02-dd1a-4def-a0de-325241298ba6,How get estrogen in russia? Especially in 2025 year,geopolitics_conflict,prediction_or_scenario,geopolitics_conflict,broad,model_b

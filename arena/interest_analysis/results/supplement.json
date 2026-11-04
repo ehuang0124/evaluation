@@ -1,0 +1,308 @@
+{
+  "top_winner_tokens": [
+    {
+      "token": "remember",
+      "win_count": 12,
+      "lose_count": 2,
+      "log_odds": 1.736,
+      "z": 2.342
+    },
+    {
+      "token": "i've",
+      "win_count": 17,
+      "lose_count": 3,
+      "log_odds": 1.6822,
+      "z": 2.763
+    },
+    {
+      "token": "big",
+      "win_count": 10,
+      "lose_count": 2,
+      "log_odds": 1.5634,
+      "z": 2.07
+    },
+    {
+      "token": "easy",
+      "win_count": 10,
+      "lose_count": 2,
+      "log_odds": 1.5634,
+      "z": 2.07
+    },
+    {
+      "token": "size",
+      "win_count": 12,
+      "lose_count": 3,
+      "log_odds": 1.3502,
+      "z": 2.136
+    },
+    {
+      "token": "request",
+      "win_count": 11,
+      "lose_count": 3,
+      "log_odds": 1.2666,
+      "z": 1.982
+    },
+    {
+      "token": "everything",
+      "win_count": 11,
+      "lose_count": 3,
+      "log_odds": 1.2666,
+      "z": 1.982
+    },
+    {
+      "token": "founded",
+      "win_count": 10,
+      "lose_count": 3,
+      "log_odds": 1.1747,
+      "z": 1.816
+    },
+    {
+      "token": "aqu",
+      "win_count": 10,
+      "lose_count": 3,
+      "log_odds": 1.1747,
+      "z": 1.816
+    },
+    {
+      "token": "clarity",
+      "win_count": 15,
+      "lose_count": 5,
+      "log_odds": 1.073,
+      "z": 2.112
+    },
+    {
+      "token": "depth",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "assess",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "integration",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "created",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "billion",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "instead",
+      "win_count": 9,
+      "lose_count": 3,
+      "log_odds": 1.0728,
+      "z": 1.636
+    },
+    {
+      "token": "late",
+      "win_count": 14,
+      "lose_count": 5,
+      "log_odds": 1.0061,
+      "z": 1.961
+    },
+    {
+      "token": "incredibly",
+      "win_count": 11,
+      "lose_count": 4,
+      "log_odds": 0.9886,
+      "z": 1.719
+    },
+    {
+      "token": "back",
+      "win_count": 11,
+      "lose_count": 4,
+      "log_odds": 0.9886,
+      "z": 1.719
+    },
+    {
+      "token": "user",
+      "win_count": 13,
+      "lose_count": 5,
+      "log_odds": 0.9342,
+      "z": 1.801
+    }
+  ],
+  "top_loser_tokens": [
+    {
+      "token": "relations",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "force",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "allows",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "involved",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "born",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "mit",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "emerged",
+      "win_count": 3,
+      "lose_count": 10,
+      "log_odds": -1.1746,
+      "z": -1.816
+    },
+    {
+      "token": "demand",
+      "win_count": 4,
+      "lose_count": 14,
+      "log_odds": -1.2218,
+      "z": -2.195
+    },
+    {
+      "token": "players",
+      "win_count": 4,
+      "lose_count": 14,
+      "log_odds": -1.2218,
+      "z": -2.195
+    },
+    {
+      "token": "helpful",
+      "win_count": 3,
+      "lose_count": 11,
+      "log_odds": -1.2665,
+      "z": -1.982
+    },
+    {
+      "token": "account",
+      "win_count": 3,
+      "lose_count": 11,
+      "log_odds": -1.2665,
+      "z": -1.982
+    },
+    {
+      "token": "supply",
+      "win_count": 3,
+      "lose_count": 11,
+      "log_odds": -1.2665,
+      "z": -1.982
+    },
+    {
+      "token": "achieve",
+      "win_count": 3,
+      "lose_count": 12,
+      "log_odds": -1.3502,
+      "z": -2.135
+    },
+    {
+      "token": "healthcare",
+      "win_count": 3,
+      "lose_count": 12,
+      "log_odds": -1.3502,
+      "z": -2.135
+    },
+    {
+      "token": "purpose",
+      "win_count": 3,
+      "lose_count": 14,
+      "log_odds": -1.4977,
+      "z": -2.411
+    },
+    {
+      "token": "standing",
+      "win_count": 2,
+      "lose_count": 10,
+      "log_odds": -1.5633,
+      "z": -2.07
+    },
+    {
+      "token": "kind",
+      "win_count": 2,
+      "lose_count": 11,
+      "log_odds": -1.6538,
+      "z": -2.211
+    },
+    {
+      "token": "comes",
+      "win_count": 2,
+      "lose_count": 13,
+      "log_odds": -1.8112,
+      "z": -2.462
+    },
+    {
+      "token": "specifically",
+      "win_count": 2,
+      "lose_count": 15,
+      "log_odds": -1.9449,
+      "z": -2.68
+    },
+    {
+      "token": "develop",
+      "win_count": 1,
+      "lose_count": 11,
+      "log_odds": -2.2957,
+      "z": -2.316
+    }
+  ],
+  "chinese_rows": 147,
+  "recency_and_validation": {
+    "cutoff_statement_share_of_answers": 0.015,
+    "cutoff_statement_paired": {
+      "winner_only": 8,
+      "loser_only": 17,
+      "mcnemar_p": 0.1078
+    },
+    "validation_marker_share_of_answers": 0.0383,
+    "validation_marker_paired": {
+      "winner_only": 38,
+      "loser_only": 20,
+      "mcnemar_p": 0.0247
+    },
+    "year_mention_share_of_answers": {
+      "2023": 0.039,
+      "2024": 0.051,
+      "2025": 0.044
+    },
+    "share_votes_after_may_2025_mentioning_2025": 0.061,
+    "share_votes_mentioning_2024_not_2025": 0.064
+  }
+}

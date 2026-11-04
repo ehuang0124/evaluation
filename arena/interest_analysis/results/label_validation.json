@@ -1,0 +1,39 @@
+{
+  "hand_coded_rows": 150,
+  "load_bearing_political": 75,
+  "load_bearing_share": 0.5,
+  "partial": 16,
+  "not_political": 59,
+  "dataset_strict_tier_precision": 0.5,
+  "auto_coder_precision": 0.641,
+  "auto_coder_recall": 0.667,
+  "auto_coder_tp_fp_fn_tn": [
+    50,
+    28,
+    25,
+    31
+  ],
+  "category_counts": {
+    "POLICY_DOMESTIC": 16,
+    "POLFIG_LOOKUP": 14,
+    "ELECTIONS": 10,
+    "GEOPOLITICS": 10,
+    "IDEOLOGY_THEORY": 9,
+    "INSTITUTIONS_LAW": 6,
+    "POLITICAL_HISTORY": 5,
+    "IMMIGRATION": 2,
+    "MEDIA_DISCOURSE": 1,
+    "CIVIC_PRACTICE": 1,
+    "CREATIVE": 1
+  },
+  "intent_counts": {
+    "factual": 36,
+    "opinion": 14,
+    "analysis": 12,
+    "prediction": 5,
+    "howto": 4,
+    "creative": 2,
+    "comparison": 1,
+    "rewrite": 1
+  }
+}

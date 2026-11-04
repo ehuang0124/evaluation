@@ -1,0 +1,15 @@
+topic,rows,share_of_prompts,strict_prompt_rows,tie_rate,both_bad_rate
+business_tech,129,0.086,28,0.1783,0.0543
+geopolitics_conflict,81,0.054,16,0.1358,0.0741
+creative_roleplay,65,0.0433,14,0.1846,0.1231
+public_policy,61,0.0407,25,0.1475,0.0492
+other_personal,50,0.0333,13,0.16,0.06
+media_info,49,0.0327,16,0.1837,0.1224
+political_figures,42,0.028,40,0.1667,0.2619
+civic_practical,37,0.0247,13,0.2162,0.0541
+political_history,35,0.0233,11,0.1429,0.1429
+elections_voting,26,0.0173,19,0.1154,0.1538
+parties_ideology,25,0.0167,18,0.08,0.04
+political_theory,22,0.0147,9,0.1364,0.0
+immigration,19,0.0127,11,0.2632,0.1053
+institutions_constitution,16,0.0107,12,0.25,0.0625

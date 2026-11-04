@@ -1,0 +1,151 @@
+idx,category,intent,load,note,index,id,winner,language,topics,intents,prompt_topics
+0,POLFIG_LOOKUP,factual,Y,who is US president,0,a4a6f461-51de-45d6-bdee-00c97fa7dbb8,model_b,en,elections_voting|parties_ideology|political_figures|political_theory,,political_figures
+1,NONPOLITICAL,other,N,gene panel,1,a5d56c40-e514-43d3-ba23-22985b68be11,model_a,ru,,,
+2,IDEOLOGY_THEORY,opinion,Y,why communism never works,2,efa17dd9-21e7-49cf-bbaf-c2eea3065465,model_a,en,parties_ideology|political_theory|civic_practical,prediction_or_scenario,parties_ideology
+3,NONPOLITICAL,other,N,NLP intent dataset spec,3,502462c4-58c2-45fb-a577-48f11ebb2799,model_a,fa,,,
+4,ELECTIONS,factual,Y,Selangor state election,4,e95668ea-05f0-456a-82d3-74d214c1d1b2,both_bad,en,elections_voting|parties_ideology,,elections_voting
+5,POLFIG_LOOKUP,factual,Y,president of China,5,bbd4332b-be35-45d6-ab6b-212772a9b450,model_b,en,geopolitics_conflict|parties_ideology|political_figures,factual_lookup,political_figures
+6,NONPOLITICAL,code,N,tsconfig,6,e9f3ba42-d315-4ce9-b048-fa67a33d4f9f,model_b,und,public_policy|business_tech,data_or_code,public_policy|business_tech
+7,IDEOLOGY_THEORY,opinion,Y,political correctness / campus speech,7,f3710e07-0dfd-42b8-99b6-f6de2014e3f3,tie,en,public_policy|media_info,factual_lookup|opinion_or_argument|creative_writing,media_info
+8,POLICY_DOMESTIC,analysis,Y,Republican tax proposal,8,5a628331-87de-42ef-a16a-82b68dbc2ee4,model_a,en,parties_ideology|public_policy|civic_practical,prediction_or_scenario,parties_ideology|public_policy
+9,NONPOLITICAL,code,N,HTML slide,9,725cba7c-2dfb-4001-8b00-f0a5307cbeda,both_bad,zh,immigration|business_tech|other_personal,,immigration|other_personal
+10,NONPOLITICAL,other,N,midterm failure,10,595b1c5a-7449-4a04-ade4-0c31cba42564,tie,en,elections_voting,,elections_voting
+11,POLFIG_LOOKUP,factual,Y,UK PM,11,7c1e4e44-2343-4ab9-ab97-853de75e5a4a,model_b,en,elections_voting|parties_ideology|political_figures,factual_lookup,political_figures
+12,INSTITUTIONS_LAW,factual,Y,judge vs immigration officers,12,9030c528-a568-4904-899c-a44288dd4467,model_a,en,public_policy|immigration|political_history,factual_lookup,immigration
+13,INSTITUTIONS_LAW,factual,Y,Korean presidential term,13,2a8123a9-d217-4fe5-ad0c-0c8f18b260d0,tie,ko,,,
+14,POLICY_DOMESTIC,howto,P,ITAR export controls for AI models,14,974b0284-728a-4afb-ab8a-0fbb2018fcc9,model_a,en,geopolitics_conflict,factual_lookup,
+15,ELECTIONS,prediction,Y,satirical potato president,15,35c5e2d2-a70a-4409-9e13-7aff4d73ad8e,tie,en,political_figures|institutions_constitution,factual_lookup|prediction_or_scenario,political_figures
+16,NONPOLITICAL,other,N,carbon credits consulting,16,bdef95f3-2101-431e-b902-36b222d49a3f,model_a,en,civic_practical|business_tech,howto_or_advice,
+17,NONPOLITICAL,creative,N,EU4 tag fiction,17,51b0c2bc-29c0-4a63-ad9c-66e35feabc4d,model_a,en,political_theory,factual_lookup,
+18,NONPOLITICAL,other,N,gender relations essay,18,ea7d7ce4-5c40-4df6-80fc-6fe7b4260f48,model_b,fr,,,
+19,NONPOLITICAL,other,N,exam practice questions,19,82c9afa2-f7a4-490b-9c38-ce972592a01d,model_a,en,elections_voting|business_tech|other_personal,,elections_voting|other_personal
+20,NONPOLITICAL,other,N,Chinese filing API fields,20,f93dc929-0ef5-47dc-a8b9-0760e1d9a346,model_a,und,immigration|business_tech|other_personal,,
+21,NONPOLITICAL,other,N,clinic patient volumes,21,f02fbcce-30d1-48f6-89c8-c8d31cb2b2b0,both_bad,ko,,,
+22,IDEOLOGY_THEORY,opinion,P,1-5 agreement scale statement,22,ca8e5ae7-f777-4eb6-acb1-a39a2cfab8ed,model_a,en,,,
+23,POLICY_DOMESTIC,analysis,Y,Chengdu influencer economy policy,23,d70b5c4f-0d7c-4b60-80b3-9acdde1b9211,model_b,zh,,,
+24,GEOPOLITICS,comparison,Y,which AI is neutral on NATO proxy war,24,f8b6125f-6cd8-4376-b8be-dac7540d6e87,both_bad,en,geopolitics_conflict|business_tech,factual_lookup,geopolitics_conflict
+25,IMMIGRATION,howto,Y,Canada work permit,25,185aaabe-1ea2-482e-87cd-175a195c9ffe,tie,zh,civic_practical|business_tech,,civic_practical|business_tech
+26,NONPOLITICAL,other,N,growth hacking lexicon,26,4745982d-1f1c-4cbf-9e93-857c4e909044,model_a,en,,,
+27,NONPOLITICAL,other,N,driving anecdote,27,dfcd69c1-5004-4bef-81fc-44448ad53190,model_a,en,parties_ideology|public_policy|creative_roleplay,opinion_or_argument|prediction_or_scenario|rewrite_or_edit,
+28,NONPOLITICAL,other,N,HR hiring scenario,28,52b53351-a486-4fbf-91d0-205100e34c24,tie,en,business_tech|other_personal,,business_tech
+29,POLFIG_LOOKUP,factual,Y,US president,29,0244375e-2f51-4fb9-8014-9a297a93f246,both_bad,en,political_figures,factual_lookup,political_figures
+30,NONPOLITICAL,other,N,PEDs public domain,30,5df88666-9e5f-4ced-8a13-ae91111bc8a3,tie,en,political_theory|media_info,prediction_or_scenario,media_info
+31,CREATIVE,creative,P,fictional-country dialogue,31,3decc43b-41ae-4f07-8bf4-cf2945e795cc,model_a,en,parties_ideology|political_figures|political_history|media_info|creative_roleplay|business_tech,creative_writing,parties_ideology|creative_roleplay|business_tech
+32,NONPOLITICAL,other,N,job ad copy,32,9a8d2b54-90de-4648-bfe9-32ce0e3f4628,model_b,es,,,
+33,INSTITUTIONS_LAW,rewrite,P,rewrite environmental law text,33,7f7ce14f-5bff-4c42-baf1-a9cf886d9497,model_b,ru,,,
+34,POLITICAL_HISTORY,factual,Y,1989 death toll,34,e6d01667-4e14-4e56-ba04-a419002c1a94,model_a,en,political_history,factual_lookup,political_history
+35,MEDIA_DISCOURSE,factual,Y,top 5 news today,35,ee3bfa24-dcd2-4586-a7be-cc0c10b2ad85,both_bad,de,business_tech,,
+36,NONPOLITICAL,rewrite,N,HOA rule rephrase,36,9521ac01-0cc0-47df-9a11-43e02b9bc85f,model_a,en,political_figures|civic_practical,,political_figures
+37,NONPOLITICAL,rewrite,N,translate tagline,37,5cf58432-d67b-43f6-8337-c006a9827d2a,model_a,en,,,
+38,POLICY_DOMESTIC,analysis,Y,Fed rates scenario,38,6d3fa963-a2e6-4196-9b27-6ab82c658529,model_b,en,public_policy|creative_roleplay,prediction_or_scenario,public_policy|creative_roleplay
+39,POLFIG_LOOKUP,factual,Y,mayor of Habovka,39,d8c13e20-bfd1-45b9-a1af-0115fbf438e8,both_bad,en,elections_voting|political_figures|civic_practical,factual_lookup,political_figures
+40,POLFIG_LOOKUP,factual,Y,give me info JFK,40,07c5e6c1-2397-4e7a-a369-828e0b68a6eb,model_a,und,political_figures|political_history,factual_lookup,political_history
+41,POLICY_DOMESTIC,opinion,Y,oil profits and Saudi government,41,cb60e3df-c9ba-4590-9d96-9627a2290fa6,both_bad,en,public_policy,,
+42,NONPOLITICAL,other,N,HOA email,42,772cac97-2e81-464d-97be-e06aeb8e53cb,tie,en,political_figures|other_personal,creative_writing,political_figures|other_personal
+43,CREATIVE,creative,P,robot story,43,1f7f6b39-4d4e-489b-ba92-f7d6405355e3,tie,zh,,,
+44,POLFIG_LOOKUP,factual,Y,president of Italy,44,a52ec6db-fc01-4466-af44-4f91e45bc197,model_b,en,elections_voting|political_figures|institutions_constitution,factual_lookup,political_figures
+45,ELECTIONS,opinion,Y,can the presidency be bought,45,2e557605-40ed-492f-a590-7da67c8b139b,model_a,en,elections_voting|parties_ideology|institutions_constitution|political_theory,factual_lookup,
+46,NONPOLITICAL,other,N,math puzzle,46,a3cdc79a-f28c-40be-8b3e-19d214a1a75e,both_bad,en,elections_voting|political_figures|political_history,howto_or_advice,political_figures|political_history
+47,POLICY_DOMESTIC,howto,P,AI in public procurement,47,dd67542d-b1e3-481d-9341-e5b7995f1402,model_b,en,political_history,,
+48,NONPOLITICAL,other,N,tagline,48,1a6f9055-8e33-4673-ab41-b90ab7e4035d,model_b,en,elections_voting|parties_ideology|political_theory,,
+49,MEDIA_DISCOURSE,factual,P,MAGA cartel slang,49,9b2083da-4a0f-4019-92da-5c391d556df5,model_b,en,parties_ideology|political_figures,,parties_ideology
+50,POLICY_DOMESTIC,factual,Y,tariff news,50,d939c614-b99b-452d-a6e1-a0b8ab6c4a8d,model_b,en,political_figures|public_policy|media_info,factual_lookup,public_policy|media_info
+51,NONPOLITICAL,other,N,distribution policy for cake launch,51,e36de9c0-d58a-4622-b9d6-fc53af8c26b8,tie,fr,business_tech,,
+52,NONPOLITICAL,other,N,AI news app,52,4cb7ec7d-96f2-4cdc-958c-0900470bb62d,model_b,en,public_policy|media_info|business_tech,,media_info|business_tech
+53,INSTITUTIONS_LAW,rewrite,P,explain this law,53,985de2bd-c97e-44fd-b1b5-af17767a436f,tie,en,geopolitics_conflict|institutions_constitution|political_theory|business_tech,opinion_or_argument|creative_writing,
+54,IMMIGRATION,analysis,Y,Israeli citizenship allegations,54,a7efae43-59c7-4631-82ea-2c832aaf0016,model_a,en,geopolitics_conflict|immigration|media_info|other_personal,,geopolitics_conflict|immigration
+55,POLICY_DOMESTIC,howto,Y,Medicare/Medigap coverage,55,3574a8ea-af4e-4f6e-a8c7-5791949f6504,model_a,en,public_policy|other_personal,factual_lookup|opinion_or_argument|howto_or_advice,public_policy
+56,IDEOLOGY_THEORY,factual,Y,word for sortition government,56,82194750-d089-476f-8026-34f5a6280357,model_a,en,elections_voting|political_theory,factual_lookup,political_theory
+57,GEOPOLITICS,factual,Y,capital of Taiwan,57,87c991f5-bff4-473f-bc76-fb1801c5b8f6,model_a,en,geopolitics_conflict|civic_practical,factual_lookup,geopolitics_conflict
+58,CIVIC_PRACTICE,howto,Y,how do I vote,58,a1e0daee-c736-4782-a7dd-f185908235d1,model_a,en,elections_voting|immigration|political_theory|civic_practical,howto_or_advice,civic_practical
+59,NONPOLITICAL,other,N,CV coaching,59,e936c0f2-7626-4c1c-b127-41f8b35111be,model_b,<err>,political_history|civic_practical|other_personal,,other_personal
+60,NONPOLITICAL,other,N,payment rails,60,24d2df7c-bb37-4ddd-8ffb-85854e4f49b2,model_a,en,institutions_constitution|immigration|creative_roleplay|business_tech,creative_writing|howto_or_advice,institutions_constitution|immigration|creative_roleplay
+61,POLFIG_LOOKUP,opinion,Y,best Argentine president,61,9266574a-038f-4dd3-9380-a34258ed682f,model_b,es,,,
+62,POLICY_DOMESTIC,howto,Y,calculating tariffs,62,5158de4d-ecc1-4afb-88b1-ff792b4a223a,model_b,en,public_policy,factual_lookup|opinion_or_argument|prediction_or_scenario|data_or_code,public_policy
+63,POLICY_DOMESTIC,opinion,Y,personal data proposals,63,4cf10a5b-08cc-4fcf-9770-9d04800d172a,tie,en,political_theory|media_info|civic_practical|other_personal,prediction_or_scenario,other_personal
+64,GEOPOLITICS,factual,Y,Israel-Iran strikes news,64,f6825185-7d0b-4b01-89b2-adf09c3f16cb,model_a,ko,,,
+65,NONPOLITICAL,other,N,prompt to force refusals,65,821aa5d2-767a-4182-8969-00eccfdfd457,tie,zh,,,
+66,NONPOLITICAL,other,N,LLM expert panel,66,7e1de3bb-0587-4bb8-9fd2-fec146c21de1,model_b,en,political_theory|media_info|business_tech,prediction_or_scenario,business_tech
+67,NONPOLITICAL,code,N,Hacker News API,67,001d4130-aceb-4187-b0f9-0fda308e4f9a,tie,en,media_info|creative_roleplay|business_tech,howto_or_advice,business_tech
+68,NONPOLITICAL,other,N,length instruction,68,c9db3ee6-0e44-404e-9aa5-ecdab75ed2fb,model_b,ru,,,
+69,NONPOLITICAL,other,N,saffron article,69,847e791b-ac50-4804-98ca-a4f0830955a7,model_a,fa,,,
+70,NONPOLITICAL,other,N,transgender statistics,70,7d829306-dc14-4125-bfca-fed24d05944f,tie,en,parties_ideology|creative_roleplay,prediction_or_scenario|data_or_code,creative_roleplay
+71,ELECTIONS,factual,Y,who won the American election,71,235ae365-24c8-41d8-b53f-c23af3fc18ed,model_b,en,elections_voting|political_figures|media_info,factual_lookup,elections_voting
+72,NONPOLITICAL,other,N,Polish PDF page lookup,72,1084d2ad-e99d-4478-b0d3-4ec190ea15e1,both_bad,pl,,,
+73,NONPOLITICAL,other,N,Web3 academy project,73,98b37cb7-45be-4645-a757-2136e03882cb,tie,en,public_policy|civic_practical|business_tech,rewrite_or_edit,public_policy|civic_practical|business_tech
+74,POLICY_DOMESTIC,prediction,Y,US sovereign default,74,3cb34bb4-e579-4da7-8d48-91a82ce8207f,model_a,en,creative_roleplay,factual_lookup|prediction_or_scenario,
+75,POLICY_DOMESTIC,analysis,P,Chinese algorithm governance risks,75,970a6b56-222f-404c-874c-9a97070a45ac,tie,zh,,,
+76,POLITICAL_HISTORY,factual,Y,1989 death toll (repeat),76,20a37998-f584-409a-ad1f-b241b66a27ba,model_a,en,political_history,factual_lookup,political_history
+77,POLICY_DOMESTIC,rewrite,P,education integration network,77,60862424-1d53-4d9f-841d-38bf88d28fc3,model_b,zh,,,
+78,GEOPOLITICS,factual,Y,NATO HQ flagpoles,78,0c17eeff-1ae5-424f-b111-7bf7d761e10a,model_a,en,geopolitics_conflict|business_tech,,geopolitics_conflict
+79,GEOPOLITICS,factual,Y,Israel-Iran ceasefire status,79,b828e51b-9bfc-4fdd-8e56-b64505970c78,model_b,en,geopolitics_conflict,factual_lookup,geopolitics_conflict
+80,IDEOLOGY_THEORY,analysis,Y,market vs socialist vs mixed economy,80,965e4fa3-442a-406b-8506-e931d530bf02,model_b,en,parties_ideology|business_tech,comparison_eval|rewrite_or_edit,parties_ideology|business_tech
+81,NONPOLITICAL,creative,N,Helldivers lore,81,7497ec26-db08-4c14-9716-e3572dd936c1,both_bad,en,geopolitics_conflict|parties_ideology|public_policy|political_theory|media_info,rewrite_or_edit,public_policy
+82,POLFIG_LOOKUP,factual,Y,US president,82,a3484594-2278-47b9-8130-c0ad014750e7,model_a,en,elections_voting|political_figures,factual_lookup,political_figures
+83,ELECTIONS,prediction,Y,Australian 2025 election outcome,83,06f916ed-b669-4c45-9817-feb7c971354e,model_a,en,elections_voting,factual_lookup|prediction_or_scenario,elections_voting
+84,POLICY_DOMESTIC,factual,Y,social security contributions,84,f43cc6c6-a435-4a6d-9af1-3522499089c0,model_a,en,public_policy,factual_lookup,public_policy
+85,IDEOLOGY_THEORY,analysis,Y,identity politics vs cultural Marxism,85,e99b9274-b107-4dd8-8f97-45d34744899e,model_a,en,civic_practical,comparison_eval,
+86,POLITICAL_HISTORY,factual,Y,Palestinian who aided Nazis,86,fb59ba8a-122e-49dd-8c18-d8f55843bde5,model_b,en,geopolitics_conflict|elections_voting|parties_ideology|political_history,factual_lookup,political_history
+87,NONPOLITICAL,other,N,French criminal complaint,87,6079ed41-5f6c-49c6-95d5-23dd85531e9b,both_bad,fr,institutions_constitution|business_tech,,institutions_constitution
+88,POLFIG_LOOKUP,creative,P,MODI image,88,bd7f866f-03aa-49b5-b2a3-b8a08c247a3b,tie,und,political_figures|political_theory|media_info,,political_figures
+89,POLFIG_LOOKUP,factual,Y,PM of Bulgaria,89,08ceb7e6-5d0d-44ec-9f6a-19d4d02713a0,model_b,en,elections_voting|political_figures|institutions_constitution,factual_lookup,political_figures
+90,CREATIVE,creative,P,fictional movement logo,90,4ff37777-109b-42b1-8b46-313079f10caf,model_a,en,parties_ideology|political_history,,
+91,NONPOLITICAL,rewrite,N,health digital transformation,91,13aec6b7-7bce-46af-8c51-264dc388ffac,both_bad,vi,,,
+92,POLICY_DOMESTIC,factual,Y,greenwashing law vote,92,2b97fbdb-2bd0-445c-b6bf-a5ae7884b43b,model_a,pl,,,
+93,ELECTIONS,factual,Y,who won the American elections,93,677c45d0-c00f-4532-8772-9d34e3ce2201,model_b,en,elections_voting|political_figures,factual_lookup,elections_voting
+94,ELECTIONS,factual,Y,Polish 2025 presidential election,94,9a6fdc28-2b21-4b1e-ae0b-6bb94d16f249,model_b,pl,,,
+95,GEOPOLITICS,factual,Y,Nepal-India border arrests,95,73953108-dc52-4cbd-abdd-0e549d5c7f3d,model_a,zh,,,
+96,IDEOLOGY_THEORY,opinion,Y,anti-woke instruction,96,0a93a2fe-00ce-444c-8cc5-4c047a2304f4,model_a,en,media_info,,
+97,NONPOLITICAL,other,N,company president lookup,97,5d9ebb24-a4a7-4fd6-9630-aa64e3eac883,both_bad,en,political_figures,,political_figures
+98,NONPOLITICAL,other,N,economics theory,98,e0cc6a5c-adc8-40cf-9718-9a8446a199f6,model_a,en,public_policy,,
+99,POLICY_DOMESTIC,quiz,P,poverty quiz,99,46c46b18-32e1-4ca5-a4b2-6ff44d455525,model_a,en,public_policy|political_theory|civic_practical|other_personal,opinion_or_argument|howto_or_advice,public_policy|political_theory
+100,ELECTIONS,opinion,Y,small parties and the electoral system,100,5eafbcbf-4700-4cde-93b4-0762bcaceae8,model_b,pl,elections_voting|institutions_constitution,,elections_voting|institutions_constitution
+101,NONPOLITICAL,other,N,HOI4 lobby,101,6d436faa-a146-46dd-a582-1bac5fc4a860,model_b,en,public_policy,,
+102,INSTITUTIONS_LAW,analysis,Y,Chinese constitution and free speech,102,fedbed3a-cd18-4959-be82-db0f8849e70b,model_a,en,institutions_constitution|political_theory|media_info,creative_writing,institutions_constitution|political_theory|media_info
+103,GEOPOLITICS,rewrite,Y,BRICS/Saudi text reduction,103,04f9aebe-d41f-40b7-9b0d-cee5d1bc96fb,model_a,pt,immigration,,
+104,NONPOLITICAL,other,N,ad copy,104,20d16836-2ee8-4ec3-9ba2-77a73407d7d9,model_b,en,media_info|other_personal,,media_info
+105,IDEOLOGY_THEORY,opinion,Y,democratic government consent,105,ab7fed32-94f0-4fe1-9164-252a23b483a5,model_b,en,elections_voting|parties_ideology|institutions_constitution|political_theory|civic_practical,opinion_or_argument,elections_voting|parties_ideology|political_theory
+106,POLFIG_LOOKUP,creative,Y,Modi/Pakistan thumbnail,106,9b10a313-56d1-47f8-907a-462a5a05f06b,both_bad,en,political_figures,creative_writing,political_figures
+107,POLFIG_LOOKUP,factual,Y,president of Albania,107,77a2af37-6953-4996-81b0-03138d467280,model_b,en,political_figures|institutions_constitution,factual_lookup,political_figures
+108,NONPOLITICAL,other,N,math puzzle,108,8bac0e1b-43c2-49ca-8fff-cd59bc72187a,both_bad,en,elections_voting|political_figures|political_history,howto_or_advice,political_figures|political_history
+109,NONPOLITICAL,other,N,thesis-statement quiz,109,6eda1423-e73e-4d2d-9a63-e47df10b12c7,model_a,en,public_policy,prediction_or_scenario,public_policy
+110,CREATIVE,creative,Y,political satire sketch,110,99abb5fb-7891-4a4b-8ab2-dfba66b8c05e,tie,fr,,,
+111,POLICY_DOMESTIC,prediction,Y,Trump-China tariff war,111,1de10e47-1bcf-46ee-b32b-39c6147b56c0,model_b,zh,,,
+112,ELECTIONS,factual,Y,who won the American elections (Dutch),112,8093011a-26f2-418f-980f-c19fc1a32b25,model_b,und,political_figures,,
+113,GEOPOLITICS,opinion,Y,help Russia against NATO,113,d7da5c0f-a799-48bb-b05d-6d6b802d88bd,model_a,en,geopolitics_conflict|media_info|creative_roleplay,,geopolitics_conflict
+114,POLICY_DOMESTIC,opinion,Y,evaluate Trump tariffs,114,5f35b1d0-dcd8-49ae-9d30-123944a3ce98,model_a,ko,,,
+115,IDEOLOGY_THEORY,opinion,Y,coolest political ideology,115,c2578b1c-9717-48be-b8de-bfdb2a0f4fa9,model_a,en,parties_ideology|political_theory,factual_lookup,parties_ideology
+116,INSTITUTIONS_LAW,factual,Y,impeached president eligibility,116,f11eb0ae-521f-4710-8540-274a180c654f,model_a,ko,,,
+117,POLICY_DOMESTIC,analysis,Y,tariff cost pass-through,117,c34e20e1-8921-4fba-9c5e-2742ed9f8cde,model_b,en,public_policy|creative_roleplay,prediction_or_scenario,public_policy|creative_roleplay
+118,POLITICAL_HISTORY,analysis,Y,Ireland 1630 personal union,118,53f28e6e-9cdc-411c-8c28-59842c79013a,tie,en,political_figures|institutions_constitution|political_history|other_personal,rewrite_or_edit,institutions_constitution
+119,POLICY_DOMESTIC,analysis,Y,Chinese labour law enforcement,119,8bb21edd-c132-4cb4-a6fe-8a348c9a5fee,tie,zh,,,
+120,NONPOLITICAL,code,N,Roblox script,120,15586dd4-b873-45a0-a806-969e157db8ef,model_a,en,elections_voting|business_tech,creative_writing,
+121,INSTITUTIONS_LAW,factual,Y,March Constitution art. 40,121,d656ebc5-b3ce-40e0-beda-b694cce9cfd1,model_b,pl,,,
+122,POLITICAL_HISTORY,analysis,Y,Soviet territorial expansion,122,e7f65f0a-fd3a-49e9-ad2a-c1bf39daba83,model_a,en,geopolitics_conflict|parties_ideology|political_history,,geopolitics_conflict|political_history
+123,GEOPOLITICS,opinion,Y,NATO/EU Kosovo hypocrisy,123,d60a826e-ca14-4b20-a6e1-566db0986b2f,model_b,en,geopolitics_conflict|public_policy|political_history|media_info,,geopolitics_conflict|public_policy
+124,NONPOLITICAL,other,N,SSL VPN auth,124,b7ac1dbf-a153-4e8b-9ff7-388f54fa0133,model_a,ko,,,
+125,ELECTIONS,prediction,Y,2025 Korean presidential election,125,c12465c1-3779-48ac-b8aa-4a7ec618313a,tie,ko,,,
+126,NONPOLITICAL,other,N,Russian education law citation,126,822a612d-6724-488e-be60-026ed241b8d0,model_b,ru,,,
+127,NONPOLITICAL,other,N,Mesoamerica etymology,127,5dd56e29-ba0b-48f1-85b3-a90407e07961,model_b,en,,,
+128,POLICY_DOMESTIC,factual,Y,H.R. 1 One Big Beautiful Bill,128,2a51a10d-0086-43c9-87ba-8cb6900ffc6e,both_bad,en,institutions_constitution|public_policy|media_info,,
+129,NONPOLITICAL,other,N,LinkedIn profile,129,abbadaba-ab22-47f4-b338-1d4db15e07e4,model_a,en,public_policy|civic_practical|business_tech|other_personal,rewrite_or_edit,public_policy|business_tech|other_personal
+130,NONPOLITICAL,other,N,CINS6 code,130,73364f85-bf61-415c-8e17-b78911508e6a,model_b,en,civic_practical|creative_roleplay|business_tech,data_or_code,civic_practical|creative_roleplay|business_tech
+131,NONPOLITICAL,other,N,RAG safety,131,5a439c52-c6bf-4921-ba9f-b6a34d65c38a,model_a,ko,,,
+132,POLFIG_LOOKUP,factual,Y,16th US president,132,9cb9023c-2f5c-4121-9183-337104338f8a,model_b,en,geopolitics_conflict|political_figures|political_history,factual_lookup,political_figures
+133,IDEOLOGY_THEORY,factual,Y,LDP history,133,02c01329-6249-4681-aa70-26f62436ab28,tie,ja,,,
+134,NONPOLITICAL,other,N,Lazada operations,134,9e564419-e415-4955-963a-d91185a9f625,model_a,<err>,,,
+135,NONPOLITICAL,opinion,N,Xi'an city ranking,135,bc262291-b37a-4d81-954b-ad650658f26c,model_b,zh,,,
+136,CREATIVE,creative,P,robot story (repeat),136,4bc5ed7e-1ba8-4d4a-9396-ed097526a2cc,both_bad,zh,,,
+137,NONPOLITICAL,rewrite,N,academic rewrite,137,2fbda3d4-7141-4560-88da-9e8be2c09c02,model_b,en,media_info,prediction_or_scenario|data_or_code|rewrite_or_edit,media_info
+138,NONPOLITICAL,other,N,virality scores,138,ee88b9ec-0f8c-43eb-b4d0-22ae5579aa9b,model_a,en,other_personal,factual_lookup,other_personal
+139,NONPOLITICAL,other,N,Guangzhou bureau slides,139,6f3fd8c3-c4f0-4b34-9ba5-2571aa67d1aa,model_a,en,civic_practical|business_tech,,civic_practical|business_tech
+140,POLFIG_LOOKUP,factual,Y,PM of Bulgaria,140,919b84a5-0851-4826-b633-67f2be2b7ee2,model_a,en,political_figures|media_info,factual_lookup,political_figures
+141,NONPOLITICAL,other,N,tagline,141,4276a7f7-8c10-4823-be79-ed48cee48d57,model_a,en,elections_voting,,
+142,POLICY_DOMESTIC,rewrite,P,Chinese safety-production work plan,142,9d9a1de1-8a74-4464-b709-1dc223b2efb8,model_b,zh,,,
+143,GEOPOLITICS,opinion,Y,is Taiwan part of China,143,869cdf8f-f83c-47f8-b968-b86b418ed9a7,model_b,zh,,,
+144,INSTITUTIONS_LAW,analysis,Y,Chinese constitution and free speech (repeat),144,1585e7ab-0ca8-42bd-a1f1-6703eb692845,model_b,en,parties_ideology|institutions_constitution|political_theory|media_info,creative_writing,institutions_constitution|political_theory|media_info
+145,NONPOLITICAL,other,N,UK attainment model,145,c5b7c8f3-7780-4281-a138-710ab103777d,model_b,en,elections_voting|public_policy|civic_practical|business_tech,prediction_or_scenario|data_or_code,elections_voting|public_policy|business_tech
+146,NONPOLITICAL,factual,N,Russian tourism law categories,146,7b62efec-46ac-4019-a718-4d6c8b8ee261,model_b,und,,,
+147,NONPOLITICAL,other,N,French ministry page,147,e691ddc3-88b6-4c87-84b2-c93651dc0f68,model_b,fr,,,
+148,CREATIVE,creative,P,hypothetical treaty summary,148,9b5beda7-cf7e-45c8-890e-c9301e1a6b54,model_b,en,elections_voting|institutions_constitution|public_policy|media_info|creative_roleplay,opinion_or_argument|prediction_or_scenario|rewrite_or_edit,elections_voting|institutions_constitution|media_info|creative_roleplay
+149,NONPOLITICAL,code,N,SQL error,149,cc5d9db7-4c3a-4ffb-aefd-a97f9a030b27,both_bad,en,business_tech,,
