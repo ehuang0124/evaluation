@@ -47,7 +47,7 @@ from datetime import datetime, timezone
 
 DATASET = "lmarena-ai/arena-human-preference-140k"
 SPLIT = "train"
-VERSION = "1.2.1"
+VERSION = "1.3.0"
 
 # ---------------------------------------------------------------------------
 # Lexicon.  Terms are plain phrases (regex-escaped internally).
@@ -73,6 +73,49 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             "campaign", "campaigns", "candidate", "candidates", "nominee", "polls",
             "polling", "debate", "running for office", "primary", "front runner",
             "frontrunner", "opinion poll", "stump speech",
+        ],
+    },
+    "civic_engagement": {
+        "strong": [
+            "civic engagement", "civic participation", "public participation",
+            "community organizing", "grassroots organizing", "public comment",
+            "public hearing", "town hall", "town hall meeting", "petition drive",
+            "civil disobedience", "protest movement", "protest march",
+            "march for", "rally for", "community advocacy", "organizing for",
+            "public consultation", "citizen initiative", "citizens initiative",
+            "community-led", "community-led initiative", "get out the vote",
+            "voter registration", "voting rights", "ballot initiative",
+        ],
+        "weak": [
+            "civic", "civics", "public meeting", "petition", "petitions",
+            "demonstration", "demonstrations", "march", "rally", "grassroots",
+            "community organizing", "public consultation",
+        ],
+    },
+    "public_discourse": {
+        "strong": [
+            "political debate", "political debates", "political discourse",
+            "public discourse", "political polarization", "partisan debate",
+            "partisan debates", "culture war", "culture wars", "political messaging",
+            "political misinformation", "political disinformation",
+            "election misinformation", "election disinformation",
+            "first amendment", "second amendment", "freedom of speech",
+            "free speech", "civil liberties", "reproductive rights",
+            "abortion rights", "abortion access", "gun rights", "gun violence",
+            "racial justice", "police brutality", "police accountability",
+            "lgbtq rights", "trans rights", "transgender rights",
+            "same-sex marriage", "critical race theory", "book bans",
+            "book banning", "diversity equity and inclusion", "dei policy",
+            "gender-affirming care", "school choice", "climate change debate",
+            "climate crisis", "workers' rights", "labor rights", "union rights",
+            "housing affordability", "wealth inequality", "mass incarceration",
+            "criminal justice reform", "death penalty debate",
+        ],
+        "weak": [
+            "public opinion", "public debate", "social issue", "social issues",
+            "contentious issue", "contentious issues", "controversial issue",
+            "controversial issues", "polarization", "misinformation",
+            "disinformation", "free expression", "civil rights debate",
         ],
     },
     "voting": {
@@ -108,6 +151,17 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             "lockdown mandate", "vaccine mandate", "zoning law", "zoning laws",
             "constitutional law", "public health policy", "state legislature",
             "act of congress", "bill signed into law", "regulatory state",
+            "climate change policy", "renewable energy policy", "student debt relief",
+            "student loan debt", "universal basic income", "abortion access",
+            "reproductive rights", "gun rights", "gun violence", "lgbtq rights",
+            "trans rights", "transgender rights", "gender-affirming care",
+            "racial justice", "police accountability", "police brutality",
+            "criminal justice reform", "mass incarceration", "death penalty",
+            "workers' rights", "labor rights", "union rights", "paid family leave",
+            "paid leave", "public education", "school choice", "book bans",
+            "critical race theory", "diversity equity and inclusion", "dei policy",
+            "housing affordability", "wealth inequality", "homelessness policy",
+            "food assistance", "snap benefits", "same-sex marriage",
         ],
         "weak": [
             "policy", "policies", "law", "laws", "bill", "bills", "regulation",
@@ -168,6 +222,12 @@ TAXONOMY: dict[str, dict[str, list[str]]] = {
             "congresswoman", "chancellor", "secretary of state", "attorney general",
             "supreme leader", "member of parliament", "house speaker",
             "head of state", "white house", "oval office",
+            "elected official", "elected officials", "public official", "public officials",
+            "public office", "public officeholder", "officeholder", "officeholders",
+            "member of congress", "members of congress", "state representative",
+            "state senator", "city council member", "city council members",
+            "councilmember", "councilmembers", "county commissioner",
+            "county commissioners", "school board member", "school board members",
             "CS:MAGA", "make america great again", "qanon", "political figure",
         ],
         "weak": [
@@ -773,6 +833,9 @@ def self_test() -> None:
         ("Explain the Electoral College and gerrymandering", "strict"),
         ("Should the government raise the minimum wage?", "strict"),
         ("What do Trump and Biden disagree on about border policy?", "strict"),
+        ("How can residents make a public comment at a town hall?", "strict"),
+        ("Summarize the debate over reproductive rights and gun policy", "strict"),
+        ("What powers do elected city council members have?", "strict"),
         ("How does Raft leader election work?", "broad"),
         ("Implement a majority vote classifier in Python", "broad"),
         ("Who were the main candidates in the French élections?", "strict"),

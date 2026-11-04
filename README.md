@@ -8,9 +8,12 @@ Initial political-content screen of the 135,634-vote Arena human-preference
 dataset (elections, voting, public policy, immigration, publicly elected or
 politically active figures, parties/ideology, geopolitics). Full findings,
 method, caveats and reproduction steps: [`arena/README.md`](arena/README.md).
-Headline: 2,235 votes (1.65%) have a strictly political user prompt;
-8,912 of 271,129 judged answers (3.29%) are on political topics at that tier.
-The `/arena` folder also holds the script, the full shortlisted vote IDs, and
+Headline from the initial v1.2 scan: 2,235 votes (1.65%) have a strictly
+political user prompt; 8,912 of 271,129 judged answers (3.29%) are on political
+topics at that tier. The English taxonomy has since been broadened in v1.3 for
+civic engagement, public discourse and public-interest debates; checked-in result
+counts/IDs have not yet been refreshed against that revision. The `/arena` folder
+also holds the script, the full shortlisted vote IDs, and
 **full untruncated prompts** (63,635 flagged IDs; 6,820 with both complete model
 answers). Explore the full-text shortlist alongside the French metadata shortlist with keyword search and side-by-side responses:
 
