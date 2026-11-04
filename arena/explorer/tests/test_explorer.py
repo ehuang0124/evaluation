@@ -52,29 +52,32 @@ class ExplorerTests(unittest.TestCase):
 
     @staticmethod
     def expected_reason(r):
-        if r['winner'] not in ('model_a', 'model_b', 'tie'):
+        if r['winner'] not in ('model_a', 'model_b', 'tie', 'both_bad'):
             return None
         len_a, len_b = len(r['assistant_a']), len(r['assistant_b'])
-        if r['winner'] == 'tie':
-            return 'tie'
+        if r['winner'] in ('tie', 'both_bad'):
+            return r['winner']
         win, lose = (len_a, len_b) if r['winner'] == 'model_a' else (len_b, len_a)
         if win < lose:
             return 'short_win'
         return 'near_equal_win' if (win - lose) / win < 0.05 else None
 
-    def test_short_answer_wins_or_tie_subset(self):
+    def test_short_answer_wins_tie_or_both_bad_subset(self):
         wins = self.data['short_wins']
         self.assertGreater(len(wins), 0)
         expected = [(r['id'], self.expected_reason(r)) for r in self.data['arena'] if self.expected_reason(r)]
         # Exactly the qualifying shortlist rows, in shortlist order, with the right reason.
         self.assertEqual([(r['id'], r['inclusion_reason']) for r in wins], expected)
         reasons = {r['inclusion_reason'] for r in wins}
-        self.assertEqual(reasons, {'short_win', 'tie', 'near_equal_win'})
+        self.assertEqual(reasons, {'short_win', 'tie', 'both_bad', 'near_equal_win'})
         for r in wins:
-            self.assertNotEqual(r['winner'], 'both_bad')
+            if r['winner'] in ('model_a', 'model_b') and r['winner_chars'] >= r['loser_chars']:
+                self.assertEqual(r['inclusion_reason'], 'near_equal_win')
             if r['inclusion_reason'] == 'near_equal_win':
                 self.assertTrue(r['within_5pct'])
                 self.assertGreaterEqual(r['winner_chars'], r['loser_chars'])
+        self.assertEqual(sum(r['inclusion_reason'] == 'both_bad' for r in wins),
+                         sum(r['winner'] == 'both_bad' for r in self.data['arena']))
         result = explorer.query(self.data, 'short_wins', '', limit=5)
         self.assertEqual(result['total'], len(wins))
         self.assertIn('inclusion_reason', result['rows'][0])
@@ -88,14 +91,14 @@ class ExplorerTests(unittest.TestCase):
         self.assertEqual(rule('model_b', 'much longer', 'short'), 'short_win')
         self.assertIsNone(rule('model_a', 'much longer', 'short'))
         self.assertEqual(rule('tie', 'a', 'b' * 50), 'tie')
-        self.assertIsNone(rule('both_bad', 'a', 'bbb'))
+        self.assertEqual(rule('both_bad', 'a', 'b' * 50), 'both_bad')
         self.assertIsNone(rule('model_a', '', 'bbb'))
         self.assertEqual(rule('model_a', 'x' * 100, 'x' * 100), 'near_equal_win')   # 0% diff
         self.assertEqual(rule('model_a', 'x' * 100, 'x' * 96), 'near_equal_win')    # 4% diff
         self.assertIsNone(rule('model_a', 'x' * 100, 'x' * 95))                     # 5% diff: not < 5%
 
-    def test_short_answer_wins_or_tie_csv_matches_explorer(self):
-        path = explorer.ARENA_SHORTLIST.parent / 'short_answer_wins_or_tie.csv'
+    def test_short_answer_wins_tie_or_both_bad_csv_matches_explorer(self):
+        path = explorer.ARENA_SHORTLIST.parent / 'short_answer_wins_tie_or_both_bad.csv'
         with path.open(encoding='utf-8', newline='') as f:
             rows = [(r['id'], r['inclusion_reason']) for r in csv.DictReader(f)]
         self.assertEqual(rows, [(r['id'], r['inclusion_reason']) for r in self.data['short_wins']])

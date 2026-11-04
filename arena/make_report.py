@@ -371,7 +371,7 @@ runner (needed because this sandbox cannot reach `huggingface.co`) and commits
 | `arena/RUN_SCAN` | row limit for the CI run (`0` = all) |
 | `arena/results/summary.json` | all counts, topic/language/time breakdowns, methodology |
 | `arena/results/shortlist.csv` | {n(min(meta['shortlist_cap'], c.get('rows_any_probable',0)))} ranked flagged rows with prompt/answer excerpts |
-| `arena/results/short_answer_wins_or_tie.csv` | 647 shortlist rows where the shorter answer won, the vote was a tie, or the longer answer won by <5% in length (+ `inclusion_reason` and length columns); built by `arena/build_short_answer_wins_or_tie.py`, shown as **Short answer wins or tie (±5%)** in the explorer |
+| `arena/results/short_answer_wins_tie_or_both_bad.csv` | 800 shortlist rows where the shorter answer won, the vote was a tie or both_bad, or the longer answer won by <5% in length (+ `inclusion_reason` and length columns); built by `arena/build_short_answer_wins_tie_or_both_bad.py`, shown as **Short answer wins, tie or both bad (±5%)** in the explorer |
 | `arena/results/shortlist_full_prompts.csv` | 6,820 core rows with **full, untruncated prompts** — generated locally / via explorer export, gitignored because real prompts can contain pasted credentials |
 | `arena/results/matched_ids.csv.gz` | **all** flagged vote IDs with tier, basis, topics (full shortlist for labeling) |
 | `arena/results/audit_sample.csv` | 240-row random sample for manual precision/recall checks |

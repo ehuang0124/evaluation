@@ -23,21 +23,22 @@ NEAR_EQUAL_MAX_DIFF = 0.05  # lengths "near-equal" when |a - b| / longer < 5%
 
 
 def short_answer_win(row):
-    """Return length details if the vote belongs in "Short answer wins or tie", else None.
+    """Return length details if the vote belongs in "Short answer wins, tie or both bad", else None.
 
     A row qualifies when any of these holds (``inclusion_reason``):
 
     * ``short_win`` – decisive vote (``model_a``/``model_b``) for the strictly
       shorter answer;
     * ``tie`` – the vote was a ``tie`` (whatever the lengths);
+    * ``both_bad`` – the vote was ``both_bad`` (whatever the lengths);
     * ``near_equal_win`` – the longer answer won, but the two answers differ by
       less than 5% of the longer one's length.
 
-    ``both_bad`` votes, rows without full text and rows with an empty answer
-    are excluded.
+    Decisive wins by an answer ≥5% longer, rows without full text and rows
+    with an empty answer are excluded.
     """
     winner = row.get('winner')
-    if winner not in ('model_a', 'model_b', 'tie') or row.get('text_status') == 'missing_full_text':
+    if winner not in ('model_a', 'model_b', 'tie', 'both_bad') or row.get('text_status') == 'missing_full_text':
         return None
     if not (row.get('assistant_a') or '').strip() or not (row.get('assistant_b') or '').strip():
         return None
@@ -50,8 +51,8 @@ def short_answer_win(row):
         'length_diff_pct': round(diff * 100, 2),
         'within_5pct': near_equal,
     }
-    if winner == 'tie':
-        return dict(info, inclusion_reason='tie', winner_chars=None, loser_chars=None, length_ratio=None)
+    if winner in ('tie', 'both_bad'):
+        return dict(info, inclusion_reason=winner, winner_chars=None, loser_chars=None, length_ratio=None)
     win_len, lose_len = (len_a, len_b) if winner == 'model_a' else (len_b, len_a)
     if win_len < lose_len:
         reason = 'short_win'

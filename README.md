@@ -18,10 +18,10 @@ answers). Explore the full-text shortlist alongside the French metadata shortlis
 python arena/explorer/server.py --host 0.0.0.0 --port 8000
 ```
 
-The explorer's **Short answer wins or tie (±5%)** dataset narrows the Arena
-ranked shortlist to 647 votes where the shorter answer won (383), the vote was a
-tie (230), or the longer answer won by less than 5% in length (34); exported to
-`arena/results/short_answer_wins_or_tie.csv`.
+The explorer's **Short answer wins, tie or both bad (±5%)** dataset narrows the
+Arena ranked shortlist to 800 votes where the shorter answer won (383), the vote
+was a tie (230) or both_bad (153), or the longer answer won by less than 5% in
+length (34); exported to `arena/results/short_answer_wins_tie_or_both_bad.csv`.
 
 ## `french-arena/` — Compar:IA (French) political-content analysis
 

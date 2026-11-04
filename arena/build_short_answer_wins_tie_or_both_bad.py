@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the "short answer wins or tie" subset of the Arena ranked shortlist.
+"""Build the "short answer wins, tie or both bad" subset of the Arena ranked shortlist.
 
 Starts from exactly the 1,500 IDs in ``arena/results/shortlist.csv``, joins the
 full final answers from ``arena/explorer/data/conversations.jsonl.gz`` and keeps
@@ -7,17 +7,18 @@ a vote when any of these holds (``inclusion_reason`` column):
 
 * ``short_win``      – the human picked the strictly shorter answer;
 * ``tie``            – the vote was a tie (any lengths);
+* ``both_bad``       – the vote was both_bad (any lengths);
 * ``near_equal_win`` – the longer answer won, but the lengths differ by less
   than 5% of the longer answer (``|a - b| / max(a, b) < 0.05``).
 
-Length = character count of each side's final (judged) answer. ``both_bad``
-votes, decisive votes where the longer answer won by 5% or more, and rows with
-an empty answer or no full text are dropped.
+Length = character count of each side's final (judged) answer. Decisive votes
+where the longer answer won by 5% or more, and rows with an empty answer or no
+full text, are dropped.
 
 The selection rule lives in ``arena/explorer/server.py`` (``short_answer_win``)
 so the explorer's dataset and this CSV can never diverge.
 
-Output: ``arena/results/short_answer_wins_or_tie.csv`` — the shortlist.csv
+Output: ``arena/results/short_answer_wins_tie_or_both_bad.csv`` — the shortlist.csv
 columns (metadata + existing 420-char excerpts, no full text) plus length columns.
 """
 import collections
@@ -40,7 +41,7 @@ def load_explorer():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--output', type=Path, default=HERE / 'results/short_answer_wins_or_tie.csv')
+    parser.add_argument('--output', type=Path, default=HERE / 'results/short_answer_wins_tie_or_both_bad.csv')
     args = parser.parse_args()
 
     explorer = load_explorer()
@@ -68,7 +69,8 @@ def main():
 
     reasons = collections.Counter(r['inclusion_reason'] for r in out_rows)
     print(f'shortlist rows: {len(shortlist):,}; kept: {len(out_rows):,} '
-          f'(short_win {reasons["short_win"]:,}, tie {reasons["tie"]:,}, near_equal_win {reasons["near_equal_win"]:,})')
+          f'(short_win {reasons["short_win"]:,}, tie {reasons["tie"]:,}, both_bad {reasons["both_bad"]:,}, '
+          f'near_equal_win {reasons["near_equal_win"]:,})')
     print(f'wrote {args.output}')
 
 

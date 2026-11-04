@@ -5,7 +5,7 @@ const dataset = () => $('dataset').value;
 async function get(url) { const r = await fetch(url); if (!r.ok) throw new Error(`Request failed (${r.status})`); return r.json(); }
 function resetDetail() { state.selected = null; state.detailGeneration++; $('detail').innerHTML = '<div class="empty">Select a conversation to view the prompt and responses.</div>'; }
 const fmt = n => Number(n).toLocaleString();
-const REASONS = {short_win: 'Shorter answer won', tie: 'Tie', near_equal_win: 'Longer answer won by <5%'};
+const REASONS = {short_win: 'Shorter answer won', tie: 'Tie', both_bad: 'Both bad', near_equal_win: 'Longer answer won by <5%'};
 const lengthNote = r => {
   if (!r.inclusion_reason) return '';
   const lengths = r.winner_chars != null ? `${fmt(r.winner_chars)} vs ${fmt(r.loser_chars)} chars` : `A ${fmt(r.answer_a_chars)} · B ${fmt(r.answer_b_chars)} chars`;
@@ -18,7 +18,7 @@ async function search() {
   const ds = dataset();
   const notices = {
     french: 'French shortlist: searches available text and metadata. Text is shown when the local enriched CSV has been generated from the authorized source.',
-    short_wins: 'Short answer wins or tie: Arena ranked-shortlist votes where the shorter answer won, the vote was a tie, or the longer answer won by less than 5% in length. Excludes both_bad and wins by an answer ≥5% longer. Length = characters in each final answer. Filter by reason with reason:short_win, reason:tie or reason:near_equal_win.',
+    short_wins: 'Short answer wins, tie or both bad: Arena ranked-shortlist votes where the shorter answer won, the vote was a tie or both_bad, or the longer answer won by less than 5% in length. Excludes only wins by an answer ≥5% longer. Length = characters in each final answer. Filter by reason with reason:short_win, reason:tie, reason:both_bad or reason:near_equal_win.',
   };
   $('notice').textContent = notices[ds] || 'Search covers the full prompt, all user turns, both model outputs, model names and conversation ID.';
   $('results').innerHTML = '<div class="empty">Loading conversations…</div>';
