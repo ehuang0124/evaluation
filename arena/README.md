@@ -29,6 +29,38 @@ Each row is one human preference vote on **two model answers** to one user conve
 > These are *screening estimates*, not human gold labels. A keyword screen
 > over- and under-counts; see "Precision & limitations" below.
 
+## Data provenance — real prompts and real responses?
+
+**Yes.** This is a release of live LMArena "text arena" battles collected
+2025-04-17 to 2025-07-24, not synthetic data: human-written user prompts,
+real outputs from 53 named models, and real human votes
+(`model_a` / `model_b` / `tie` / `both_bad`). The official card says "user
+votes collected in the text-only category" and licenses *user prompts* under
+CC-BY-4.0 while *model outputs* stay under each provider's terms — a
+distinction that only makes sense for genuine user and model text. Each row's
+`conversation_a` / `conversation_b` contains the full message text, and
+`full_conversation` contains the whole multi-turn history. This scan read that
+actual text for all 135,634 rows, not just tags or IDs.
+
+Caveats on "real": text-only battles only (no image/multimodal prompts); a
+curated, time-bounded export with machine-added tags (language, is_code,
+category_tag, style counts); rows are **votes**, so the same user prompt and
+earlier turns recur across rows; models were anonymous to voters at vote time
+and are named only in the release; in multi-turn sessions earlier answers come
+from whichever models were sampled in prior votes. Prompts are not guaranteed
+de-identified, and responses are unfiltered model generations including
+refusals, mistakes and `both_bad` outcomes.
+
+Because prompts are CC-BY-4.0 but model outputs carry provider-specific terms
+(and the corpus is ~3 GB in memory), this repo stores **excerpts only**:
+`shortlist.csv` has real prompt and both real answer excerpts (420 chars each)
+for 1,500 rows, `audit_sample.csv` has 240 more; `matched_ids.csv.gz` holds
+IDs + metadata with no text. Re-running `analyze_political.py` streams the
+full, untruncated text for any of those IDs.
+
+Sources: [dataset card](https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k),
+[release notes](https://news.lmarena.ai/opendata-july2025/).
+
 ## How the labeling works
 
 `arena/analyze_political.py` compiles a 667-term lexicon into three
