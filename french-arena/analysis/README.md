@@ -96,3 +96,31 @@ python french-arena/analysis/build_provisional.py \
 ```
 
 The builder verifies SHA-256 hashes for the two input Parquet files before writing outputs.
+
+## Enrich the provisional CSV with full visible text
+
+The provisional CSV is metadata-only; the screening command above produces a
+separate political candidate Parquet and does **not** populate that CSV. To
+fetch text for the exact provisional IDs, use an authorized local copy of the
+gated source, or configure Hugging Face access locally and use the default
+`hf://` source. The pinned provisional source revision is recorded in the CSV
+and manifest; use a matching source copy for reliable joins. No source access is
+included in this repository.
+
+```bash
+python -m pip install -r french-arena/analysis/requirements.txt
+python french-arena/analysis/enrich_shortlist.py --input /path/to/comparia-fr-arena.parquet
+# Then (re)start python arena/explorer/server.py
+```
+
+This writes the separate, gitignored
+`french-arena/data/full/political_shortlist_with_text.csv`. Every shortlist ID
+is retained, including IDs not found in the source. The highest-turn source
+row supplies both complete visible transcripts (including post-vote turns):
+JSON arrays preserve each user's and assistant's text separately for both
+models. It excludes system, tool, and hidden reasoning fields. Status and
+warnings flag missing IDs, missing messages, final-turn/model mismatches,
+unequal user prompts and duplicate highest-turn source rows. These are checks,
+not proof of completeness; inspect flagged records. No text is fabricated or
+truncated. Content blocks are joined with newlines; non-text content is omitted.
+Full text may contain sensitive information and should not be committed.

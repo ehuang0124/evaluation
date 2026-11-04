@@ -1,89 +1,44 @@
-# Political Content Explorer
+# Conversation explorer
 
-An interactive, dependency-free explorer for the political shortlist of
-`lmarena-ai/arena-human-preference-140k`. It shows the **complete, untruncated**
-user prompts (and, for the core shortlist, both complete model answers), with
-filters, full-text search, CSV export and live visualizations.
-
-## Run it
+Run the local, dependency-free viewer:
 
 ```bash
 python arena/explorer/server.py --host 0.0.0.0 --port 8000
-# then open http://localhost:8000/  (Arena serves this as a live preview)
 ```
 
-Only the Python standard library is needed. The server binds `0.0.0.0` and all
-API calls are same-origin relative URLs, so it works behind the preview proxy.
+Open http://localhost:8000/ or use the Arena preview. Search is case-insensitive;
+all space-separated keywords must match. Select a result to see user turns above
+model A and model B. Text is displayed as plain text and is not truncated in the
+detail view.
 
-## Data
+## Sources and scope
 
-| File | Rows | Contents |
-| --- | ---: | --- |
-| `data/prompts_all.jsonl.gz` | 63,635 | **full, untruncated prompt** for every flagged vote ID (strict / probable / broad tiers), all user turns, and metadata |
-| `data/conversations.jsonl.gz` | 6,820 | the core political shortlist: full prompt + all user turns + **both full model answers**, verbatim |
-| `data/manifest.json` | — | dataset revision, extraction time, counts, sizes, provenance |
-| `data/extract.log` | — | runner log |
-| `../../results/shortlist_full_prompts.csv` | 6,820 | local-only, gitignored: the same full prompts in a directly viewable CSV (also produced by the export button) |
+- Arena: **exactly** the IDs in `arena/results/shortlist.csv` (1,500); full
+  prompt and final model responses are joined by ID from the existing
+  `arena/explorer/data/conversations.jsonl.gz` extraction. If an ID is missing
+  from that extraction it remains visible with text unavailable. Arena's
+  extraction preserves all user turns, but only the final response on each side.
+- French: exactly the IDs in
+  `french-arena/data/political_shortlist_provisional.csv` (8,739). This CSV is
+  metadata-only. Without the gated source, search covers metadata and text is
+  unavailable. When the separate local enriched CSV is present, it is joined by
+  ID and search covers text too; unmatched IDs remain in the list. Restart the
+  server after generating it. The original metadata CSV is never overwritten.
 
-Core shortlist = all `strict` rows ∪ all rows with a political prompt ∪ the
-ranked 1,500-row `shortlist.csv` (see `arena/extract_full_text.py`). 1,276 of
-the core prompts are longer than the 420-character excerpt in `shortlist.csv`;
-the longest is 110,289 characters. 1,049 core rows are multi-turn.
+To create the French enriched file, see
+[`french-arena/analysis/README.md`](../../french-arena/analysis/README.md).
+French user and assistant turns are shown separately in source order, including
+post-vote turns. Differences between A and B user prompts and other integrity
+warnings are shown in the detail. The viewer does not load the screening
+pipeline's separate Parquet export.
 
-**Sensitive content:** these are verbatim, unredacted user prompts, so they
-can contain pasted API keys or personal data (GitHub push protection flagged a
-Mapbox token). The plain CSV is therefore generated locally and gitignored; the
-compressed verbatim shortlist is committed as binary. Handle exports accordingly.
-
-**Fidelity:** text is copied verbatim from `content[].text` — no truncation,
-paraphrase, redaction or regeneration. Every `shortlist.csv` excerpt was
-verified to be a prefix of the corresponding full prompt.
-
-**Licensing:** user prompts are CC-BY-4.0; model outputs are governed by the
-terms of use of the respective model providers. The full text is included here
-for research review of this shortlist; check provider terms before redistributing
-the answer text.
-
-## UI features
-
-- **Filters:** data scope, tier, evidence basis (prompt / response / both),
-  topic, language, vote outcome, model, code flag, date range, minimum match
-  score. Full-text search across prompts, all user turns and both answers
-  (`re:` prefix enables a regular expression).
-- **Charts (SVG, no external libraries):** tier × evidence-basis stacked bars,
-  topic mix, language distribution, monthly volume, vote outcome, top models,
-  match-strength histogram. All recompute from the current filter selection.
-- **Table:** sortable by match strength / date / prompt length / random, 25 rows
-  per page. Click a row to open the detail drawer.
-- **Detail drawer:** `Prompt (full)` with every user turn labelled, `Answer A
-  (full)`, `Answer B (full)`, and `Metadata` tabs; copy-to-clipboard and exact
-  character counts.
-- **Export CSV:** downloads all rows matching the current filters with a
-  `prompt_full_untruncated` column.
+Verbatim texts can contain sensitive information; model outputs may be subject
+to provider terms. The French full-text output is gitignored. Do not distribute
+without reviewing the applicable permissions.
 
 ## API
 
-| Endpoint | Purpose |
-| --- | --- |
-| `GET /api/bootstrap` | manifest, corpus summary, filter options, data counts |
-| `GET /api/query?...` | filtered rows + all facet counts for the charts |
-| `GET /api/row?id=...` | one row with full text |
-| `GET /api/export?...` | CSV of all matching rows with full prompts |
-
-Query parameters: `scope` (`core` / `all`), `q`, `tier`, `basis`, `topic`,
-`lang`, `winner`, `model`, `code`, `date_from`, `date_to`, `min_score`, `sort`,
-`limit`, `offset`.
-
-## Regenerating the data
-
-`arena/extract_full_text.py` streams the whole dataset once (~2.5 min) and
-rebuilds the two `.jsonl.gz` files from the committed scan results. This sandbox
-cannot reach `huggingface.co`, so `.github/workflows/extract-full-text.yml` runs
-it on a GitHub-hosted runner and commits `arena/explorer/data/` back to the
-branch. To re-run, change `arena/RUN_EXTRACT` and push (do **not** use
-`[skip ci]`), or use "Run workflow" in the Actions tab.
-
-```bash
-python -m pip install -r arena/requirements.txt
-python arena/extract_full_text.py --output-dir arena/explorer/data
-```
+`GET /api/query?dataset=arena|french&q=keywords&offset=0&limit=20` returns
+paginated previews; `GET /api/row?dataset=arena|french&id=...` returns a full
+record. Unknown datasets and invalid pagination return HTTP 400, unknown IDs
+return 404. Python 3.9+ is required.
