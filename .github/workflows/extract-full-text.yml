@@ -1,0 +1,56 @@
+name: extract-full-text
+
+# Opt-in: change arena/RUN_EXTRACT and push, or use "Run workflow" in Actions.
+# Streams the corpus once (~8 min) and commits the full-text shortlist data.
+on:
+  push:
+    branches: [arena/fa121d08-evaluation]
+    paths:
+      - 'arena/RUN_EXTRACT'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/fa121d08-evaluation
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check --quiet "datasets>=3,<5" "pyarrow>=17"
+
+      - name: Extract full untruncated prompts and answers
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p arena/explorer/data
+          MAX_ROWS="$(tr -d '[:space:]' < arena/RUN_EXTRACT 2>/dev/null || true)"
+          if [ "$MAX_ROWS" = "smoke" ]; then
+            python arena/extract_full_text.py --output-dir arena/explorer/data --max-rows 500 2>&1 | tee arena/explorer/data/extract.log
+          else
+            python arena/extract_full_text.py --output-dir arena/explorer/data 2>&1 | tee arena/explorer/data/extract.log
+          fi
+
+      - name: Commit full-text data to the working branch
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "arena-scan[bot]"
+          git config user.email "arena-scan@users.noreply.github.com"
+          git add arena/explorer/data
+          # NOTE: the plain CSV is intentionally NOT committed (secret scanning).
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "chore: refresh full-text political shortlist [skip ci]"
+            git push origin HEAD:arena/fa121d08-evaluation
+          fi

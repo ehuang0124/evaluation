@@ -11,8 +11,14 @@ __pycache__/
 hf_token*
 
 # Raw/full political screening exports can contain user-generated text and are large.
-# The ID-only provisional shortlist under french-arena/data/ is intentionally tracked.
+# The ID-only shortlists under french-arena/data/ and arena/results/ are intentionally tracked.
 french-arena/data/full/
 french-arena/data/raw/
 data/raw/
+arena/results/raw/
 *.hf_cache/
+
+# Verbatim full-prompt CSV is generated locally / via explorer export. Real user
+# prompts can contain pasted credentials (GitHub push protection flags them), so
+# it is intentionally NOT committed. Verbatim data lives in explorer/data/*.gz.
+arena/results/shortlist_full_prompts.csv

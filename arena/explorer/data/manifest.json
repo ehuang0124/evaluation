@@ -1,0 +1,27 @@
+{
+  "dataset": "lmarena-ai/arena-human-preference-140k",
+  "dataset_revision": "6322995ab34d7c2693e3f47dd13fa5caa0789a74 (main, 2025-08-01)",
+  "split": "train",
+  "generated_at_utc": "2026-11-04T03:13:00.524259+00:00",
+  "script_version": "1.0.0",
+  "rows_streamed": 135634,
+  "target_prompt_ids": 63635,
+  "target_core_ids": 6820,
+  "written_prompts": 63635,
+  "written_conversations": 6820,
+  "elapsed_seconds": 136.76,
+  "gz_sizes_bytes": {
+    "conversations.jsonl.gz": 25490954,
+    "prompts_all.jsonl.gz": 22762069
+  },
+  "fields_full_text": [
+    "prompt",
+    "user_turns",
+    "assistant_a",
+    "assistant_b"
+  ],
+  "license_note": "User prompts are CC-BY-4.0; model outputs are governed by the terms of use of the respective model providers. Full text is included for research review of this shortlist only.",
+  "text_fidelity": "Verbatim dataset text (content[].text joined per turn). No truncation, paraphrase, redaction or re-generation.",
+  "csv_path": "arena/results/shortlist_full_prompts.csv",
+  "csv_rows": 6820
+}

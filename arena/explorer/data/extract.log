@@ -1,0 +1,9 @@
+[extract] target IDs: 63,635 prompts, 6,820 full conversations
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[extract] load_dataset OK (1.9s)
+[extract] 25,000 rows | 21s | found 11,822/1,251
+[extract] 50,000 rows | 53s | found 23,600/2,525
+[extract] 75,000 rows | 91s | found 35,206/3,766
+[extract] 100,000 rows | 112s | found 46,913/5,028
+[extract] 125,000 rows | 130s | found 58,717/6,301
+[extract] done: 135,634 rows in 137s | prompts=63,635 conversations=6,820 | sizes={'conversations.jsonl.gz': 25490954, 'prompts_all.jsonl.gz': 22762069}

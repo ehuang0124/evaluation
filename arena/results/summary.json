@@ -1,0 +1,939 @@
+{
+  "by_is_code": {
+    "code": {
+      "any_broad": 21368,
+      "any_probable": 6581,
+      "any_strict": 595,
+      "prompt_broad": 3560,
+      "prompt_probable": 590,
+      "prompt_strict": 271,
+      "rows": 39363
+    },
+    "non_code": {
+      "any_broad": 42267,
+      "any_probable": 21292,
+      "any_strict": 4974,
+      "prompt_broad": 7098,
+      "prompt_probable": 2342,
+      "prompt_strict": 1964,
+      "rows": 96271
+    }
+  },
+  "by_language": {
+    "<err>": {
+      "any_broad": 20,
+      "any_probable": 10,
+      "any_strict": 5,
+      "prompt_broad": 11,
+      "prompt_probable": 5,
+      "prompt_strict": 4,
+      "rows": 40
+    },
+    "aa": {
+      "rows": 2
+    },
+    "af": {
+      "rows": 12
+    },
+    "ak": {
+      "rows": 1
+    },
+    "ar": {
+      "any_broad": 55,
+      "any_probable": 23,
+      "any_strict": 4,
+      "prompt_broad": 4,
+      "prompt_probable": 3,
+      "prompt_strict": 3,
+      "rows": 391
+    },
+    "as": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 3
+    },
+    "az": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 4
+    },
+    "be": {
+      "any_broad": 1,
+      "rows": 12
+    },
+    "bg": {
+      "any_broad": 4,
+      "any_probable": 1,
+      "prompt_broad": 1,
+      "rows": 42
+    },
+    "bh": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 1
+    },
+    "bn": {
+      "any_broad": 40,
+      "any_probable": 14,
+      "any_strict": 2,
+      "prompt_broad": 5,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 193
+    },
+    "bo": {
+      "any_broad": 1,
+      "rows": 7
+    },
+    "bs": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "any_strict": 1,
+      "prompt_broad": 1,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 10
+    },
+    "ca": {
+      "any_broad": 5,
+      "any_probable": 2,
+      "prompt_broad": 1,
+      "rows": 35
+    },
+    "ceb": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "co": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 10
+    },
+    "crs": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "cs": {
+      "any_broad": 76,
+      "any_probable": 33,
+      "any_strict": 10,
+      "prompt_broad": 10,
+      "prompt_probable": 5,
+      "prompt_strict": 5,
+      "rows": 538
+    },
+    "cy": {
+      "rows": 1
+    },
+    "da": {
+      "any_broad": 25,
+      "any_probable": 10,
+      "prompt_broad": 1,
+      "rows": 82
+    },
+    "de": {
+      "any_broad": 1439,
+      "any_probable": 429,
+      "any_strict": 105,
+      "prompt_broad": 174,
+      "prompt_probable": 33,
+      "prompt_strict": 32,
+      "rows": 4311
+    },
+    "el": {
+      "any_broad": 7,
+      "prompt_broad": 2,
+      "rows": 90
+    },
+    "en": {
+      "any_broad": 47807,
+      "any_probable": 19692,
+      "any_strict": 3566,
+      "prompt_broad": 9081,
+      "prompt_probable": 2145,
+      "prompt_strict": 1498,
+      "rows": 71175
+    },
+    "eo": {
+      "rows": 1
+    },
+    "es": {
+      "any_broad": 624,
+      "any_probable": 487,
+      "any_strict": 64,
+      "prompt_broad": 54,
+      "prompt_probable": 43,
+      "prompt_strict": 43,
+      "rows": 1672
+    },
+    "et": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "any_strict": 1,
+      "prompt_broad": 1,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 18
+    },
+    "eu": {
+      "rows": 3
+    },
+    "fa": {
+      "any_broad": 697,
+      "any_probable": 611,
+      "any_strict": 105,
+      "prompt_broad": 58,
+      "prompt_probable": 51,
+      "prompt_strict": 49,
+      "rows": 1599
+    },
+    "fi": {
+      "any_broad": 8,
+      "any_probable": 2,
+      "rows": 77
+    },
+    "fr": {
+      "any_broad": 863,
+      "any_probable": 308,
+      "any_strict": 79,
+      "prompt_broad": 105,
+      "prompt_probable": 38,
+      "prompt_strict": 37,
+      "rows": 2128
+    },
+    "fy": {
+      "rows": 1
+    },
+    "ga": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "gl": {
+      "any_broad": 9,
+      "any_probable": 8,
+      "rows": 22
+    },
+    "gn": {
+      "any_broad": 1,
+      "rows": 2
+    },
+    "gu": {
+      "any_broad": 1,
+      "rows": 3
+    },
+    "gv": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 1
+    },
+    "ha": {
+      "any_broad": 1,
+      "rows": 3
+    },
+    "hi": {
+      "any_broad": 9,
+      "any_probable": 3,
+      "any_strict": 1,
+      "rows": 33
+    },
+    "hr": {
+      "any_broad": 2,
+      "prompt_broad": 1,
+      "rows": 19
+    },
+    "ht": {
+      "rows": 3
+    },
+    "hu": {
+      "any_broad": 15,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 174
+    },
+    "hy": {
+      "any_broad": 1,
+      "rows": 10
+    },
+    "ia": {
+      "rows": 4
+    },
+    "id": {
+      "any_broad": 91,
+      "any_probable": 58,
+      "any_strict": 10,
+      "prompt_broad": 3,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 283
+    },
+    "ie": {
+      "rows": 3
+    },
+    "is": {
+      "rows": 4
+    },
+    "it": {
+      "any_broad": 313,
+      "any_probable": 102,
+      "any_strict": 14,
+      "prompt_broad": 22,
+      "prompt_probable": 6,
+      "prompt_strict": 6,
+      "rows": 925
+    },
+    "iw": {
+      "any_broad": 8,
+      "any_probable": 6,
+      "any_strict": 2,
+      "rows": 78
+    },
+    "ja": {
+      "any_broad": 423,
+      "any_probable": 279,
+      "any_strict": 64,
+      "prompt_broad": 23,
+      "prompt_probable": 16,
+      "prompt_strict": 16,
+      "rows": 2444
+    },
+    "ka": {
+      "rows": 4
+    },
+    "kha": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "kk": {
+      "any_broad": 1,
+      "rows": 7
+    },
+    "kl": {
+      "rows": 2
+    },
+    "km": {
+      "rows": 2
+    },
+    "kn": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 3
+    },
+    "ko": {
+      "any_broad": 669,
+      "any_probable": 475,
+      "any_strict": 182,
+      "prompt_broad": 91,
+      "prompt_probable": 81,
+      "prompt_strict": 81,
+      "rows": 2486
+    },
+    "ku": {
+      "any_broad": 1,
+      "rows": 13
+    },
+    "ky": {
+      "rows": 1
+    },
+    "la": {
+      "any_broad": 21,
+      "any_probable": 6,
+      "prompt_broad": 4,
+      "prompt_probable": 2,
+      "rows": 52
+    },
+    "lb": {
+      "any_broad": 5,
+      "any_probable": 3,
+      "any_strict": 2,
+      "prompt_broad": 1,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 7
+    },
+    "lg": {
+      "rows": 1
+    },
+    "ln": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "lt": {
+      "any_broad": 8,
+      "any_probable": 7,
+      "any_strict": 2,
+      "prompt_broad": 2,
+      "prompt_probable": 2,
+      "prompt_strict": 2,
+      "rows": 50
+    },
+    "lv": {
+      "any_broad": 4,
+      "any_probable": 3,
+      "rows": 22
+    },
+    "mg": {
+      "rows": 1
+    },
+    "mk": {
+      "any_broad": 1,
+      "rows": 5
+    },
+    "ml": {
+      "any_broad": 8,
+      "any_probable": 1,
+      "prompt_broad": 1,
+      "rows": 21
+    },
+    "mr": {
+      "rows": 3
+    },
+    "ms": {
+      "any_broad": 19,
+      "any_probable": 9,
+      "any_strict": 2,
+      "prompt_broad": 2,
+      "rows": 61
+    },
+    "mt": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 1
+    },
+    "my": {
+      "any_broad": 4,
+      "any_probable": 2,
+      "rows": 17
+    },
+    "na": {
+      "rows": 1
+    },
+    "ne": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 4
+    },
+    "nl": {
+      "any_broad": 40,
+      "any_probable": 12,
+      "any_strict": 1,
+      "prompt_broad": 3,
+      "rows": 189
+    },
+    "nn": {
+      "any_broad": 6,
+      "any_probable": 2,
+      "rows": 25
+    },
+    "no": {
+      "any_broad": 3,
+      "any_probable": 2,
+      "prompt_broad": 2,
+      "rows": 38
+    },
+    "oc": {
+      "any_broad": 3,
+      "any_probable": 2,
+      "rows": 10
+    },
+    "om": {
+      "rows": 1
+    },
+    "pl": {
+      "any_broad": 2087,
+      "any_probable": 1042,
+      "any_strict": 181,
+      "prompt_broad": 154,
+      "prompt_probable": 69,
+      "prompt_strict": 64,
+      "rows": 13813
+    },
+    "pt": {
+      "any_broad": 400,
+      "any_probable": 205,
+      "any_strict": 44,
+      "prompt_broad": 48,
+      "prompt_probable": 30,
+      "prompt_strict": 30,
+      "rows": 1684
+    },
+    "qu": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "rm": {
+      "rows": 1
+    },
+    "rn": {
+      "rows": 2
+    },
+    "ro": {
+      "any_broad": 33,
+      "any_probable": 4,
+      "any_strict": 1,
+      "prompt_broad": 3,
+      "prompt_probable": 1,
+      "rows": 88
+    },
+    "ru": {
+      "any_broad": 1527,
+      "any_probable": 685,
+      "any_strict": 151,
+      "prompt_broad": 177,
+      "prompt_probable": 67,
+      "prompt_strict": 63,
+      "rows": 9263
+    },
+    "rw": {
+      "any_broad": 4,
+      "any_probable": 2,
+      "any_strict": 2,
+      "prompt_broad": 1,
+      "rows": 24
+    },
+    "sa": {
+      "rows": 4
+    },
+    "sco": {
+      "any_broad": 6,
+      "any_probable": 1,
+      "rows": 16
+    },
+    "sd": {
+      "rows": 1
+    },
+    "sg": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "si": {
+      "any_broad": 3,
+      "any_probable": 2,
+      "rows": 10
+    },
+    "sk": {
+      "any_broad": 16,
+      "any_probable": 6,
+      "prompt_broad": 1,
+      "rows": 105
+    },
+    "sl": {
+      "any_broad": 3,
+      "any_probable": 2,
+      "any_strict": 1,
+      "rows": 24
+    },
+    "sn": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "rows": 1
+    },
+    "so": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "rows": 4
+    },
+    "sq": {
+      "any_broad": 1,
+      "rows": 2
+    },
+    "sr": {
+      "any_broad": 9,
+      "any_probable": 3,
+      "rows": 73
+    },
+    "st": {
+      "rows": 1
+    },
+    "sv": {
+      "any_broad": 24,
+      "any_probable": 17,
+      "any_strict": 4,
+      "prompt_broad": 4,
+      "prompt_probable": 3,
+      "prompt_strict": 3,
+      "rows": 106
+    },
+    "sw": {
+      "any_broad": 1,
+      "any_probable": 1,
+      "any_strict": 1,
+      "prompt_broad": 1,
+      "rows": 3
+    },
+    "ta": {
+      "rows": 4
+    },
+    "tg": {
+      "rows": 1
+    },
+    "th": {
+      "any_broad": 15,
+      "any_probable": 1,
+      "prompt_broad": 3,
+      "rows": 93
+    },
+    "tl": {
+      "any_broad": 3,
+      "rows": 5
+    },
+    "tlh": {
+      "any_broad": 1,
+      "rows": 3
+    },
+    "to": {
+      "rows": 1
+    },
+    "tr": {
+      "any_broad": 107,
+      "any_probable": 70,
+      "any_strict": 9,
+      "prompt_broad": 4,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 592
+    },
+    "tt": {
+      "any_broad": 2,
+      "any_probable": 2,
+      "any_strict": 1,
+      "rows": 6
+    },
+    "ug": {
+      "any_broad": 1,
+      "rows": 6
+    },
+    "uk": {
+      "any_broad": 42,
+      "any_probable": 12,
+      "any_strict": 2,
+      "prompt_broad": 9,
+      "prompt_probable": 1,
+      "prompt_strict": 1,
+      "rows": 290
+    },
+    "und": {
+      "any_broad": 3354,
+      "any_probable": 1351,
+      "any_strict": 260,
+      "prompt_broad": 292,
+      "prompt_probable": 89,
+      "prompt_strict": 62,
+      "rows": 11835
+    },
+    "ur": {
+      "any_broad": 3,
+      "any_probable": 3,
+      "rows": 12
+    },
+    "uz": {
+      "any_broad": 1,
+      "rows": 9
+    },
+    "vi": {
+      "any_broad": 162,
+      "any_probable": 76,
+      "any_strict": 22,
+      "prompt_broad": 21,
+      "prompt_probable": 10,
+      "prompt_strict": 10,
+      "rows": 660
+    },
+    "vo": {
+      "any_broad": 2,
+      "rows": 5
+    },
+    "war": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "any_strict": 1,
+      "rows": 2
+    },
+    "wo": {
+      "any_broad": 2,
+      "rows": 4
+    },
+    "xh": {
+      "any_broad": 3,
+      "any_probable": 1,
+      "rows": 14
+    },
+    "xx-Egyp": {
+      "rows": 1
+    },
+    "xx-Glag": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "xx-Qaai": {
+      "any_broad": 2,
+      "any_probable": 1,
+      "prompt_broad": 1,
+      "rows": 9
+    },
+    "xx-Runr": {
+      "rows": 1
+    },
+    "zh": {
+      "any_broad": 2157,
+      "any_probable": 1535,
+      "any_strict": 566,
+      "prompt_broad": 247,
+      "prompt_probable": 203,
+      "prompt_strict": 197,
+      "rows": 6501
+    },
+    "zh-Hant": {
+      "any_broad": 293,
+      "any_probable": 235,
+      "any_strict": 100,
+      "prompt_broad": 28,
+      "prompt_probable": 23,
+      "prompt_strict": 23,
+      "rows": 845
+    },
+    "zu": {
+      "any_broad": 1,
+      "rows": 1
+    },
+    "zzp": {
+      "any_broad": 2,
+      "rows": 4
+    }
+  },
+  "by_month": {
+    "2025-04": {
+      "any_broad": 4497,
+      "any_probable": 1749,
+      "any_strict": 380,
+      "prompt_broad": 784,
+      "prompt_probable": 217,
+      "prompt_strict": 181,
+      "rows": 8686
+    },
+    "2025-05": {
+      "any_broad": 13744,
+      "any_probable": 5967,
+      "any_strict": 1223,
+      "prompt_broad": 2276,
+      "prompt_probable": 642,
+      "prompt_strict": 515,
+      "rows": 28033
+    },
+    "2025-06": {
+      "any_broad": 24259,
+      "any_probable": 10810,
+      "any_strict": 2237,
+      "prompt_broad": 4156,
+      "prompt_probable": 1167,
+      "prompt_strict": 877,
+      "rows": 53447
+    },
+    "2025-07": {
+      "any_broad": 21135,
+      "any_probable": 9347,
+      "any_strict": 1729,
+      "prompt_broad": 3442,
+      "prompt_probable": 906,
+      "prompt_strict": 662,
+      "rows": 45468
+    }
+  },
+  "by_winner": {
+    "both_bad": {
+      "any_broad": 6988,
+      "any_probable": 2749,
+      "any_strict": 621,
+      "prompt_broad": 1370,
+      "prompt_probable": 378,
+      "prompt_strict": 297,
+      "rows": 15754
+    },
+    "model_a": {
+      "any_broad": 23120,
+      "any_probable": 10230,
+      "any_strict": 1992,
+      "prompt_broad": 3778,
+      "prompt_probable": 1049,
+      "prompt_strict": 800,
+      "rows": 48563
+    },
+    "model_b": {
+      "any_broad": 23738,
+      "any_probable": 10629,
+      "any_strict": 2130,
+      "prompt_broad": 3903,
+      "prompt_probable": 1093,
+      "prompt_strict": 827,
+      "rows": 49785
+    },
+    "tie": {
+      "any_broad": 9789,
+      "any_probable": 4265,
+      "any_strict": 826,
+      "prompt_broad": 1607,
+      "prompt_probable": 412,
+      "prompt_strict": 311,
+      "rows": 21532
+    }
+  },
+  "categories_prompt_strict_or_probable": {
+    "elections": 566,
+    "geopolitics": 517,
+    "immigration": 370,
+    "non_english_politics": 636,
+    "parties_ideology": 924,
+    "political_figures": 266,
+    "public_policy": 1271,
+    "voting": 191
+  },
+  "categories_response_strict_or_probable": {
+    "elections": 11779,
+    "geopolitics": 9813,
+    "immigration": 5774,
+    "non_english_politics": 8142,
+    "parties_ideology": 16612,
+    "political_figures": 6849,
+    "public_policy": 22280,
+    "voting": 1759
+  },
+  "counts": {
+    "responses_contextual_broad": 21304,
+    "responses_contextual_probable": 5861,
+    "responses_contextual_strict": 4468,
+    "responses_direct_broad": 94577,
+    "responses_direct_probable": 37750,
+    "responses_direct_strict": 6493,
+    "responses_judged": 271129,
+    "responses_union_broad": 98897,
+    "responses_union_probable": 39202,
+    "responses_union_strict": 8912,
+    "rows": 135634,
+    "rows_any_broad": 63635,
+    "rows_any_probable": 27873,
+    "rows_any_strict": 5569,
+    "rows_current_prompt_broad": 9309,
+    "rows_current_prompt_probable": 2519,
+    "rows_current_prompt_strict": 1959,
+    "rows_prompt_broad": 10658,
+    "rows_prompt_only_strict": 251,
+    "rows_prompt_probable": 2932,
+    "rows_prompt_strict": 2235,
+    "rows_prompt_with_direct_response_signal": 1984,
+    "rows_response_broad": 63635,
+    "rows_response_only_strict": 3334,
+    "rows_response_probable": 27873,
+    "rows_response_strict": 5569,
+    "rows_with_two_responses": 135498,
+    "user_turns": 171054
+  },
+  "dataset": "lmarena-ai/arena-human-preference-140k",
+  "methodology": {
+    "basis": "prompt = user turns drove the label; response = answer text drove it; both = both did",
+    "corrected_counters": "rows_prompt_only_strict and rows_prompt_with_direct_response_signal recomputed from matched_ids.csv.gz (v1.2.1 fix)",
+    "known_false_positives": [
+      "leader election / majority vote in code or ML contexts is downgraded",
+      "company president, birthday party, CSS border, tax software, history homework",
+      "assistant boilerplate that mentions a government or law in passing"
+    ],
+    "language_coverage": "English lexicon + partial strong-term lexicons for 15+ other languages",
+    "prompt_unit": "all user turns of conversation_a (current turn counted separately)",
+    "response_direct_vs_union": "responses_direct_* = evidence in the answer text; responses_contextual_* = answers to political prompts; responses_union_* = either",
+    "response_unit": "the two judged assistant turns (last of conversation_a, last of conversation_b)",
+    "tiers": {
+      "broad": "a single weak/ambiguous term; high-recall upper bound, many false positives",
+      "probable": "prompt: >=2 weak terms from >=2 topic groups; response: one uncorroborated strong term, or >=2 weak terms from >=2 groups, OR the prompt itself is probable",
+      "strict": "prompt: >=1 unambiguous (strong) political term; response: >=2 distinct topic-specific strong terms (or a dense cluster in a short answer), OR the prompt itself is strict"
+    }
+  },
+  "rows_scanned": 135634,
+  "split": "train",
+  "top_strong_terms_prompt": {
+    "NATO": 20,
+    "constitution": 24,
+    "election": 47,
+    "elections": 34,
+    "fdr": 24,
+    "geopolitical": 28,
+    "government": 305,
+    "governments": 25,
+    "immigration": 27,
+    "legislation": 22,
+    "mayor": 36,
+    "parliament": 22,
+    "political": 142,
+    "politically": 33,
+    "politician": 17,
+    "politics": 65,
+    "politique": 23,
+    "president": 111,
+    "presidente": 17,
+    "prime minister": 22,
+    "socialism": 15,
+    "tariff": 23,
+    "tariffs": 36,
+    "visa": 66,
+    "vote": 110,
+    "votes": 53,
+    "voting": 35,
+    "woke": 36,
+    "закон": 26,
+    "политика": 17,
+    "انتخاب": 44,
+    "习近平": 18,
+    "台湾": 21,
+    "政府": 53,
+    "政治": 47,
+    "政策": 60,
+    "法律": 44,
+    "정부": 20,
+    "정책": 25,
+    "정치": 18
+  },
+  "top_strong_terms_response": {
+    "NATO": 460,
+    "authoritarian": 354,
+    "cold war": 343,
+    "communist": 295,
+    "congress": 310,
+    "constitution": 412,
+    "constitutional": 506,
+    "election": 451,
+    "elections": 515,
+    "elon musk": 415,
+    "geopolitical": 1190,
+    "government": 4268,
+    "governments": 1147,
+    "immigration": 466,
+    "legislation": 304,
+    "legislative": 277,
+    "mayor": 713,
+    "policymakers": 366,
+    "political": 3665,
+    "politically": 380,
+    "politics": 1266,
+    "polityka": 325,
+    "política": 262,
+    "president": 798,
+    "sanctions": 417,
+    "social security": 263,
+    "visa": 658,
+    "vote": 919,
+    "votes": 507,
+    "voting": 668,
+    "woke": 280,
+    "закон": 321,
+    "политика": 272,
+    "انتخاب": 741,
+    "政府": 1098,
+    "政治": 990,
+    "政策": 1442,
+    "法律": 1055,
+    "정부": 265,
+    "정책": 345
+  },
+  "unique_prompts_by_tier": {
+    "broad": 9837,
+    "probable": 2666,
+    "strict": 2021
+  }
+}

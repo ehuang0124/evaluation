@@ -1,0 +1,13 @@
+{
+  "dataset": "lmarena-ai/arena-human-preference-140k",
+  "dataset_revision": "6322995ab34d7c2693e3f47dd13fa5caa0789a74 (main, 2025-08-01)",
+  "elapsed_seconds": 2326.0,
+  "generated_at_utc": "2026-11-03T22:33:12.682754+00:00",
+  "max_rows": 0,
+  "python": "3.11.17 (main, Oct  1 2026, 14:32:31) [GCC 13.3.0]",
+  "rows_scanned": 135634,
+  "script_version": "1.2.0",
+  "shortlist_cap": 1500,
+  "split": "train",
+  "term_count": 667
+}

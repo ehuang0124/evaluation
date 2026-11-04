@@ -1,8 +1,24 @@
 # evaluation
 
-French Compar:IA arena political-content analysis.
+Dataset analyses and reproducible screening pipelines.
 
-## Deliverables
+## `arena/` — lmarena-ai/arena-human-preference-140k (English + multilingual)
+
+Initial political-content screen of the 135,634-vote Arena human-preference
+dataset (elections, voting, public policy, immigration, publicly elected or
+politically active figures, parties/ideology, geopolitics). Full findings,
+method, caveats and reproduction steps: [`arena/README.md`](arena/README.md).
+Headline: 2,235 votes (1.65%) have a strictly political user prompt;
+8,912 of 271,129 judged answers (3.29%) are on political topics at that tier.
+The `/arena` folder also holds the script, the full shortlisted vote IDs, and
+**full untruncated prompts** (63,635 flagged IDs; 6,820 with both complete model
+answers). Explore them interactively with filters, full-text search and charts:
+
+```bash
+python arena/explorer/server.py --host 0.0.0.0 --port 8000
+```
+
+## `french-arena/` — Compar:IA (French) political-content analysis
 
 - Summary and dataset notes: `french-arena/README.md`
 - Detailed report: `french-arena/REPORT.md`
@@ -10,27 +26,18 @@ French Compar:IA arena political-content analysis.
 - Pandas screening pipeline: `french-arena/analysis/screen_political.py`
 - Tests: `french-arena/tests/test_screen_political.py`
 
-## Status
-
-The full gated Hugging Face source could not be read from this sandbox. The checked-in provisional shortlist is therefore **ID/metadata only**; it does not contain any prompts or model responses.
-
-The full-source exporter writes `french-arena/data/full/political_conversations.parquet` with both visible transcripts (`full_conversation_a` and `full_conversation_b`) and model names, alongside prompt/response-level review outputs. It selects the highest-turn transcript snapshot and flags any incomplete A/B transcript. The source Parquet must be available to generate the text-bearing dataset; full exports are gitignored by default because they contain user-generated text and may be large.
-
-Provisional headline: **8,739 conversations** with source primary topic `Politics & Government`, out of **137,293** derived French conversations with a decisive vote (**6.37%**). These are review candidates, not manually validated political labels.
+The full gated Hugging Face source could not be read from that sandbox, so a
+provisional ID-only shortlist was built from a pinned public derivative of
+`ministere-culture/comparia-fr-arena`: 8,739 conversations with primary topic
+`Politics & Government` out of 137,293 derived French conversations with a
+decisive vote (6.37%). These are review candidates, not validated labels.
+The full-source exporter writes `french-arena/data/full/political_conversations.parquet`
+with both visible transcripts; full exports are gitignored by default.
 
 ## Run tests
 
 ```bash
 python -m pip install -r french-arena/analysis/requirements.txt
 python -m unittest discover -s french-arena/tests -v
+python arena/analyze_political.py --self-test
 ```
-
-## Screen the full source
-
-```bash
-python french-arena/analysis/screen_political.py \
-  --input hf://datasets/ministere-culture/comparia-fr-arena/comparia-fr-arena.parquet \
-  --output-dir french-arena/data/full
-```
-
-Use `--direct-pandas` for the exact `pd.read_parquet(...)` reader. Full raw exports are gitignored by default.
