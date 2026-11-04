@@ -14,6 +14,68 @@ FRENCH_FULL = ROOT.parent.parent / 'french-arena/data/full/political_shortlist_w
 ARENA_SHORTLIST = ROOT.parent / 'results/shortlist.csv'
 
 
+def answer_lengths(row):
+    """Character counts of the two judged (final) answers."""
+    return len(row.get('assistant_a') or ''), len(row.get('assistant_b') or '')
+
+
+NEAR_EQUAL_MAX_DIFF = 0.05  # lengths "near-equal" when |a - b| / longer < 5%
+
+
+def short_answer_win(row):
+    """Return length details if the vote belongs in "Short answer wins, tie or both bad", else None.
+
+    A row qualifies when any of these holds (``inclusion_reason``):
+
+    * ``short_win`` – decisive vote (``model_a``/``model_b``) for the strictly
+      shorter answer;
+    * ``tie`` – the vote was a ``tie`` (whatever the lengths);
+    * ``both_bad`` – the vote was ``both_bad`` (whatever the lengths);
+    * ``near_equal_win`` – the longer answer won, but the two answers differ by
+      less than 5% of the longer one's length.
+
+    Decisive wins by an answer ≥5% longer, rows without full text and rows
+    with an empty answer are excluded.
+    """
+    winner = row.get('winner')
+    if winner not in ('model_a', 'model_b', 'tie', 'both_bad') or row.get('text_status') == 'missing_full_text':
+        return None
+    if not (row.get('assistant_a') or '').strip() or not (row.get('assistant_b') or '').strip():
+        return None
+    len_a, len_b = answer_lengths(row)
+    diff = abs(len_a - len_b) / max(len_a, len_b)
+    near_equal = diff < NEAR_EQUAL_MAX_DIFF
+    info = {
+        'answer_a_chars': len_a,
+        'answer_b_chars': len_b,
+        'length_diff_pct': round(diff * 100, 2),
+        'within_5pct': near_equal,
+    }
+    if winner in ('tie', 'both_bad'):
+        return dict(info, inclusion_reason=winner, winner_chars=None, loser_chars=None, length_ratio=None)
+    win_len, lose_len = (len_a, len_b) if winner == 'model_a' else (len_b, len_a)
+    if win_len < lose_len:
+        reason = 'short_win'
+    elif near_equal:
+        reason = 'near_equal_win'
+    else:
+        return None
+    return dict(info, inclusion_reason=reason, winner_chars=win_len, loser_chars=lose_len,
+                length_ratio=round(win_len / lose_len, 4))
+
+
+def build_short_wins(arena):
+    """Subset of the Arena ranked shortlist matching ``short_answer_win`` (shortlist order kept)."""
+    rows = []
+    for row in arena:
+        info = short_answer_win(row)
+        if info is not None:
+            out = dict(row, **info)
+            out['_search'] = row['_search'] + '\nreason:' + info['inclusion_reason']
+            rows.append(out)
+    return rows
+
+
 def load_data():
     csv.field_size_limit(100 * 1024 * 1024)
     with ARENA_SHORTLIST.open(encoding='utf-8', newline='') as f:
@@ -54,7 +116,7 @@ def load_data():
         else:
             row['text_status'] = 'missing_source'
         row['_search'] = '\n'.join(str(v or '') for v in row.values()).casefold()
-    return {'arena': arena, 'french': french}
+    return {'arena': arena, 'short_wins': build_short_wins(arena), 'french': french}
 
 
 def public(row):
@@ -71,7 +133,10 @@ def query(data, dataset, text, offset=0, limit=20):
     limit = max(1, min(100, limit))
     previews = []
     for r in rows[offset:offset + limit]:
-        previews.append({k: r.get(k) for k in ('id', 'prompt', 'model_a', 'model_b', 'winner', 'timestamp', 'source_primary_topic', 'text_status')})
+        preview = {k: r.get(k) for k in ('id', 'prompt', 'model_a', 'model_b', 'winner', 'timestamp', 'source_primary_topic', 'text_status')}
+        preview.update({k: r[k] for k in ('inclusion_reason', 'winner_chars', 'loser_chars', 'length_ratio',
+                                         'answer_a_chars', 'answer_b_chars', 'length_diff_pct') if k in r})
+        previews.append(preview)
         if previews[-1]['prompt']:
             previews[-1]['prompt'] = previews[-1]['prompt'][:400]
     return {'total': len(rows), 'offset': offset, 'limit': limit, 'rows': previews}
