@@ -14,6 +14,47 @@ FRENCH_FULL = ROOT.parent.parent / 'french-arena/data/full/political_shortlist_w
 ARENA_SHORTLIST = ROOT.parent / 'results/shortlist.csv'
 
 
+def answer_lengths(row):
+    """Character counts of the two judged (final) answers."""
+    return len(row.get('assistant_a') or ''), len(row.get('assistant_b') or '')
+
+
+def short_answer_win(row):
+    """Return length details if the decisive vote went to the strictly shorter answer, else None.
+
+    Only decisive votes count (``model_a`` / ``model_b``); ``tie`` and ``both_bad``
+    have no winner. Rows without full text, with an empty answer, or with two
+    answers of identical length are excluded because "shorter" is undefined.
+    """
+    winner = row.get('winner')
+    if winner not in ('model_a', 'model_b') or row.get('text_status') == 'missing_full_text':
+        return None
+    len_a, len_b = answer_lengths(row)
+    if not (row.get('assistant_a') or '').strip() or not (row.get('assistant_b') or '').strip():
+        return None
+    win_len, lose_len = (len_a, len_b) if winner == 'model_a' else (len_b, len_a)
+    if win_len >= lose_len:
+        return None
+    return {
+        'answer_a_chars': len_a,
+        'answer_b_chars': len_b,
+        'winner_chars': win_len,
+        'loser_chars': lose_len,
+        'chars_saved': lose_len - win_len,
+        'length_ratio': round(win_len / lose_len, 4),
+    }
+
+
+def build_short_wins(arena):
+    """Subset of the Arena ranked shortlist where the shorter answer won (shortlist order kept)."""
+    rows = []
+    for row in arena:
+        info = short_answer_win(row)
+        if info is not None:
+            rows.append(dict(row, **info))
+    return rows
+
+
 def load_data():
     csv.field_size_limit(100 * 1024 * 1024)
     with ARENA_SHORTLIST.open(encoding='utf-8', newline='') as f:
@@ -54,7 +95,7 @@ def load_data():
         else:
             row['text_status'] = 'missing_source'
         row['_search'] = '\n'.join(str(v or '') for v in row.values()).casefold()
-    return {'arena': arena, 'french': french}
+    return {'arena': arena, 'short_wins': build_short_wins(arena), 'french': french}
 
 
 def public(row):
@@ -71,7 +112,9 @@ def query(data, dataset, text, offset=0, limit=20):
     limit = max(1, min(100, limit))
     previews = []
     for r in rows[offset:offset + limit]:
-        previews.append({k: r.get(k) for k in ('id', 'prompt', 'model_a', 'model_b', 'winner', 'timestamp', 'source_primary_topic', 'text_status')})
+        preview = {k: r.get(k) for k in ('id', 'prompt', 'model_a', 'model_b', 'winner', 'timestamp', 'source_primary_topic', 'text_status')}
+        preview.update({k: r[k] for k in ('winner_chars', 'loser_chars', 'length_ratio') if k in r})
+        previews.append(preview)
         if previews[-1]['prompt']:
             previews[-1]['prompt'] = previews[-1]['prompt'][:400]
     return {'total': len(rows), 'offset': offset, 'limit': limit, 'rows': previews}

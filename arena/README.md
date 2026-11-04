@@ -275,6 +275,7 @@ runner (needed because this sandbox cannot reach `huggingface.co`) and commits
 | `arena/RUN_SCAN` | row limit for the CI run (`0` = all) |
 | `arena/results/summary.json` | all counts, topic/language/time breakdowns, methodology |
 | `arena/results/shortlist.csv` | 1,500 ranked flagged rows with prompt/answer excerpts |
+| `arena/results/short_answer_wins.csv` | shortlist rows where the human picked the strictly shorter answer (+ length columns); built by `arena/build_short_answer_wins.py`, shown as **Short answer wins** in the explorer |
 | `arena/results/shortlist_full_prompts.csv` | 6,820 core rows with **full, untruncated prompts** — generated locally / via explorer export, gitignored because real prompts can contain pasted credentials |
 | `arena/results/matched_ids.csv.gz` | **all** flagged vote IDs with tier, basis, topics (full shortlist for labeling) |
 | `arena/results/audit_sample.csv` | 240-row random sample for manual precision/recall checks |

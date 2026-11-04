@@ -18,6 +18,10 @@ answers). Explore the full-text shortlist alongside the French metadata shortlis
 python arena/explorer/server.py --host 0.0.0.0 --port 8000
 ```
 
+The explorer's **Short answer wins** dataset narrows the Arena ranked shortlist
+to the 383 decisive votes where the human picked the strictly shorter answer
+(also exported to `arena/results/short_answer_wins.csv`).
+
 ## `french-arena/` — Compar:IA (French) political-content analysis
 
 - Summary and dataset notes: `french-arena/README.md`
