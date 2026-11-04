@@ -1,0 +1,1196 @@
+{
+  "inputs": {
+    "prompts_all": 63635,
+    "conversations": 6820,
+    "strict_prompt_census": 2235
+  },
+  "coverage": [
+    {
+      "set": "shortlist.csv (keyword-ranked top 1,500)",
+      "votes": 1500,
+      "unique_sessions": 1468,
+      "models": 52,
+      "tie_rate": 0.1533,
+      "both_bad_rate": 0.102,
+      "decisive_share": 0.745,
+      "en_share": 0.661,
+      "is_code_share": 0.128,
+      "share_political_prompt": 0.371,
+      "date_range": "2025-04-17..2025-07-24"
+    },
+    {
+      "set": "all 6,820 votes with full answers",
+      "votes": 6820,
+      "unique_sessions": 6357,
+      "models": 52,
+      "tie_rate": 0.1488,
+      "both_bad_rate": 0.1104,
+      "decisive_share": 0.741,
+      "en_share": 0.669,
+      "is_code_share": 0.145,
+      "share_political_prompt": 0.529,
+      "date_range": "2025-04-17..2025-07-24"
+    },
+    {
+      "set": "2,235 strict-political-prompt census",
+      "votes": 2235,
+      "unique_sessions": 2145,
+      "models": 52,
+      "tie_rate": 0.1391,
+      "both_bad_rate": 0.1329,
+      "decisive_share": 0.728,
+      "en_share": 0.67,
+      "is_code_share": 0.121,
+      "share_political_prompt": 1.0,
+      "date_range": "2025-04-17..2025-07-24"
+    },
+    {
+      "set": "all 63,635 flagged votes",
+      "votes": 63635,
+      "unique_sessions": 56352,
+      "models": 53,
+      "tie_rate": 0.1538,
+      "both_bad_rate": 0.1098,
+      "decisive_share": 0.736,
+      "en_share": 0.751,
+      "is_code_share": 0.336,
+      "share_political_prompt": 0.167,
+      "date_range": "2025-04-17..2025-07-24"
+    }
+  ],
+  "length": [
+    {
+      "set": "census_2235",
+      "decisive": 1627,
+      "share_longer_won": 0.598,
+      "median_ratio": 1.247,
+      "median_winner_chars": 2645.0,
+      "median_loser_chars": 1874.0,
+      "share_ratio_gt_1_2": 0.5138,
+      "share_ratio_lt_0_8": 0.2876
+    },
+    {
+      "set": "answers_6820",
+      "decisive": 5052,
+      "share_longer_won": 0.6376,
+      "median_ratio": 1.309,
+      "median_winner_chars": 3173.0,
+      "median_loser_chars": 2316.0,
+      "share_ratio_gt_1_2": 0.5447,
+      "share_ratio_lt_0_8": 0.252
+    }
+  ],
+  "sentiment": {
+    "en_votes": 1498,
+    "mean_compound_a": 0.4977,
+    "mean_compound_b": 0.4662,
+    "mean_sentence_compound": 0.1476,
+    "share_answers_compound_lt_-0.05": 0.2043,
+    "paired_winner_minus_loser_sentences": {
+      "mean": -0.0259,
+      "winner_more_positive": 471,
+      "winner_more_negative": 540,
+      "sign_test_p": 0.0324,
+      "n": 1095
+    }
+  },
+  "sensitive_prompt_counts": {
+    "tiananmen": 53,
+    "taiwan_status": 129,
+    "xinjiang_uyghur": 3,
+    "tibet": 7,
+    "xi_leadership": 20,
+    "holocaust": 13,
+    "armenian_genocide": 3,
+    "nanking": 0,
+    "holodomor": 0,
+    "srebrenica": 0
+  },
+  "sensitive_table": [
+    {
+      "probe": "taiwan_status",
+      "prompt_rows": 129,
+      "with_answers": 84,
+      "languages": 9
+    },
+    {
+      "probe": "tiananmen",
+      "prompt_rows": 53,
+      "with_answers": 45,
+      "languages": 6
+    },
+    {
+      "probe": "xi_leadership",
+      "prompt_rows": 20,
+      "with_answers": 19,
+      "languages": 4
+    },
+    {
+      "probe": "holocaust",
+      "prompt_rows": 13,
+      "with_answers": 11,
+      "languages": 2
+    },
+    {
+      "probe": "tibet",
+      "prompt_rows": 7,
+      "with_answers": 5,
+      "languages": 3
+    },
+    {
+      "probe": "xinjiang_uyghur",
+      "prompt_rows": 3,
+      "with_answers": 2,
+      "languages": 2
+    },
+    {
+      "probe": "armenian_genocide",
+      "prompt_rows": 3,
+      "with_answers": 1,
+      "languages": 2
+    }
+  ],
+  "interest_group_mentions": {
+    "unions_labor": 12,
+    "business_lobby": 31,
+    "guns": 4,
+    "pharma_health": 27,
+    "fossil_energy": 3,
+    "tech_platforms": 1215,
+    "finance": 30,
+    "religious": 25,
+    "media_owners": 2,
+    "ethnic_foreign_lobbies": 1,
+    "ngos_thinktanks": 164
+  },
+  "model_rank_correlation": {
+    "spearman": 0.8996820150540111,
+    "models": 41
+  },
+  "feature_tests": [
+    {
+      "feature": "paragraphs_per_1k",
+      "winner_mean": 48.4374,
+      "loser_mean": 49.3845,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": -0.3092,
+      "share_positive": 0.4849,
+      "sign_test_p": 0.3202
+    },
+    {
+      "feature": "bullets_per_1k",
+      "winner_mean": 38.9869,
+      "loser_mean": 40.1581,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.4542,
+      "sign_test_p": 0.0196
+    },
+    {
+      "feature": "bold_per_1k",
+      "winner_mean": 36.6412,
+      "loser_mean": 33.4651,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.4825,
+      "sign_test_p": 0.0005
+    },
+    {
+      "feature": "years_per_1k",
+      "winner_mean": 6.9915,
+      "loser_mean": 5.8833,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.2213,
+      "sign_test_p": 0.001
+    },
+    {
+      "feature": "headers_per_1k",
+      "winner_mean": 6.8426,
+      "loser_mean": 6.4061,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.3251,
+      "sign_test_p": 0.0104
+    },
+    {
+      "feature": "tables_per_1k",
+      "winner_mean": 2.3521,
+      "loser_mean": 1.7448,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.0854,
+      "sign_test_p": 0.0039
+    },
+    {
+      "feature": "pcts_per_1k",
+      "winner_mean": 2.1949,
+      "loser_mean": 1.9688,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.1364,
+      "sign_test_p": 0.0001
+    },
+    {
+      "feature": "numbers_per_1k",
+      "winner_mean": 1.3116,
+      "loser_mean": 1.2654,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.0676,
+      "sign_test_p": 0.1002
+    },
+    {
+      "feature": "links_per_1k",
+      "winner_mean": 0.7747,
+      "loser_mean": 0.8529,
+      "binary": false,
+      "winner_only": NaN,
+      "loser_only": NaN,
+      "mcnemar_p": NaN,
+      "median_diff": 0.0,
+      "share_positive": 0.0467,
+      "sign_test_p": 0.6184
+    },
+    {
+      "feature": "has_bullets",
+      "winner_mean": 0.7683,
+      "loser_mean": 0.7056,
+      "binary": true,
+      "winner_only": 242.0,
+      "loser_only": 140.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "bold",
+      "winner_mean": 0.7554,
+      "loser_mean": 0.681,
+      "binary": true,
+      "winner_only": 331.0,
+      "loser_only": 210.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "bullet_list",
+      "winner_mean": 0.7025,
+      "loser_mean": 0.6177,
+      "binary": true,
+      "winner_only": 292.0,
+      "loser_only": 154.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "numbered_list",
+      "winner_mean": 0.5175,
+      "loser_mean": 0.4597,
+      "binary": true,
+      "winner_only": 355.0,
+      "loser_only": 261.0,
+      "mcnemar_p": 0.0002,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "lead_heading",
+      "winner_mean": 0.4653,
+      "loser_mean": 0.3749,
+      "binary": true,
+      "winner_only": 369.0,
+      "loser_only": 222.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "has_headers",
+      "winner_mean": 0.4628,
+      "loser_mean": 0.3749,
+      "binary": true,
+      "winner_only": 367.0,
+      "loser_only": 224.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "numbers_dates",
+      "winner_mean": 0.4481,
+      "loser_mean": 0.3915,
+      "binary": true,
+      "winner_only": 216.0,
+      "loser_only": 124.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "second_person",
+      "winner_mean": 0.3891,
+      "loser_mean": 0.3841,
+      "binary": true,
+      "winner_only": 165.0,
+      "loser_only": 157.0,
+      "mcnemar_p": 0.6965,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "first_person",
+      "winner_mean": 0.3583,
+      "loser_mean": 0.3405,
+      "binary": true,
+      "winner_only": 235.0,
+      "loser_only": 206.0,
+      "mcnemar_p": 0.1824,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "hedge",
+      "winner_mean": 0.3294,
+      "loser_mean": 0.3196,
+      "binary": true,
+      "winner_only": 197.0,
+      "loser_only": 181.0,
+      "mcnemar_p": 0.4404,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "named_institution",
+      "winner_mean": 0.2963,
+      "loser_mean": 0.26,
+      "binary": true,
+      "winner_only": 202.0,
+      "loser_only": 143.0,
+      "mcnemar_p": 0.0018,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "alarm_language",
+      "winner_mean": 0.2465,
+      "loser_mean": 0.2096,
+      "binary": true,
+      "winner_only": 168.0,
+      "loser_only": 108.0,
+      "mcnemar_p": 0.0004,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "causal_explanation",
+      "winner_mean": 0.2163,
+      "loser_mean": 0.1764,
+      "binary": true,
+      "winner_only": 210.0,
+      "loser_only": 145.0,
+      "mcnemar_p": 0.0007,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "comparison",
+      "winner_mean": 0.1881,
+      "loser_mean": 0.1659,
+      "binary": true,
+      "winner_only": 162.0,
+      "loser_only": 126.0,
+      "mcnemar_p": 0.039,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "example",
+      "winner_mean": 0.1764,
+      "loser_mean": 0.1795,
+      "binary": true,
+      "winner_only": 169.0,
+      "loser_only": 174.0,
+      "mcnemar_p": 0.829,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "question_to_user",
+      "winner_mean": 0.1739,
+      "loser_mean": 0.1666,
+      "binary": true,
+      "winner_only": 193.0,
+      "loser_only": 181.0,
+      "mcnemar_p": 0.5696,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "recommendation",
+      "winner_mean": 0.1647,
+      "loser_mean": 0.1383,
+      "binary": true,
+      "winner_only": 171.0,
+      "loser_only": 128.0,
+      "mcnemar_p": 0.015,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "counterargument",
+      "winner_mean": 0.1641,
+      "loser_mean": 0.1703,
+      "binary": true,
+      "winner_only": 141.0,
+      "loser_only": 151.0,
+      "mcnemar_p": 0.5985,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "emoji",
+      "winner_mean": 0.1451,
+      "loser_mean": 0.0885,
+      "binary": true,
+      "winner_only": 193.0,
+      "loser_only": 101.0,
+      "mcnemar_p": 0.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "conclusion",
+      "winner_mean": 0.1407,
+      "loser_mean": 0.1112,
+      "binary": true,
+      "winner_only": 157.0,
+      "loser_only": 109.0,
+      "mcnemar_p": 0.0039,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "moral_language",
+      "winner_mean": 0.134,
+      "loser_mean": 0.1063,
+      "binary": true,
+      "winner_only": 103.0,
+      "loser_only": 58.0,
+      "mcnemar_p": 0.0005,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "both_sides",
+      "winner_mean": 0.118,
+      "loser_mean": 0.0983,
+      "binary": true,
+      "winner_only": 110.0,
+      "loser_only": 78.0,
+      "mcnemar_p": 0.0235,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "table",
+      "winner_mean": 0.1008,
+      "loser_mean": 0.0701,
+      "binary": true,
+      "winner_only": 125.0,
+      "loser_only": 75.0,
+      "mcnemar_p": 0.0005,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "has_table",
+      "winner_mean": 0.0965,
+      "loser_mean": 0.0682,
+      "binary": true,
+      "winner_only": 122.0,
+      "loser_only": 76.0,
+      "mcnemar_p": 0.0013,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "caveat",
+      "winner_mean": 0.0873,
+      "loser_mean": 0.0744,
+      "binary": true,
+      "winner_only": 103.0,
+      "loser_only": 82.0,
+      "mcnemar_p": 0.1412,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "citation_cue",
+      "winner_mean": 0.0817,
+      "loser_mean": 0.0695,
+      "binary": true,
+      "winner_only": 90.0,
+      "loser_only": 70.0,
+      "mcnemar_p": 0.1328,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "direct_answer",
+      "winner_mean": 0.0658,
+      "loser_mean": 0.0504,
+      "binary": true,
+      "winner_only": 83.0,
+      "loser_only": 58.0,
+      "mcnemar_p": 0.0429,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "ends_with_question",
+      "winner_mean": 0.0639,
+      "loser_mean": 0.0947,
+      "binary": true,
+      "winner_only": 85.0,
+      "loser_only": 135.0,
+      "mcnemar_p": 0.0009,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "url",
+      "winner_mean": 0.0553,
+      "loser_mean": 0.043,
+      "binary": true,
+      "winner_only": 58.0,
+      "loser_only": 38.0,
+      "mcnemar_p": 0.0519,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "empathy",
+      "winner_mean": 0.0522,
+      "loser_mean": 0.0547,
+      "binary": true,
+      "winner_only": 55.0,
+      "loser_only": 59.0,
+      "mcnemar_p": 0.7789,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "uncertainty_admission",
+      "winner_mean": 0.0479,
+      "loser_mean": 0.0406,
+      "binary": true,
+      "winner_only": 64.0,
+      "loser_only": 52.0,
+      "mcnemar_p": 0.3071,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "disclaimer",
+      "winner_mean": 0.0307,
+      "loser_mean": 0.0283,
+      "binary": true,
+      "winner_only": 45.0,
+      "loser_only": 41.0,
+      "mcnemar_p": 0.7465,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "refusal",
+      "winner_mean": 0.0098,
+      "loser_mean": 0.0141,
+      "binary": true,
+      "winner_only": 14.0,
+      "loser_only": 21.0,
+      "mcnemar_p": 0.3105,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    },
+    {
+      "feature": "has_sources_section",
+      "winner_mean": 0.0043,
+      "loser_mean": 0.0049,
+      "binary": true,
+      "winner_only": 5.0,
+      "loser_only": 6.0,
+      "mcnemar_p": 1.0,
+      "median_diff": NaN,
+      "share_positive": NaN,
+      "sign_test_p": NaN
+    }
+  ],
+  "feature_tests_near_equal_length": [
+    {
+      "feature": "bold",
+      "winner_rate": 0.8132,
+      "loser_rate": 0.7363,
+      "delta_pp": 7.69,
+      "winner_only": 25,
+      "loser_only": 11,
+      "mcnemar_p": 0.0288,
+      "n": 182
+    },
+    {
+      "feature": "numbered_list",
+      "winner_rate": 0.5604,
+      "loser_rate": 0.5055,
+      "delta_pp": 5.49,
+      "winner_only": 33,
+      "loser_only": 23,
+      "mcnemar_p": 0.2288,
+      "n": 182
+    },
+    {
+      "feature": "second_person",
+      "winner_rate": 0.3791,
+      "loser_rate": 0.3297,
+      "delta_pp": 4.95,
+      "winner_only": 18,
+      "loser_only": 9,
+      "mcnemar_p": 0.1221,
+      "n": 182
+    },
+    {
+      "feature": "lead_heading",
+      "winner_rate": 0.467,
+      "loser_rate": 0.4231,
+      "delta_pp": 4.4,
+      "winner_only": 31,
+      "loser_only": 23,
+      "mcnemar_p": 0.3409,
+      "n": 182
+    },
+    {
+      "feature": "has_bullets",
+      "winner_rate": 0.7967,
+      "loser_rate": 0.7527,
+      "delta_pp": 4.4,
+      "winner_only": 18,
+      "loser_only": 10,
+      "mcnemar_p": 0.1849,
+      "n": 182
+    },
+    {
+      "feature": "has_headers",
+      "winner_rate": 0.467,
+      "loser_rate": 0.4231,
+      "delta_pp": 4.4,
+      "winner_only": 31,
+      "loser_only": 23,
+      "mcnemar_p": 0.3409,
+      "n": 182
+    },
+    {
+      "feature": "emoji",
+      "winner_rate": 0.1319,
+      "loser_rate": 0.0989,
+      "delta_pp": 3.3,
+      "winner_only": 16,
+      "loser_only": 10,
+      "mcnemar_p": 0.3269,
+      "n": 182
+    },
+    {
+      "feature": "conclusion",
+      "winner_rate": 0.1538,
+      "loser_rate": 0.1209,
+      "delta_pp": 3.3,
+      "winner_only": 17,
+      "loser_only": 11,
+      "mcnemar_p": 0.3449,
+      "n": 182
+    },
+    {
+      "feature": "question_to_user",
+      "winner_rate": 0.2033,
+      "loser_rate": 0.1758,
+      "delta_pp": 2.75,
+      "winner_only": 15,
+      "loser_only": 10,
+      "mcnemar_p": 0.4244,
+      "n": 182
+    },
+    {
+      "feature": "bullet_list",
+      "winner_rate": 0.6978,
+      "loser_rate": 0.6703,
+      "delta_pp": 2.75,
+      "winner_only": 20,
+      "loser_only": 15,
+      "mcnemar_p": 0.4996,
+      "n": 182
+    },
+    {
+      "feature": "uncertainty_admission",
+      "winner_rate": 0.0385,
+      "loser_rate": 0.022,
+      "delta_pp": 1.65,
+      "winner_only": 5,
+      "loser_only": 2,
+      "mcnemar_p": 0.4531,
+      "n": 182
+    },
+    {
+      "feature": "comparison",
+      "winner_rate": 0.1538,
+      "loser_rate": 0.1429,
+      "delta_pp": 1.1,
+      "winner_only": 13,
+      "loser_only": 11,
+      "mcnemar_p": 0.8388,
+      "n": 182
+    },
+    {
+      "feature": "moral_language",
+      "winner_rate": 0.1154,
+      "loser_rate": 0.1099,
+      "delta_pp": 0.55,
+      "winner_only": 5,
+      "loser_only": 4,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "alarm_language",
+      "winner_rate": 0.2637,
+      "loser_rate": 0.2582,
+      "delta_pp": 0.55,
+      "winner_only": 11,
+      "loser_only": 10,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "has_table",
+      "winner_rate": 0.1154,
+      "loser_rate": 0.1099,
+      "delta_pp": 0.55,
+      "winner_only": 12,
+      "loser_only": 11,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "has_sources_section",
+      "winner_rate": 0.0055,
+      "loser_rate": 0.0,
+      "delta_pp": 0.55,
+      "winner_only": 1,
+      "loser_only": 0,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "direct_answer",
+      "winner_rate": 0.0495,
+      "loser_rate": 0.044,
+      "delta_pp": 0.55,
+      "winner_only": 8,
+      "loser_only": 7,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "table",
+      "winner_rate": 0.1154,
+      "loser_rate": 0.1099,
+      "delta_pp": 0.55,
+      "winner_only": 12,
+      "loser_only": 11,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "recommendation",
+      "winner_rate": 0.1429,
+      "loser_rate": 0.1429,
+      "delta_pp": 0.0,
+      "winner_only": 14,
+      "loser_only": 14,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "numbers_dates",
+      "winner_rate": 0.4286,
+      "loser_rate": 0.4286,
+      "delta_pp": 0.0,
+      "winner_only": 16,
+      "loser_only": 16,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "url",
+      "winner_rate": 0.0714,
+      "loser_rate": 0.0714,
+      "delta_pp": 0.0,
+      "winner_only": 4,
+      "loser_only": 4,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "citation_cue",
+      "winner_rate": 0.0824,
+      "loser_rate": 0.0824,
+      "delta_pp": 0.0,
+      "winner_only": 10,
+      "loser_only": 10,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "refusal",
+      "winner_rate": 0.0,
+      "loser_rate": 0.0055,
+      "delta_pp": -0.55,
+      "winner_only": 0,
+      "loser_only": 1,
+      "mcnemar_p": 1.0,
+      "n": 182
+    },
+    {
+      "feature": "first_person",
+      "winner_rate": 0.3242,
+      "loser_rate": 0.3352,
+      "delta_pp": -1.1,
+      "winner_only": 18,
+      "loser_only": 20,
+      "mcnemar_p": 0.8714,
+      "n": 182
+    },
+    {
+      "feature": "caveat",
+      "winner_rate": 0.0659,
+      "loser_rate": 0.0769,
+      "delta_pp": -1.1,
+      "winner_only": 8,
+      "loser_only": 10,
+      "mcnemar_p": 0.8145,
+      "n": 182
+    },
+    {
+      "feature": "ends_with_question",
+      "winner_rate": 0.0549,
+      "loser_rate": 0.0659,
+      "delta_pp": -1.1,
+      "winner_only": 6,
+      "loser_only": 8,
+      "mcnemar_p": 0.7905,
+      "n": 182
+    },
+    {
+      "feature": "causal_explanation",
+      "winner_rate": 0.1978,
+      "loser_rate": 0.2143,
+      "delta_pp": -1.65,
+      "winner_only": 19,
+      "loser_only": 22,
+      "mcnemar_p": 0.7552,
+      "n": 182
+    },
+    {
+      "feature": "empathy",
+      "winner_rate": 0.0385,
+      "loser_rate": 0.0549,
+      "delta_pp": -1.65,
+      "winner_only": 1,
+      "loser_only": 4,
+      "mcnemar_p": 0.375,
+      "n": 182
+    },
+    {
+      "feature": "hedge",
+      "winner_rate": 0.3242,
+      "loser_rate": 0.3462,
+      "delta_pp": -2.2,
+      "winner_only": 19,
+      "loser_only": 23,
+      "mcnemar_p": 0.644,
+      "n": 182
+    },
+    {
+      "feature": "example",
+      "winner_rate": 0.1429,
+      "loser_rate": 0.1868,
+      "delta_pp": -4.4,
+      "winner_only": 11,
+      "loser_only": 19,
+      "mcnemar_p": 0.2005,
+      "n": 182
+    },
+    {
+      "feature": "disclaimer",
+      "winner_rate": 0.011,
+      "loser_rate": 0.0604,
+      "delta_pp": -4.95,
+      "winner_only": 1,
+      "loser_only": 10,
+      "mcnemar_p": 0.0117,
+      "n": 182
+    },
+    {
+      "feature": "both_sides",
+      "winner_rate": 0.0604,
+      "loser_rate": 0.1099,
+      "delta_pp": -4.95,
+      "winner_only": 5,
+      "loser_only": 14,
+      "mcnemar_p": 0.0636,
+      "n": 182
+    },
+    {
+      "feature": "counterargument",
+      "winner_rate": 0.1319,
+      "loser_rate": 0.1868,
+      "delta_pp": -5.49,
+      "winner_only": 7,
+      "loser_only": 17,
+      "mcnemar_p": 0.0639,
+      "n": 182
+    },
+    {
+      "feature": "named_institution",
+      "winner_rate": 0.2418,
+      "loser_rate": 0.3022,
+      "delta_pp": -6.04,
+      "winner_only": 9,
+      "loser_only": 20,
+      "mcnemar_p": 0.0614,
+      "n": 182
+    }
+  ],
+  "recency_validation_citations": {
+    "cutoff_statement": {
+      "share_of_answers": 0.0253,
+      "winner_only": 25,
+      "loser_only": 29,
+      "mcnemar_p": 0.6835
+    },
+    "validation_markers": {
+      "share_of_answers": 0.0508,
+      "winner_only": 55,
+      "loser_only": 42,
+      "mcnemar_p": 0.2229
+    },
+    "citations_or_links": {
+      "share_of_answers": 0.0633,
+      "winner_only": 80,
+      "loser_only": 53,
+      "mcnemar_p": 0.0238
+    },
+    "share_answers_mentioning_2025": 0.0765,
+    "share_votes_after_may_2025_mentioning_2025": 0.11,
+    "share_answers_with_any_year": 0.3235,
+    "median_answer_words": 302
+  },
+  "topics": [
+    {
+      "topic": "business_tech",
+      "prompt_rows": 8400,
+      "share_of_flagged": 0.132,
+      "strict_prompt_rows": 275,
+      "votes_with_answers": 840,
+      "tie_rate": 0.131,
+      "both_bad_rate": 0.1071,
+      "mean_prompt_chars": 1658.1
+    },
+    {
+      "topic": "other_personal",
+      "prompt_rows": 2787,
+      "share_of_flagged": 0.0438,
+      "strict_prompt_rows": 174,
+      "votes_with_answers": 441,
+      "tie_rate": 0.1224,
+      "both_bad_rate": 0.1111,
+      "mean_prompt_chars": 2524.6
+    },
+    {
+      "topic": "public_policy",
+      "prompt_rows": 2428,
+      "share_of_flagged": 0.0382,
+      "strict_prompt_rows": 295,
+      "votes_with_answers": 628,
+      "tie_rate": 0.1592,
+      "both_bad_rate": 0.1003,
+      "mean_prompt_chars": 1994.6
+    },
+    {
+      "topic": "civic_practical",
+      "prompt_rows": 2386,
+      "share_of_flagged": 0.0375,
+      "strict_prompt_rows": 158,
+      "votes_with_answers": 419,
+      "tie_rate": 0.148,
+      "both_bad_rate": 0.105,
+      "mean_prompt_chars": 3610.0
+    },
+    {
+      "topic": "creative_roleplay",
+      "prompt_rows": 2374,
+      "share_of_flagged": 0.0373,
+      "strict_prompt_rows": 115,
+      "votes_with_answers": 329,
+      "tie_rate": 0.1611,
+      "both_bad_rate": 0.1003,
+      "mean_prompt_chars": 1395.9
+    },
+    {
+      "topic": "media_info",
+      "prompt_rows": 1656,
+      "share_of_flagged": 0.026,
+      "strict_prompt_rows": 124,
+      "votes_with_answers": 385,
+      "tie_rate": 0.1299,
+      "both_bad_rate": 0.1506,
+      "mean_prompt_chars": 2849.6
+    },
+    {
+      "topic": "geopolitics_conflict",
+      "prompt_rows": 882,
+      "share_of_flagged": 0.0139,
+      "strict_prompt_rows": 153,
+      "votes_with_answers": 453,
+      "tie_rate": 0.1391,
+      "both_bad_rate": 0.0993,
+      "mean_prompt_chars": 859.6
+    },
+    {
+      "topic": "elections_voting",
+      "prompt_rows": 677,
+      "share_of_flagged": 0.0106,
+      "strict_prompt_rows": 172,
+      "votes_with_answers": 425,
+      "tie_rate": 0.1035,
+      "both_bad_rate": 0.1435,
+      "mean_prompt_chars": 5640.6
+    },
+    {
+      "topic": "parties_ideology",
+      "prompt_rows": 537,
+      "share_of_flagged": 0.0084,
+      "strict_prompt_rows": 171,
+      "votes_with_answers": 266,
+      "tie_rate": 0.1579,
+      "both_bad_rate": 0.0677,
+      "mean_prompt_chars": 1968.6
+    },
+    {
+      "topic": "immigration",
+      "prompt_rows": 501,
+      "share_of_flagged": 0.0079,
+      "strict_prompt_rows": 125,
+      "votes_with_answers": 239,
+      "tie_rate": 0.1004,
+      "both_bad_rate": 0.1464,
+      "mean_prompt_chars": 7813.0
+    },
+    {
+      "topic": "political_theory",
+      "prompt_rows": 366,
+      "share_of_flagged": 0.0058,
+      "strict_prompt_rows": 119,
+      "votes_with_answers": 196,
+      "tie_rate": 0.148,
+      "both_bad_rate": 0.0918,
+      "mean_prompt_chars": 2126.2
+    },
+    {
+      "topic": "political_history",
+      "prompt_rows": 361,
+      "share_of_flagged": 0.0057,
+      "strict_prompt_rows": 86,
+      "votes_with_answers": 233,
+      "tie_rate": 0.1545,
+      "both_bad_rate": 0.1416,
+      "mean_prompt_chars": 1060.5
+    },
+    {
+      "topic": "political_figures",
+      "prompt_rows": 320,
+      "share_of_flagged": 0.005,
+      "strict_prompt_rows": 229,
+      "votes_with_answers": 244,
+      "tie_rate": 0.1066,
+      "both_bad_rate": 0.2418,
+      "mean_prompt_chars": 688.4
+    },
+    {
+      "topic": "institutions_constitution",
+      "prompt_rows": 231,
+      "share_of_flagged": 0.0036,
+      "strict_prompt_rows": 107,
+      "votes_with_answers": 139,
+      "tie_rate": 0.1511,
+      "both_bad_rate": 0.0647,
+      "mean_prompt_chars": 2654.1
+    }
+  ]
+}

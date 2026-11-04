@@ -1,0 +1,873 @@
+{
+  "rows": 1500,
+  "unique_sessions": 1468,
+  "unique_prompts": 1475,
+  "date_range": [
+    "2025-04-17 16:52:06.183996",
+    "2025-07-24 23:24:58.764078"
+  ],
+  "screening_score_note": "score = 3*strong_term_strength + n_category_tags + n_weak_terms; it is a keyword-screen score, NOT a human quality rating",
+  "screening_score": {
+    "min": 7,
+    "median": 12.0,
+    "max": 164,
+    "tier_median": {
+      "probable": 9.0,
+      "strict": 17.0
+    }
+  },
+  "winner_counts": {
+    "model_b": 565,
+    "model_a": 552,
+    "tie": 230,
+    "both_bad": 153
+  },
+  "tie_rate": 0.1533,
+  "both_bad_rate": 0.102,
+  "position_b_bias_among_decisive": 0.5058,
+  "tier": {
+    "strict": 852,
+    "probable": 648
+  },
+  "basis": {
+    "response": 1132,
+    "both": 350,
+    "prompt": 18
+  },
+  "prompt_tier": {
+    "none": 943,
+    "strict": 317,
+    "broad": 189,
+    "probable": 51
+  },
+  "response_tier": {
+    "strict": 852,
+    "probable": 648
+  },
+  "share_rows_political_prompt": 0.3713,
+  "share_rows_political_prompt_strict": 0.2113,
+  "is_code_share": 0.128,
+  "is_code_by_basis": {
+    "both": 0.16,
+    "prompt": 0.3333,
+    "response": 0.1148
+  },
+  "language_top": {
+    "en": 991,
+    "zh": 130,
+    "und": 73,
+    "pl": 53,
+    "ko": 45,
+    "ru": 31,
+    "fa": 31,
+    "es": 26,
+    "de": 25,
+    "fr": 23,
+    "ja": 18,
+    "zh-Hant": 17
+  },
+  "english_share": 0.6607,
+  "month": {
+    "2025-04": 96,
+    "2025-05": 326,
+    "2025-06": 599,
+    "2025-07": 479
+  },
+  "tag_counts": {
+    "public_policy": 1004,
+    "parties_ideology": 807,
+    "geopolitics": 649,
+    "political_figures": 469,
+    "non_english_politics": 457,
+    "elections": 453,
+    "immigration": 391,
+    "voting": 164
+  },
+  "mean_tag_count": 2.93,
+  "prompt_chars_median": 74.5,
+  "responses_at_excerpt_cap": 1468,
+  "top_topics": [
+    {
+      "topic": "business_tech",
+      "rows": 319,
+      "share_of_rows": 0.2127,
+      "strict_prompt_rows": 55,
+      "tie_rate": 0.1661,
+      "both_bad_rate": 0.0909,
+      "decisive_rate": 0.7429,
+      "mean_screen_score": 13.97,
+      "mean_prompt_chars": 178.6
+    },
+    {
+      "topic": "public_policy",
+      "rows": 278,
+      "share_of_rows": 0.1853,
+      "strict_prompt_rows": 60,
+      "tie_rate": 0.1727,
+      "both_bad_rate": 0.0863,
+      "decisive_rate": 0.741,
+      "mean_screen_score": 20.01,
+      "mean_prompt_chars": 148.1
+    },
+    {
+      "topic": "geopolitics_conflict",
+      "rows": 195,
+      "share_of_rows": 0.13,
+      "strict_prompt_rows": 30,
+      "tie_rate": 0.1436,
+      "both_bad_rate": 0.0974,
+      "decisive_rate": 0.759,
+      "mean_screen_score": 26.64,
+      "mean_prompt_chars": 112.2
+    },
+    {
+      "topic": "other_personal",
+      "rows": 173,
+      "share_of_rows": 0.1153,
+      "strict_prompt_rows": 36,
+      "tie_rate": 0.1387,
+      "both_bad_rate": 0.0809,
+      "decisive_rate": 0.7803,
+      "mean_screen_score": 15.96,
+      "mean_prompt_chars": 164.8
+    },
+    {
+      "topic": "media_info",
+      "rows": 160,
+      "share_of_rows": 0.1067,
+      "strict_prompt_rows": 41,
+      "tie_rate": 0.1688,
+      "both_bad_rate": 0.1125,
+      "decisive_rate": 0.7188,
+      "mean_screen_score": 24.39,
+      "mean_prompt_chars": 159.5
+    },
+    {
+      "topic": "creative_roleplay",
+      "rows": 151,
+      "share_of_rows": 0.1007,
+      "strict_prompt_rows": 28,
+      "tie_rate": 0.1391,
+      "both_bad_rate": 0.0927,
+      "decisive_rate": 0.7682,
+      "mean_screen_score": 20.41,
+      "mean_prompt_chars": 161.9
+    },
+    {
+      "topic": "civic_practical",
+      "rows": 139,
+      "share_of_rows": 0.0927,
+      "strict_prompt_rows": 34,
+      "tie_rate": 0.1439,
+      "both_bad_rate": 0.0719,
+      "decisive_rate": 0.7842,
+      "mean_screen_score": 18.29,
+      "mean_prompt_chars": 181.2
+    },
+    {
+      "topic": "political_history",
+      "rows": 125,
+      "share_of_rows": 0.0833,
+      "strict_prompt_rows": 27,
+      "tie_rate": 0.192,
+      "both_bad_rate": 0.096,
+      "decisive_rate": 0.712,
+      "mean_screen_score": 28.29,
+      "mean_prompt_chars": 114.2
+    },
+    {
+      "topic": "elections_voting",
+      "rows": 112,
+      "share_of_rows": 0.0747,
+      "strict_prompt_rows": 47,
+      "tie_rate": 0.1696,
+      "both_bad_rate": 0.1071,
+      "decisive_rate": 0.7232,
+      "mean_screen_score": 34.35,
+      "mean_prompt_chars": 143.2
+    },
+    {
+      "topic": "political_theory",
+      "rows": 110,
+      "share_of_rows": 0.0733,
+      "strict_prompt_rows": 39,
+      "tie_rate": 0.2182,
+      "both_bad_rate": 0.0545,
+      "decisive_rate": 0.7273,
+      "mean_screen_score": 30.2,
+      "mean_prompt_chars": 128.2
+    }
+  ],
+  "interest_group_mentions": {
+    "unions_labor": 2,
+    "business_lobby": 4,
+    "guns": 2,
+    "pharma_health": 4,
+    "fossil_energy": 2,
+    "tech_platforms": 61,
+    "finance": 2,
+    "religious": 2,
+    "media_owners": 0,
+    "ethnic_foreign_lobbies": 0,
+    "ngos_thinktanks": 26
+  },
+  "sensitive_probe_rows": 63,
+  "sensitive_probe_counts": {
+    "taiwan_status": 22,
+    "tiananmen": 18,
+    "xi_leadership": 9,
+    "holocaust": 9,
+    "tibet": 4,
+    "holodomor": 1,
+    "armenian_genocide": 1
+  },
+  "feature_tests": [
+    {
+      "feature": "bold",
+      "winner_rate": 0.675,
+      "loser_rate": 0.6321,
+      "delta_pp": 4.3,
+      "winner_only": 235,
+      "loser_only": 187,
+      "mcnemar_p": 0.022030296533102595,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "numbered_list",
+      "winner_rate": 0.3303,
+      "loser_rate": 0.3089,
+      "delta_pp": 2.15,
+      "winner_only": 205,
+      "loser_only": 181,
+      "mcnemar_p": 0.24169441480363413,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "emoji",
+      "winner_rate": 0.0636,
+      "loser_rate": 0.0421,
+      "delta_pp": 2.15,
+      "winner_only": 66,
+      "loser_only": 42,
+      "mcnemar_p": 0.026423520277147814,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "bullet_list",
+      "winner_rate": 0.3957,
+      "loser_rate": 0.3787,
+      "delta_pp": 1.7,
+      "winner_only": 232,
+      "loser_only": 213,
+      "mcnemar_p": 0.3935274008494407,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "disclaimer",
+      "winner_rate": 0.017,
+      "loser_rate": 0.0072,
+      "delta_pp": 0.98,
+      "winner_only": 19,
+      "loser_only": 8,
+      "mcnemar_p": 0.052238985896110535,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "table",
+      "winner_rate": 0.026,
+      "loser_rate": 0.017,
+      "delta_pp": 0.9,
+      "winner_only": 24,
+      "loser_only": 14,
+      "mcnemar_p": 0.14330665429588407,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "numbers_dates",
+      "winner_rate": 0.2238,
+      "loser_rate": 0.2149,
+      "delta_pp": 0.9,
+      "winner_only": 99,
+      "loser_only": 89,
+      "mcnemar_p": 0.511679618172334,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "hedge",
+      "winner_rate": 0.1432,
+      "loser_rate": 0.1361,
+      "delta_pp": 0.72,
+      "winner_only": 101,
+      "loser_only": 93,
+      "mcnemar_p": 0.615380740884383,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "lead_heading",
+      "winner_rate": 0.0859,
+      "loser_rate": 0.0788,
+      "delta_pp": 0.72,
+      "winner_only": 73,
+      "loser_only": 65,
+      "mcnemar_p": 0.551413279666547,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "empathy",
+      "winner_rate": 0.0376,
+      "loser_rate": 0.0304,
+      "delta_pp": 0.72,
+      "winner_only": 34,
+      "loser_only": 26,
+      "mcnemar_p": 0.36629400670329104,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "alarm_language",
+      "winner_rate": 0.0421,
+      "loser_rate": 0.0358,
+      "delta_pp": 0.63,
+      "winner_only": 29,
+      "loser_only": 22,
+      "mcnemar_p": 0.4010619910279374,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "caveat",
+      "winner_rate": 0.026,
+      "loser_rate": 0.0215,
+      "delta_pp": 0.45,
+      "winner_only": 22,
+      "loser_only": 17,
+      "mcnemar_p": 0.5223973804968409,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "citation_cue",
+      "winner_rate": 0.0152,
+      "loser_rate": 0.0116,
+      "delta_pp": 0.36,
+      "winner_only": 14,
+      "loser_only": 10,
+      "mcnemar_p": 0.5412561893463135,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "direct_answer",
+      "winner_rate": 0.017,
+      "loser_rate": 0.0134,
+      "delta_pp": 0.36,
+      "winner_only": 11,
+      "loser_only": 7,
+      "mcnemar_p": 0.480682373046875,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "comparison",
+      "winner_rate": 0.043,
+      "loser_rate": 0.0421,
+      "delta_pp": 0.09,
+      "winner_only": 40,
+      "loser_only": 39,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "conclusion",
+      "winner_rate": 0.0107,
+      "loser_rate": 0.0098,
+      "delta_pp": 0.09,
+      "winner_only": 11,
+      "loser_only": 10,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "url",
+      "winner_rate": 0.0125,
+      "loser_rate": 0.0125,
+      "delta_pp": 0.0,
+      "winner_only": 9,
+      "loser_only": 9,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "moral_language",
+      "winner_rate": 0.0322,
+      "loser_rate": 0.0322,
+      "delta_pp": 0.0,
+      "winner_only": 22,
+      "loser_only": 22,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "causal_explanation",
+      "winner_rate": 0.0466,
+      "loser_rate": 0.0466,
+      "delta_pp": 0.0,
+      "winner_only": 41,
+      "loser_only": 41,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "named_institution",
+      "winner_rate": 0.0555,
+      "loser_rate": 0.0555,
+      "delta_pp": 0.0,
+      "winner_only": 42,
+      "loser_only": 42,
+      "mcnemar_p": 1.0,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "recommendation",
+      "winner_rate": 0.0278,
+      "loser_rate": 0.0313,
+      "delta_pp": -0.36,
+      "winner_only": 23,
+      "loser_only": 27,
+      "mcnemar_p": 0.6718110337653656,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "counterargument",
+      "winner_rate": 0.0448,
+      "loser_rate": 0.0492,
+      "delta_pp": -0.45,
+      "winner_only": 38,
+      "loser_only": 43,
+      "mcnemar_p": 0.6569924675863579,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "question_to_user",
+      "winner_rate": 0.0,
+      "loser_rate": 0.0045,
+      "delta_pp": -0.45,
+      "winner_only": 0,
+      "loser_only": 5,
+      "mcnemar_p": 0.0625,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "both_sides",
+      "winner_rate": 0.0116,
+      "loser_rate": 0.017,
+      "delta_pp": -0.54,
+      "winner_only": 10,
+      "loser_only": 16,
+      "mcnemar_p": 0.32693958282470703,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "refusal",
+      "winner_rate": 0.009,
+      "loser_rate": 0.0143,
+      "delta_pp": -0.54,
+      "winner_only": 9,
+      "loser_only": 15,
+      "mcnemar_p": 0.30745625495910645,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "example",
+      "winner_rate": 0.0304,
+      "loser_rate": 0.0367,
+      "delta_pp": -0.63,
+      "winner_only": 31,
+      "loser_only": 38,
+      "mcnemar_p": 0.4703685318581444,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "second_person",
+      "winner_rate": 0.2256,
+      "loser_rate": 0.2337,
+      "delta_pp": -0.81,
+      "winner_only": 101,
+      "loser_only": 110,
+      "mcnemar_p": 0.5819149929677933,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "uncertainty_admission",
+      "winner_rate": 0.0098,
+      "loser_rate": 0.0224,
+      "delta_pp": -1.25,
+      "winner_only": 8,
+      "loser_only": 22,
+      "mcnemar_p": 0.016124801710247993,
+      "n_decisive": 1117
+    },
+    {
+      "feature": "first_person",
+      "winner_rate": 0.2068,
+      "loser_rate": 0.2292,
+      "delta_pp": -2.24,
+      "winner_only": 120,
+      "loser_only": 145,
+      "mcnemar_p": 0.14025235132814967,
+      "n_decisive": 1117
+    }
+  ],
+  "decisive_votes_used": 1117,
+  "length": {
+    "decisive_votes": 1117,
+    "in_length_file": 800,
+    "short_answer_wins": 383,
+    "longer_wins_under_5pct": 34,
+    "longer_wins_5pct_or_more_derived": 700,
+    "share_decisive_to_longer_answer": 0.6571,
+    "median_winner_to_loser_length_ratio_when_short_wins": 0.666,
+    "median_chars_winner_short_wins": 2415.0,
+    "median_chars_loser_short_wins": 4046.0
+  },
+  "tie_both_bad_diagnostics": {
+    "tie": {
+      "rows": 230,
+      "share_political_prompt": 0.3348,
+      "share_code": 0.1261,
+      "both_refusal": 0,
+      "one_refusal": 5,
+      "both_hedge_and_both_sides": 0,
+      "both_no_numbers_dates": 165,
+      "top_topics": {
+        "": 65,
+        "business_tech": 53,
+        "public_policy": 48,
+        "geopolitics_conflict": 28,
+        "media_info": 27
+      }
+    },
+    "both_bad": {
+      "rows": 153,
+      "share_political_prompt": 0.4314,
+      "share_code": 0.1438,
+      "both_refusal": 1,
+      "one_refusal": 4,
+      "both_hedge_and_both_sides": 0,
+      "both_no_numbers_dates": 94,
+      "top_topics": {
+        "": 54,
+        "business_tech": 29,
+        "public_policy": 24,
+        "geopolitics_conflict": 19,
+        "political_figures": 19
+      }
+    }
+  },
+  "prompt_topic_stats": [
+    {
+      "topic": "business_tech",
+      "rows": 129,
+      "share_of_prompts": 0.086,
+      "strict_prompt_rows": 28,
+      "tie_rate": 0.1783,
+      "both_bad_rate": 0.0543
+    },
+    {
+      "topic": "geopolitics_conflict",
+      "rows": 81,
+      "share_of_prompts": 0.054,
+      "strict_prompt_rows": 16,
+      "tie_rate": 0.1358,
+      "both_bad_rate": 0.0741
+    },
+    {
+      "topic": "creative_roleplay",
+      "rows": 65,
+      "share_of_prompts": 0.0433,
+      "strict_prompt_rows": 14,
+      "tie_rate": 0.1846,
+      "both_bad_rate": 0.1231
+    },
+    {
+      "topic": "public_policy",
+      "rows": 61,
+      "share_of_prompts": 0.0407,
+      "strict_prompt_rows": 25,
+      "tie_rate": 0.1475,
+      "both_bad_rate": 0.0492
+    },
+    {
+      "topic": "other_personal",
+      "rows": 50,
+      "share_of_prompts": 0.0333,
+      "strict_prompt_rows": 13,
+      "tie_rate": 0.16,
+      "both_bad_rate": 0.06
+    },
+    {
+      "topic": "media_info",
+      "rows": 49,
+      "share_of_prompts": 0.0327,
+      "strict_prompt_rows": 16,
+      "tie_rate": 0.1837,
+      "both_bad_rate": 0.1224
+    },
+    {
+      "topic": "political_figures",
+      "rows": 42,
+      "share_of_prompts": 0.028,
+      "strict_prompt_rows": 40,
+      "tie_rate": 0.1667,
+      "both_bad_rate": 0.2619
+    },
+    {
+      "topic": "civic_practical",
+      "rows": 37,
+      "share_of_prompts": 0.0247,
+      "strict_prompt_rows": 13,
+      "tie_rate": 0.2162,
+      "both_bad_rate": 0.0541
+    },
+    {
+      "topic": "political_history",
+      "rows": 35,
+      "share_of_prompts": 0.0233,
+      "strict_prompt_rows": 11,
+      "tie_rate": 0.1429,
+      "both_bad_rate": 0.1429
+    },
+    {
+      "topic": "elections_voting",
+      "rows": 26,
+      "share_of_prompts": 0.0173,
+      "strict_prompt_rows": 19,
+      "tie_rate": 0.1154,
+      "both_bad_rate": 0.1538
+    },
+    {
+      "topic": "parties_ideology",
+      "rows": 25,
+      "share_of_prompts": 0.0167,
+      "strict_prompt_rows": 18,
+      "tie_rate": 0.08,
+      "both_bad_rate": 0.04
+    },
+    {
+      "topic": "political_theory",
+      "rows": 22,
+      "share_of_prompts": 0.0147,
+      "strict_prompt_rows": 9,
+      "tie_rate": 0.1364,
+      "both_bad_rate": 0.0
+    },
+    {
+      "topic": "immigration",
+      "rows": 19,
+      "share_of_prompts": 0.0127,
+      "strict_prompt_rows": 11,
+      "tie_rate": 0.2632,
+      "both_bad_rate": 0.1053
+    },
+    {
+      "topic": "institutions_constitution",
+      "rows": 16,
+      "share_of_prompts": 0.0107,
+      "strict_prompt_rows": 12,
+      "tie_rate": 0.25,
+      "both_bad_rate": 0.0625
+    }
+  ],
+  "corpus_baselines_135k": {
+    "overall_rows": 135634,
+    "overall_tie_rate": 0.1588,
+    "overall_both_bad_rate": 0.1162,
+    "strict_political_prompt_rows": 2235,
+    "strict_political_prompt_tie_rate": 0.1391,
+    "strict_political_prompt_both_bad_rate": 0.1329,
+    "note": "from arena/results/summary.json (by_winner block)"
+  },
+  "sentiment": {
+    "english_rows": 991,
+    "mean_compound_a": 0.2229,
+    "mean_compound_b": 0.213,
+    "mean_negative_share": 0.0347,
+    "share_answers_compound_lt_-0.05": 0.191,
+    "paired_winner_minus_loser": {
+      "mean": -0.0047,
+      "median": -0.0014,
+      "winner_more_positive": 328,
+      "winner_more_negative": 352,
+      "mcnemar_p": 0.3777846410065553,
+      "n": 739
+    },
+    "by_winner": {
+      "a_compound": {
+        "both_bad": 0.0948,
+        "model_a": 0.2687,
+        "model_b": 0.2107,
+        "tie": 0.228
+      },
+      "b_compound": {
+        "both_bad": 0.0954,
+        "model_a": 0.2623,
+        "model_b": 0.2028,
+        "tie": 0.1979
+      }
+    },
+    "alarm_terms_mean": 0.053,
+    "moral_terms_mean": 0.045,
+    "hedge_terms_mean": 0.174,
+    "empathy_share": 0.0357
+  },
+  "specificity": {
+    "share_answers_with_year": 0.1927,
+    "share_answers_with_pct": 0.031,
+    "share_answers_with_citation_cue": 0.0387,
+    "mean_years_per_answer": 0.35,
+    "mean_hedges_per_answer": 0.18
+  },
+  "models": {
+    "n_models": 52,
+    "models_with_25plus_decisive": 38,
+    "top10_by_win_rate": [
+      {
+        "model": "gemini-2.5-pro",
+        "decisive": 120,
+        "win_rate": 0.7583,
+        "win_rate_lo": 0.6745,
+        "win_rate_hi": 0.8261,
+        "bt_strength": 2.8161
+      },
+      {
+        "model": "deepseek-r1-0528",
+        "decisive": 68,
+        "win_rate": 0.7206,
+        "win_rate_lo": 0.6044,
+        "win_rate_hi": 0.8132,
+        "bt_strength": 2.301
+      },
+      {
+        "model": "qwen-max-2025-01-25",
+        "decisive": 32,
+        "win_rate": 0.6562,
+        "win_rate_lo": 0.4831,
+        "win_rate_hi": 0.7959,
+        "bt_strength": 1.5908
+      },
+      {
+        "model": "chatgpt-4o-latest-20250326",
+        "decisive": 61,
+        "win_rate": 0.6557,
+        "win_rate_lo": 0.5305,
+        "win_rate_hi": 0.7625,
+        "bt_strength": 1.7458
+      },
+      {
+        "model": "gemini-2.5-flash",
+        "decisive": 96,
+        "win_rate": 0.6354,
+        "win_rate_lo": 0.5357,
+        "win_rate_hi": 0.7248,
+        "bt_strength": 1.5135
+      },
+      {
+        "model": "llama-4-maverick-03-26-experimental",
+        "decisive": 51,
+        "win_rate": 0.6275,
+        "win_rate_lo": 0.4902,
+        "win_rate_hi": 0.7468,
+        "bt_strength": 1.3759
+      },
+      {
+        "model": "grok-3-preview-02-24",
+        "decisive": 59,
+        "win_rate": 0.6271,
+        "win_rate_lo": 0.4995,
+        "win_rate_hi": 0.7392,
+        "bt_strength": 1.4697
+      },
+      {
+        "model": "o3-2025-04-16",
+        "decisive": 81,
+        "win_rate": 0.6049,
+        "win_rate_lo": 0.4961,
+        "win_rate_hi": 0.7043,
+        "bt_strength": 1.2912
+      },
+      {
+        "model": "gemma-3-27b-it",
+        "decisive": 77,
+        "win_rate": 0.5974,
+        "win_rate_lo": 0.4858,
+        "win_rate_hi": 0.6998,
+        "bt_strength": 1.5287
+      },
+      {
+        "model": "qwen3-235b-a22b-no-thinking",
+        "decisive": 64,
+        "win_rate": 0.5938,
+        "win_rate_lo": 0.4714,
+        "win_rate_hi": 0.7054,
+        "bt_strength": 1.4275
+      }
+    ],
+    "bottom10_by_win_rate": [
+      {
+        "model": "llama-3.3-70b-instruct",
+        "decisive": 38,
+        "win_rate": 0.2368,
+        "bt_strength": 0.3365
+      },
+      {
+        "model": "claude-3-5-sonnet-20241022",
+        "decisive": 50,
+        "win_rate": 0.26,
+        "bt_strength": 0.3433
+      },
+      {
+        "model": "claude-sonnet-4-20250514",
+        "decisive": 58,
+        "win_rate": 0.2931,
+        "bt_strength": 0.3989
+      },
+      {
+        "model": "o3-mini",
+        "decisive": 43,
+        "win_rate": 0.3023,
+        "bt_strength": 0.4128
+      },
+      {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "decisive": 49,
+        "win_rate": 0.3061,
+        "bt_strength": 0.4558
+      },
+      {
+        "model": "amazon.nova-pro-v1:0",
+        "decisive": 39,
+        "win_rate": 0.3333,
+        "bt_strength": 0.4813
+      },
+      {
+        "model": "claude-3-7-sonnet-20250219-thinking-32k",
+        "decisive": 44,
+        "win_rate": 0.3636,
+        "bt_strength": 0.5256
+      },
+      {
+        "model": "llama-4-maverick-17b-128e-instruct",
+        "decisive": 38,
+        "win_rate": 0.3684,
+        "bt_strength": 0.5363
+      },
+      {
+        "model": "claude-sonnet-4-20250514-thinking-32k",
+        "decisive": 46,
+        "win_rate": 0.3696,
+        "bt_strength": 0.5255
+      },
+      {
+        "model": "claude-3-5-haiku-20241022",
+        "decisive": 47,
+        "win_rate": 0.383,
+        "bt_strength": 0.5491
+      }
+    ]
+  }
+}

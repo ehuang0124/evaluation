@@ -1,0 +1,9 @@
+intent,rows,share,tie_rate,both_bad_rate
+factual_lookup,336,0.224,0.1518,0.0982
+prediction_or_scenario,197,0.1313,0.1726,0.0863
+opinion_or_argument,104,0.0693,0.125,0.0865
+howto_or_advice,88,0.0587,0.125,0.1023
+creative_writing,80,0.0533,0.125,0.1375
+comparison_eval,59,0.0393,0.2034,0.1356
+data_or_code,44,0.0293,0.1818,0.0682
+rewrite_or_edit,31,0.0207,0.1613,0.129

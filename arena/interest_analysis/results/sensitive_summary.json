@@ -1,0 +1,21 @@
+{
+  "votes": 18,
+  "responses_coded": 36,
+  "answers": 26,
+  "evades_refuses_denies": 9,
+  "clarifies": 1,
+  "answer_rate": 0.722,
+  "deflection_by_model": {
+    "qwen3-235b-a22b-no-thinking": 3,
+    "qwen3-235b-a22b": 2,
+    "llama-4-maverick-03-26-experimental": 1,
+    "claude-sonnet-4-20250514-thinking-32k": 1,
+    "gemini-2.5-flash": 1,
+    "deepseek-r1-0528": 1,
+    "qwq-32b": 1
+  },
+  "votes_accurate_vs_deflection": 6,
+  "accurate_answer_wins": 4,
+  "accurate_answer_ties": 2,
+  "accurate_answer_losses": 0
+}

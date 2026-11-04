@@ -1,0 +1,24 @@
+vote_id,date,prompt,model_a,answer_a_verdict,model_b,answer_b_verdict,ground_truth,winner,ground_truth_source,cA,cB
+a4a6f461,2025-06-17,hello who is US president?,gemma-3-27b-it,wrong_biden,claude-sonnet-4-20250514-thinking-32k,correct_trump,Donald Trump (from 20 Jan 2025),model_b,public record,wrong,correct
+7c1e4e44,2025-05-06,Who's the current UK Prime Minister?,o3-2025-04-16,wrong_stale_sunak,claude-3-7-sonnet-20250219,correct_starmer,Keir Starmer (from 5 Jul 2024),model_b,public record,wrong,correct
+677c45d0,2025-05-28,Who won the american elections?,command-a-03-2025,wrong_stale_2020,claude-opus-4-20250514,correct_trump,Trump beat Harris Nov 2024,model_b,public record,wrong,correct
+235ae365,2025-05-28,who won the american election?,claude-3-5-sonnet-20241022,declines_cutoff,claude-opus-4-20250514,correct_trump,Trump beat Harris Nov 2024,model_b,public record,declines,correct
+0244375e,2025-05-29,Who is the president of the United States?,gemini-2.5-flash-preview-04-17,wrong_biden,gpt-4.1-mini-2025-04-14,wrong_biden,Donald Trump,both_bad,public record,wrong,wrong
+a3484594,2025-07-04,Who's the current us president?,claude-opus-4-20250514,correct_trump,claude-3-5-sonnet-20241022,wrong_stale_biden,Donald Trump,model_a,public record,correct,wrong
+13e2f2e1,2025-06-06,Who is the president of Indonesia,claude-opus-4-20250514,wrong_jokowi_hedged,gpt-4.1-mini-2025-04-14,wrong_jokowi,Prabowo Subianto (from 20 Oct 2024),model_a,public record,wrong,wrong
+640166b0,2025-06-10,Who is the prime minister of Bulgaria?,qwen3-235b-a22b-no-thinking,wrong_stale_denkov,qwen3-30b-a3b,wrong_stale_petkov,Rosen Zhelyazkov (from 16 Jan 2025),both_bad,wikipedia/politico,wrong,wrong
+08ceb7e6,2025-06-06,Who is the prime minister of Bulgaria?,gemini-2.5-flash-preview-04-17,wrong_stale_glavchev,gemma-3-27b-it,wrong_stale_glavchev,Rosen Zhelyazkov,model_b,wikipedia/politico,wrong,wrong
+2cad3d0a,2025-06-06,Who is the prime minister of Bulgaria?,gemini-2.0-flash-001,wrong_stale_glavchev,deepseek-v3-0324,wrong_stale_denkov,Rosen Zhelyazkov,model_b,wikipedia/politico,wrong,wrong
+919b84a5,2025-06-06,Who is the prime minister of Bulgaria?,mistral-medium-2505,wrong_stale_denkov,gemini-2.0-flash-001,wrong_stale_denkov,Rosen Zhelyazkov,model_a,wikipedia/politico,wrong,wrong
+d8c13e20,2025-06-17,Who is the current mayor of Habovka (village in Slovakia)?,gpt-4.1-mini-2025-04-14,unverified_kovalcik,deepseek-r1-0528,unverified_svajlenka,not verified in this session,both_bad,none,unverified,unverified
+9a6fdc28,2025-06-23,Kto wygrał wybory prezydenckie w Polsce w 2025 roku?,deepseek-r1-0528,wrong_not_yet,qwen3-235b-a22b-no-thinking,wrong_not_yet,Karol Nawrocki won runoff 1 Jun 2025,model_b,PKW/TASS,wrong,wrong
+c12465c1,2025-05-30,2025년 대한민국 대통령 선거 결과 예측해줘,qwen3-30b-a3b,wrong_no_2025_election,claude-3-7-sonnet-20250219,wrong_no_2025_election,Lee Jae-myung won 3 Jun 2025,tie,public record,wrong,wrong
+2a51a10d,2025-05-28,H.R. 1: One Big Beautiful Bill Act,claude-sonnet-4-20250514,declines_cutoff,chatgpt-4o-latest-20250326,wrong_confident_title,H.R.1 (119th) = One Big Beautiful Bill Act,both_bad,govinfo/congress,declines,wrong
+e95668ea,2025-07-06,2023 Selangor state election,claude-sonnet-4-20250514,correct_six_state_polls,llama-4-maverick-17b-128e-instruct,wrong_general_election,held 12 Aug 2023 separate from GE15,both_bad,wikipedia,correct,wrong
+0c17eeff,2025-04-30,How do they keep adding flagpoles at NATO HQ?,gemini-2.5-flash-preview-04-17,correct_expansion_design,llama-4-maverick-17b-128e-instruct,wrong_30_members,NATO had 32 members by 2024-25,model_a,public record,correct,wrong
+6d56dc7c,2025-05-24,who is the president of Algeria,llama-4-maverick-03-26-experimental,correct_tebboune,gemini-2.5-flash-preview-04-17,correct_tebboune,Abdelmadjid Tebboune,model_a,public record,correct,correct
+a52ec6db,2025-05-07,who is the president of italy?,claude-3-5-sonnet-20241022,correct_mattarella,qwen3-235b-a22b,correct_mattarella,Sergio Mattarella,model_b,public record,correct,correct
+d3e83a51,2025-05-30,who is pm of india,gemini-2.5-flash-preview-04-17,correct_modi,claude-3-7-sonnet-20250219,correct_modi,Narendra Modi,tie,public record,correct,correct
+77a2af37,2025-07-13,Who is the president of Albania?,gemini-2.5-flash,correct_begaj,minimax-m1,correct_begaj,Bajram Begaj,model_b,public record,correct,correct
+bbd4332b,2025-06-05,who is the president of china,claude-3-7-sonnet-20250219-thinking-32k,correct_xi,claude-sonnet-4-20250514,correct_xi,Xi Jinping,model_b,public record,correct,correct
+9cb9023c,2025-05-28,Who is the 16th president of the United States?,grok-3-preview-02-24,correct_lincoln,claude-sonnet-4-20250514,correct_lincoln,Abraham Lincoln,model_b,public record,correct,correct

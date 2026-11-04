@@ -1,0 +1,16 @@
+{
+  "votes": 44,
+  "answers_relevant": 88,
+  "answers_substantive": 73,
+  "deflects": 13,
+  "deflect_by_model": {
+    "qwen3-30b-a3b": 4,
+    "qwen3-235b-a22b-no-thinking": 3,
+    "deepseek-r1-0528": 3,
+    "qwen3-235b-a22b": 2,
+    "qwq-32b": 1
+  },
+  "one_sided_votes": 11,
+  "answering_side_won": 9,
+  "answering_side_ties": 2
+}

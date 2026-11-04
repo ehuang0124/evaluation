@@ -1,2 +1,6 @@
 datasets>=3,<5
 pyarrow>=17
+# interest_analysis/ extras
+pandas>=2
+matplotlib>=3.8
+vaderSentiment>=3.3

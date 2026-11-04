@@ -1,0 +1,41 @@
+{
+  "votes_audited": 23,
+  "answers_audited": 46,
+  "answers_correct": 19,
+  "answers_wrong": 23,
+  "answers_decline": 2,
+  "answers_unverified": 2,
+  "both_correct_votes": 6,
+  "both_correct_outcomes": {
+    "model_b": 4,
+    "model_a": 1,
+    "tie": 1
+  },
+  "one_sided_votes": 6,
+  "one_sided_correct_won": 5,
+  "both_wrong_votes": 8,
+  "both_wrong_outcomes": {
+    "model_b": 3,
+    "both_bad": 2,
+    "model_a": 2,
+    "tie": 1
+  },
+  "models_with_a_wrong_answer": [
+    "chatgpt-4o-latest-20250326",
+    "claude-3-5-sonnet-20241022",
+    "claude-3-7-sonnet-20250219",
+    "claude-opus-4-20250514",
+    "command-a-03-2025",
+    "deepseek-r1-0528",
+    "deepseek-v3-0324",
+    "gemini-2.0-flash-001",
+    "gemini-2.5-flash-preview-04-17",
+    "gemma-3-27b-it",
+    "gpt-4.1-mini-2025-04-14",
+    "llama-4-maverick-17b-128e-instruct",
+    "mistral-medium-2505",
+    "o3-2025-04-16",
+    "qwen3-235b-a22b-no-thinking",
+    "qwen3-30b-a3b"
+  ]
+}
