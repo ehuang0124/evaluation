@@ -1,5 +1,14 @@
 # What 1,500 political preference votes in LMArena actually show
 
+> **Superseded — read `REPORT_SCALE.md` first.** That report re-runs this analysis on the full local extracts
+> (63,635 prompt-side votes; 2,235-vote political census; 6,820 votes with untruncated answers). Three claims below
+> do **not** survive at scale, and the scale report states the corrections: (1) the "bold formatting wins" result
+> (p = 0.022 here) is a length artefact — length-adjusted it is −0.3pp, p = 0.85; (2) "16.7% of prompts are
+> political" is an upstream-tag upper bound, hand-checked precision ≈ 47%, best estimate ~8%; (3) the
+> "uncertainty admission loses" and "validation markers win" results are null or much weaker with more votes.
+> This file is kept as the shortlist-stage record and for its hand-coded claim audit (§6), which the scale report
+> cites rather than repeats.
+
 *Analysis of `arena/results/shortlist.csv` — 1,500 human preference votes, 52 models,
 17 April – 24 July 2025. Four questions: recurring prompt categories, what the
 winning answer contains, sentiment, and factual/historical accuracy.*
@@ -8,7 +17,9 @@ winning answer contains, sentiment, and factual/historical accuracy.*
 
 | file | what it is |
 |---|---|
-| `REPORT.md` | this report |
+| **`REPORT_SCALE.md`** | **the current report — full extracts, 63,635 / 2,235 / 6,820 votes, length-controlled** |
+| `scale.py`, `results_scale/` | the scale-up pipeline and every number it produces |
+| `REPORT.md` | this report (shortlist stage, superseded where noted) |
 | `analyze.py`, `lexicons.py` | full pipeline over the 1,500 rows (topics, answer features, sentiment, model standings, sensitive-topic audit) |
 | `supplement.py` | paired log-odds, sentiment by topic, language effects, recency/sycophancy tests, label-audit sample |
 | `figures.py` | the five figures embedded below |
