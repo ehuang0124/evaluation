@@ -4,7 +4,7 @@ name: extract-full-text
 # Streams the corpus once (~8 min) and commits the full-text shortlist data.
 on:
   push:
-    branches: [arena/fa121d08-evaluation]
+    branches: [arena/771ed088-evaluation]
     paths:
       - 'arena/RUN_EXTRACT'
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: arena/fa121d08-evaluation
+          ref: arena/771ed088-evaluation
 
       - uses: actions/setup-python@v5
         with:
@@ -52,5 +52,5 @@ jobs:
             echo "No data changes to commit"
           else
             git commit -m "chore: refresh full-text political shortlist [skip ci]"
-            git push origin HEAD:arena/fa121d08-evaluation
+            git push origin HEAD:arena/771ed088-evaluation
           fi

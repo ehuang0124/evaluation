@@ -6,7 +6,7 @@ name: political-scan
 # deliberately do NOT trigger it.
 on:
   push:
-    branches: [arena/fa121d08-evaluation]
+    branches: [arena/771ed088-evaluation]
     paths:
       - 'arena/RUN_SCAN'
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: arena/fa121d08-evaluation
+          ref: arena/771ed088-evaluation
 
       - uses: actions/setup-python@v5
         with:
@@ -61,5 +61,5 @@ jobs:
             echo "No result changes to commit"
           else
             git commit -m "chore: refresh political-content scan results [skip ci]"
-            git push origin HEAD:arena/fa121d08-evaluation
+            git push origin HEAD:arena/771ed088-evaluation
           fi
