@@ -1,14 +1,13 @@
 name: political-scan
 
-# Re-runs whenever the analyzer or the run config is pushed to the working
-# branch. Results are committed back to `arena/results/` with `[skip ci]` and
-# are excluded from `paths`, so a results commit never retriggers this job.
+# Re-run by changing `arena/RUN_SCAN` and pushing, or from the Actions tab
+# ("Run workflow"). Results are committed back to `arena/results/` with
+# `[skip ci]`; a full scan takes ~39 minutes, so ordinary doc/result commits
+# deliberately do NOT trigger it.
 on:
   push:
     branches: [arena/fa121d08-evaluation]
     paths:
-      - '.github/workflows/political-scan.yml'
-      - 'arena/analyze_political.py'
       - 'arena/RUN_SCAN'
   workflow_dispatch:
 

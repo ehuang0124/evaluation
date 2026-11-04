@@ -47,7 +47,7 @@ from datetime import datetime, timezone
 
 DATASET = "lmarena-ai/arena-human-preference-140k"
 SPLIT = "train"
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 
 # ---------------------------------------------------------------------------
 # Lexicon.  Terms are plain phrases (regex-escaped internally).
@@ -576,9 +576,12 @@ def scan(args) -> dict:
             if at_least(p_any["tier"], tier):
                 c[f"responses_contextual_{tier}"] += int(bool(resp_a)) + int(bool(resp_b))
 
+        # Note: r_any_tier inherits the prompt tier, so it must NOT be used here;
+        # use the direct (uncorroborated-by-prompt) answer evidence instead.
+        direct_signal = at_least(max_tier(ra_direct, rb_direct), "probable")
         if at_least(p_any["tier"], "strict"):
-            c["rows_both_prompt_and_response_strict"] += int(at_least(r_any_tier, "strict"))
-            c["rows_prompt_only_strict"] += int(not at_least(r_any_tier, "strict"))
+            c["rows_prompt_with_direct_response_signal"] += int(direct_signal)
+            c["rows_prompt_only_strict"] += int(not direct_signal)
         if at_least(r_any_tier, "strict") and not at_least(p_any["tier"], "strict"):
             c["rows_response_only_strict"] += 1
 
